@@ -17,7 +17,7 @@ function* getNewAddressRequest(action) {
     ) {
       yield call(
         API.post(
-          `api/btc/get_new_address/`,
+          `btc/get_new_address/`,
           actions.getNewAddressSuccess,
           actions.getNewAddressFailure,
           {email: decoded.email},
@@ -41,7 +41,7 @@ function* getBalanceRequest(action) {
     ) {
       yield call(
         API.post(
-          `api/btc/get_balance/`,
+          `btc/get_balance/`,
           actions.getBalanceSuccess,
           actions.getBalanceFailure,
           {address: btc_address},
@@ -64,7 +64,7 @@ function* getWallentInfoRequest(action) {
     ) {
       yield call(
         API.post(
-          `api/btc/get_wallet_info/`,
+          `btc/get_wallet_info/`,
           actions.getWalletInfoSuccess,
           actions.getWalletInfoFailure,
           {email: decoded.email},

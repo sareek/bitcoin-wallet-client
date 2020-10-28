@@ -266,7 +266,7 @@ class Login extends React.Component {
         <div className="login__box">
           <div className="login__logo">
             <Image
-              spaced="bottom"
+              // spaced="bottom"
               size="small"
               src={Logo}
               alt="XAL"

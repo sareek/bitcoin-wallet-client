@@ -41,8 +41,8 @@ class Routes extends React.PureComponent {
         }
       >
         <Switch location={this.props.location}>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/register" component={Register} />
+          <Route exact path="/" render={props => <Login {...props} />} />
+          <Route exact path="/register" render={props => <Register {...props} />} />
 
           <Route
             exact

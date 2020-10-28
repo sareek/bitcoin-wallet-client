@@ -136,7 +136,7 @@ class Wallet extends React.Component {
               <Grid.Row style={{marginTop: '2rem'}} >
                 <Grid.Column width={4}>
                   {loading ? (
-                    <div class="loader_wallet"></div>
+                    <div className="loader_wallet"></div>
                   ) : (
                     <Segment>
                     <p><b>BTC Balance:</b></p>
@@ -148,7 +148,7 @@ class Wallet extends React.Component {
                 </Grid.Column>
                 <Grid.Column width={4}>
                   {loading ? (
-                    <div class="loader_wallet"></div>
+                    <div className="loader_wallet"></div>
                   ) : (
                     <Segment>
                     <p><b>BTC Price:</b></p>
@@ -165,7 +165,7 @@ class Wallet extends React.Component {
                 </Grid.Column>
                 <Grid.Column width={4}>
                   {loading ? (
-                    <div class="loader_wallet"></div>
+                    <div className="loader_wallet"></div>
                   ) : (
                     <Segment>
                     <p><b>USD Balance:</b></p>
