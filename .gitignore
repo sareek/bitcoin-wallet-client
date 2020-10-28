@@ -12,5 +12,3 @@ yarn.lock
 
 package-lock.json
 .directory
-
-app/containers/App/constants.js
