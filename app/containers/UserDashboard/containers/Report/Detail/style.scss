@@ -1,0 +1,145 @@
+p.chart-title{
+    color:#000;
+    font-size: 18px;
+    text-align: center;
+  
+}
+
+.bar-graph{
+    padding: 20px;
+    background:#fff;
+    width:40%;
+    box-sizing: border-box;
+    float:left;
+
+    @media(max-width:1440px){
+        width: 45% ;
+    }
+    @media(max-width:1024px){
+        width: 80% ;
+    }
+    @media(max-width:768px){
+        width: 100% ;
+    }
+    tspan {
+        font-size: 14px !important;
+    }
+    p.chart-title{
+        
+        margin-bottom: 40px;
+    }
+
+    #chart{
+        @media(max-width:1440px){
+            height:185px;
+        }
+    }
+}
+
+.gauge-chart{
+    padding: 20px;
+    background:#fff;
+    width:40%;
+    float:left;
+    box-sizing: border-box;
+    @media(max-width:1440px){
+        width: 50% ;
+    }
+    @media(max-width:1024px){
+        width: 80% ;
+    }
+    @media(max-width:768px){
+        width: 100% ;
+    }
+    tspan {
+        font-size: 14px !important;
+    }
+    p.chart-title{
+        
+        margin-bottom: 40px;
+    }
+}
+.graphs{
+    margin-right:40px;
+}
+
+  .gauge-chart #chart2{
+    width: 80% !important; 
+    float:left;
+  }
+  .gauge-chart .legion {
+    width: 20%;
+    /* display: inline-block; */
+    float: left;
+}
+.gauge-chart .legion p{
+    color :#333;
+}
+.gauge-chart .legion span {
+    height: 15px;
+    width: 15px;
+    background: #aaa;
+    display: inline-block;
+    margin-right: 5px;
+}
+.gauge-chart .legion span.poor{
+    background:#ff0000;
+}
+.gauge-chart .legion span.fair{
+    background:#f97600;
+}
+.gauge-chart .legion span.good{
+    background:#f6c600;
+}
+.gauge-chart .legion span.execellent{
+    background:#60b044;
+}
+
+
+.doughnut-graph{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+    @media (max-width:1440px) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @media (max-width:768px) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width:475px) {
+        grid-template-columns: 1fr;
+    }
+    .doughnut-item{
+        padding: 20px 10px;
+        background: #fff;
+        svg{
+            transform: scale(0.9);
+            @media(max-width:1440px){
+                height: 260px !important;
+            }
+        }
+        font-size: 12px;
+    }
+    .c3-chart-arcs-title{
+        font-size: 18px;
+    }
+}
+
+.mr-5{
+    @media (max-width:475px) {
+        margin-right:1rem !important;
+    }
+  }
+
+
+  a.ui.blue-button.button{
+    background:transparent !important;
+    color: #00a7ff !important;
+    border:1px solid #00a7ff;
+    border-radius: 5px !important;
+    &:hover{
+        background:#00a7ff !important;
+        color:#fff !important;
+    }
+} 

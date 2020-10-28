@@ -1,0 +1,5 @@
+export const UPDATE_BASIC_INFO_REQUEST = "APP/AdminProfile/BasicInfo/UPDATE_BASIC_INFO_REQUEST";
+export const UPDATE_BASIC_INFO_SUCCESS = "APP/AdminProfile/BasicInfo/UPDATE_BASIC_INFO_SUCCESS";
+export const UPDATE_BASIC_INFO_FAILURE = "APP/AdminProfile/BasicInfo/UPDATE_BASIC_INFO_FAILURE";
+
+export const BASIC_INFO_CLEAR_STATE = "APP/AdminProfile/BasicInfo/BASIC_INFO_CLEAR_STATE";

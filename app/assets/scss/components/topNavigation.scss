@@ -1,0 +1,51 @@
+.dashboard__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 0 11px rgba(0, 0, 0, 0.13);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  flex-shrink: 0;
+}
+.header__menu {
+  padding: 0 30px;
+  margin-left: auto;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  .nav__link {
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+    padding: 4px;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .nav__link .badge__holder {
+    position: relative;
+  }
+  .ui.dropdown.nav__link > .dropdown.icon {
+    margin-left: 0.5em;
+  }
+  .nav__item {
+    padding: 0 0.5em;
+  }
+  .nav__item .ui.avatar.image {
+    margin-left: 1rem;
+    height: 28px;
+    width: 28px;
+  }
+  .basic-nav-menu {
+    width: 150px;
+  }
+}
+.navbar__logo {
+  background-color: #404e67;
+  width: 200px;
+  padding: 0.5rem 1rem;
+}

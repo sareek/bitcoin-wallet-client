@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800');
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+.scroll--simple::-webkit-scrollbar-thumb:active {
+  background: rgba(0, 0, 0, 0.9);
+}
+#wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  min-height: 100vh;
+}
+@import 'base/mixins.scss';
+@import 'base/variables.scss';
+@import 'base/semanticCssOverride';
+@import 'base/base.scss';
+@import 'components/icofont.scss';
+@import 'components/dashboard.scss';
+@import 'components/slick.scss';
+@import 'components/website.scss';
+@import 'components/main_slider.scss';
+@import 'components/team.scss';
+@import 'components/news_list.scss';

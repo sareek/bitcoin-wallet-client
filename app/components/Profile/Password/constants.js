@@ -1,0 +1,6 @@
+
+export const UPDATE_PASSWORD_REQUEST = "APP/Profile/Password/UPDATE_PASSWORD_REQUEST";
+export const UPDATE_PASSWORD_SUCCESS = "APP/Profile/Password/UPDATE_PASSWORD_SUCCESS";
+export const UPDATE_PASSWORD_FAILURE = "APP/Profile/Password/UPDATE_PASSWORD_FAILURE";
+
+export const CLEAR_STATE = "APP/Profile/Password/CLEAR_STATE";

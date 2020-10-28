@@ -1,0 +1,7 @@
+
+
+.widthCalc1 {    width: calc(100% - 300px);}
+
+.image.rounded.border { border:1px solid #333;
+
+}

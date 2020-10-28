@@ -1,0 +1,23 @@
+export const SIGNUP_REQUEST = 'App/Register/SIGNUP_REQUEST';
+export const SIGNUP_SUCCESS = 'App/Register/SIGNUP_SUCCESS';
+export const SIGNUP_FAILURE = 'App/Register/SIGNUP_FAILURE';
+
+export const LINK_FACEBOOK_REQUEST = "App/Register/LINK_FACEBOOK_REQUEST";
+export const LINK_FACEBOOK_SUCCESS = "App/Register/LINK_FACEBOOK_SUCCESS";
+export const LINK_FACEBOOK_FAILURE = "App/Register/LINK_FACEBOOK_FAILURE";
+
+export const LINK_GOOGLE_REQUEST = "App/Register/LINK_GOOGLE_REQUEST";
+export const LINK_GOOGLE_SUCCESS = "App/Register/LINK_GOOGLE_SUCCESS";
+export const LINK_GOOGLE_FAILURE = "App/Register/LINK_GOOGLE_FAILURE";
+
+export const VERIFY_REFER_CODE_REQUEST = "App/Register/VERIFY_REFER_CODE_REQUEST";
+export const VERIFY_REFER_CODE_SUCCESS = "App/Register/VERIFY_REFER_CODE_SUCCESS";
+export const VERIFY_REFER_CODE_FAILURE = "App/Register/VERIFY_REFER_CODE_FAILURE";
+
+export const VERIFY_REFER_CODE_REQ = "App/Register/VERIFY_REFER_CODE_REQ";
+export const VERIFY_REFER_CODE_SUC = "App/Register/VERIFY_REFER_CODE_SUC";
+export const VERIFY_REFER_CODE_FAI = "App/Register/VERIFY_REFER_CODE_FAI";
+
+
+export const CLEAR_STATE = 'App/Register/CLEAR_STATE';
+export const CLEAR_MESSAGE = 'App/Register/CLEAR_MESSAGE';

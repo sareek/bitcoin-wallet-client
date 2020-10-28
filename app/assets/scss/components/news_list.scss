@@ -1,0 +1,29 @@
+.news_listing {
+  .title__head h2 {
+    background: transparent;
+  }
+
+  .title__head h2::before {
+    content: '';
+    position: absolute;
+    background-color: #febe10;
+    height: 10px;
+    width: calc(100% - 300px);
+    left: 290px;
+    top: 20px;
+  }
+
+  .list {
+    margin-top: 0px !important;
+    margin-bottom: 30px;
+  }
+
+  a {
+    font-family: 'Staatliches', cursive;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #febe10;
+    margin-top: auto;
+    text-align: right;
+  }
+}

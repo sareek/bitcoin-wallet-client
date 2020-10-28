@@ -1,0 +1,5 @@
+export const MULTI_FACTOR_AUTH_LOGIN_REQUEST = "App/Login/MultiFactorAuth/MULTI_FACTOR_AUTH_LOGIN_REQUEST";
+export const MULTI_FACTOR_AUTH_LOGIN_SUCCESS = "App/Login/MultiFactorAuth/MULTI_FACTOR_AUTH_LOGIN_SUCCESS";
+export const MULTI_FACTOR_AUTH_LOGIN_FAILURE = "App/Login/MultiFactorAuth/MULTI_FACTOR_AUTH_LOGIN_FAILURE";
+
+export const CLEAR_STATE = 'AppLogin/Login/MultiFactorAuth/CLEAR_STATE';

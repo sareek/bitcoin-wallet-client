@@ -1,0 +1,67 @@
+{
+  "icons": [
+    {
+      "src": "/icon_180x180.8b2cc9f3fd8203cf64c2ad85fba07e21.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_167x167.5a5dd1811812cec4c6e5065f98d8f4a5.png",
+      "sizes": "167x167",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_152x152.a9f0fffda663f8d96f2da732b3f48c88.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_120x120.9cce52377d5877f88e2718d2ba5d2b79.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_512x512.4e826fe3a184b18632a9e988db948a3c.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_384x384.f1eb79a5d8f209462411410a8091f272.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_192x192.8493471bd9e3d0edea406b66300fd961.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_144x144.a90e1b07ec05596deb9945195b2fa629.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_128x128.a02748650b8dacc993a751759096ebaa.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_96x96.b0a76dd386db03d56a78eaccabdb8698.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_72x72.f656030f596441acc5e97a9f9ba3b908.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    }
+  ],
+  "name": "BLOCK STUFFS",
+  "short_name": "BLOCK-STUFFS",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "Complete Stuffs on Blockchain",
+  "background_color": "#fafafa",
+  "theme_color": "#b1624d"
+}

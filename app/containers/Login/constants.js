@@ -1,0 +1,41 @@
+/*
+ *
+ * Login constants
+ *
+ */
+export const SHOW_DIALOG = `"App/Login/SHOW_DIALOG"`;
+
+export const CHECK_CAPTCHA_REQUEST = `"App/Login/CHECK_CAPTCHA_REQUEST"`;
+export const CHECK_CAPTCHA_SUCCESS = `"App/Login/CHECK_CAPTCHA_SUCCESS"`;
+export const CHECK_CAPTCHA_FAILURE = `"App/Login/CHECK_CAPTCHA_FAILURE"`;
+
+export const LOGIN_REQUEST = `"App/Login/LOGIN_REQUEST"`;
+export const LOGIN_SUCCESS = `"App/Login/LOGIN_SUCCESS"`;
+export const LOGIN_FAILURE = `"App/Login/LOGIN_FAILURE"`;
+
+export const LOGIN_BY_TOKEN_REQUEST = `"App/Login/LOGIN_BY_TOKEN_REQUEST"`;
+export const LOGIN_BY_TOKEN_SUCCESS = `"App/Login/LOGIN_BY_TOKEN_SUCCESS"`;
+export const LOGIN_BY_TOKEN_FAILURE = `"App/Login/LOGIN_BY_TOKEN_FAILURE"`;
+
+export const LOGIN_CLEAR_STATE = `"App/Login/LOGIN_CLEAR_STATE"`;
+export const LOGIN_CLEAR_MESSAGES = `"App/Login/LOGIN_CLEAR_MESSAGES"`;
+
+export const LOGOUT_REQUEST = `"App/Login/LOGOUT_REQUEST"`;
+export const LOGOUT_SUCCESS = `"App/Login/LOGOUT_SUCCESS"`;
+export const LOGOUT_FAILURE = `"App/Login/LOGOUT_FAILURE"`;
+
+export const UPDATE_USER_INFO = `"App/Login/UPDATE_USER_INFO"`;
+
+export const RESEND_CONFIRMATION_REQUEST = `'App/Login/RESEND_CONFIRMATION_REQUEST'`;
+export const RESEND_CONFIRMATION_SUCCESS = `'App/Login/RESEND_CONFIRMATION_SUCCESS'`;
+export const RESEND_CONFIRMATION_FAILURE = `'App/Login/RESEND_CONFIRMATION_FAILURE'`;
+
+export const LINK_FACEBOOK_REQUEST = `"App/Login/LINK_FACEBOOK_REQUEST"`;
+export const LINK_FACEBOOK_SUCCESS = `"App/Login/LINK_FACEBOOK_SUCCESS"`;
+export const LINK_FACEBOOK_FAILURE = `"App/Login/LINK_FACEBOOK_FAILURE"`;
+
+export const LINK_GOOGLE_REQUEST = `"App/Login/LINK_GOOGLE_REQUEST"`;
+export const LINK_GOOGLE_SUCCESS = `"App/Login/LINK_GOOGLE_SUCCESS"`;
+export const LINK_GOOGLE_FAILURE = `"App/Login/LINK_GOOGLE_FAILURE"`;
+
+export const SET_EMAIL = 'App/Login/SET_EMAIL';
