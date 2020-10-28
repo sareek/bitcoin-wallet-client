@@ -49,9 +49,9 @@ class BasicInfo extends React.Component {
       this.setState(state => ({ data: { ...userObj } }));
     }
   }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.user !== this.props.user) {
-      const userObj = nextProps.user.toJS();
+  componentDidUpdate(prevProps) {
+    if (prevProps.user !== this.props.user) {
+      const userObj = this.props.user && this.props.user.toJS();
       if (!!userObj.birth_date) this.setState(state => ({ date: moment(userObj.birth_date, "MM-DD-YYYY")}));
       if (!!userObj.image_name) this.setState(state => ({ avatarImage: `${DOCUMENT_URL_UPDATE}${userObj.image_name}` }));
       this.setState(state => ({ data: { ...userObj } }));
