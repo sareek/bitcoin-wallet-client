@@ -10,7 +10,7 @@ import {
 import { LOCATION_CHANGE, push } from 'react-router-redux';
 import * as types from './constants';
 import * as actions from './actions';
-import Bitsbeat from 'utils/apiHelper';
+import API from 'utils/apiHelper';
 
 function* redirectOnImageUploadSuccess() {
   const action = yield take(types.UPLOAD_IMAGE_SUCCESS);
@@ -21,7 +21,7 @@ function* uploadImageRequestService(action) {
   const successWatcher = yield fork(redirectOnImageUploadSuccess);
   const { data, image } = action;
   yield fork(
-    Bitsbeat.multipartPost(
+    API.multipartPost(
       `common/text-editor`,
       actions.uploadImageSuccess,
       actions.uploadImageFailure,
@@ -43,7 +43,7 @@ function* loadModuleImageRequestService(action) {
   const successWatcher = yield fork(redirectOnImageLoadSuccess);
   const { module } = action;
   yield fork(
-    Bitsbeat.get(
+    API.get(
       // `common/text-editor?module=${module}&page=1&perpage=1000`,
       `common/text-editor?page=1&perpage=1000`,
 

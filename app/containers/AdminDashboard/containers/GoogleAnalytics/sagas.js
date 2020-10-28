@@ -1,6 +1,6 @@
 import { take, takeLatest, fork, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import Bitsbeat from 'utils/apiHelper';
+import API from 'utils/apiHelper';
 import * as types from './constants';
 import * as actions from './actions';
 
@@ -12,7 +12,7 @@ function* loadAnalyticsInfoRequest() {
   const token = localStorage.getItem('token');
   const successWatcher = yield fork(redirectOnSuccess);
   yield fork(
-    Bitsbeat.get(
+    API.get(
       `google-analytics`,
       actions.loadAnalyticsInfoSuccess,
       actions.loadAnalyticsInfoFailure,
@@ -32,7 +32,7 @@ function* updateAnalyticsInfoRequest(action) {
   const { data } = action;
   const successWatcher = yield fork(redirectOnAnalyticsInfoUpdateSuccess);
   yield fork(
-    Bitsbeat.post(
+    API.post(
       `google-analytics`,
       actions.updateAnalyticsInfoSuccess,
       actions.updateAnalyticsInfoFailure,
@@ -53,7 +53,7 @@ function* loadAnalyticsReportRequest() {
   // const token = localStorage.getItem('token');
   // const successWatcher = yield fork(redirectOnReportSuccess);
   // yield fork(
-  //   Bitsbeat.get(
+  //   API.get(
   //     `google-analytics/report`,
   //     actions.loadAnalyticsReportSuccess,
   //     actions.loadAnalyticsReportFailure,
