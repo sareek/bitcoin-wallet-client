@@ -62,9 +62,9 @@ class BasicInfo extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.user !== this.props.user) {
-      const userObj = nextProps.user.toJS();
+  componentDidUpdate(prevProps) {
+    if (prevProps.user !== this.props.user) {
+      const userObj = this.props.user.toJS();
       if (!!userObj.image_name)
         this.setState(state => ({
           avatarImage: `${DOCUMENT_URL_UPDATE}${userObj.image_name.document_name}`,

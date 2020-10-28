@@ -33,9 +33,9 @@ class XcelTokenTable extends React.PureComponent {
       };
     })(),
   };
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.tableData !== this.props.tableData) {
-      const { tableData, perPage } = nextProps;
+  componentDidUpdate(prevProps) {
+    if (prevProps.tableData !== this.props.tableData) {
+      const { tableData, perPage } = this.props;
       if (tableData.size > 0) {
         const totalItems = tableData.get('totalItems');
         const currentPage = tableData.get('currentPage');

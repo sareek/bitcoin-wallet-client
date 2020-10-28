@@ -31,9 +31,9 @@ class DatePicker extends React.Component {
     };
   }
 
-  componentWillReceiveProps(props) {
-    if (props.date) {
-      const tempDate = (props.date.split('-')[2] === '' ? '1989' : props.date.split('-')[2]) + '-' + (props.date.split('-')[0] === '' ? '1' : props.date.split('-')[0] ) + '-' + (props.date.split('-')[1] === '' ? '1' : props.date.split('-')[1]);
+  componentDidUpdate(prevProps) {
+    if (this.props.date) {
+      const tempDate = (this.props.date.split('-')[2] === '' ? '1989' : this.props.date.split('-')[2]) + '-' + (this.props.date.split('-')[0] === '' ? '1' : this.props.date.split('-')[0] ) + '-' + (this.props.date.split('-')[1] === '' ? '1' : this.props.date.split('-')[1]);
       const data = new Date(tempDate);
       this.setState({
         date:{

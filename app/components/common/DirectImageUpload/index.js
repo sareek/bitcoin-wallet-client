@@ -55,20 +55,20 @@ class DirectImageUpload extends React.Component {
     this.props.clearMessage();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.imageUploadResponse !== this.props.imageUploadResponse) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.imageUploadResponse !== this.props.imageUploadResponse) {
       this.setState({
-        uploadedImageInfo: nextProps.imageUploadResponse.toJS().path,
+        uploadedImageInfo: this.props.imageUploadResponse.toJS().path,
       });
     }
 
     if (
-      nextProps.imageList &&
-      nextProps.imageList.size > 0 &&
-      nextProps.imageList !== this.props.imageList
+      prevProps.imageList &&
+      prevProps.imageList.size > 0 &&
+      prevProps.imageList !== this.props.imageList
     ) {
       this.setState({
-        imageList: nextProps.imageList.toJS(),
+        imageList: this.props.imageList.toJS(),
       });
     }
   }
