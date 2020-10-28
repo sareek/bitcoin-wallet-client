@@ -111,7 +111,7 @@ class MultiFactorAuth extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (
-      this.props.user && this.props.user.get('multi_factor_auth_enable') !==
+      prevProps.user && this.props.user && this.props.user.get('multi_factor_auth_enable') !==
       prevProps.user.get('multi_factor_auth_enable')
     ) {
       this.setState({

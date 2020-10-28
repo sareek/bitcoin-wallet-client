@@ -71,9 +71,7 @@ class Support extends React.Component {
     success: false,
     openTickets: []
   };
-  componentWillMount() {
-    window.scrollTo(0, 0);
-  }
+
   componentDidMount() {
     const { page, perPage, query } = this.state;
     this.props.getSupportTickets(page, perPage, query);

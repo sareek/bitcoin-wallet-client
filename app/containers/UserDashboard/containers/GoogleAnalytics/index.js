@@ -45,7 +45,7 @@ class GoogleAnalyticsInfo extends React.Component {
     errors: {},
   };
 
-  componentWillMount() {
+  componentWillUnMount() {
     this.props.clearMessage();
   }
 

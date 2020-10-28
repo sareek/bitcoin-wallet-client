@@ -52,7 +52,7 @@ class ForgotPassword extends React.Component {
     data: { email: '' },
     errors: {},
   };
-  componentWillMount() { 
+  componentDidMount() { 
     this.props.resetForm();
   }
   handleChange = (e) => {

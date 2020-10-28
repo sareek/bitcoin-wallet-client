@@ -40,7 +40,7 @@ class GoogleAnalyticsReport extends React.Component {
     data: {},
   };
 
-  componentWillMount() {
+  componentWillUnMount() {
     this.props.clearMessage();
   }
 
