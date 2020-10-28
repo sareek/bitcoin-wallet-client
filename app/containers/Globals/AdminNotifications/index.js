@@ -62,9 +62,9 @@ class NotificationsPage extends React.Component {
     this.props.getAllNotifications(1);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.notifications !== this.props.notifications) {
-      const { notifications } = nextProps;
+  componentDidUpdate(prevProps) {
+    if (prevProps.notifications !== this.props.notifications) {
+      const { notifications } = this.props;
       if (notifications.size > 0) {
         const notification = notifications.toJS();
         this.setState({

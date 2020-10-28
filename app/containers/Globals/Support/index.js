@@ -79,10 +79,10 @@ class Support extends React.Component {
     this.props.getSupportTickets(page, perPage, query);
     this.props.getOpenTickets();
   }
-  componentWillReceiveProps(nextProps) {
-    this.setState({ success: nextProps.success });
-    if (nextProps.openTickets !== this.props.openTickets) {
-      const openTickets = nextProps.openTickets.get('dataList').toJS();
+  componentDidUpdate(prevProps) {
+    this.setState({ success: this.props.success });
+    if (prevProps.openTickets !== this.props.openTickets) {
+      const openTickets = this.props.openTickets.get('dataList').toJS();
       this.setState({ openTickets })
     }
   }
