@@ -1,9 +1,9 @@
 const isProdEnv = process.env.NODE_ENV === 'production';
-
+// http://3.137.188.44/api
 export const API_BASE = isProdEnv
-  ? 'http://104.197.123.145:8000/api/'
+  ? 'http://3.137.188.44/api/'
   // : 'http://localhost:4001/api/';
-   : 'http://104.197.123.145:8000/';
+   : 'http://3.137.188.44/api/';
 
 export const GOOGLE_CLIENT_ID =
   '632673995527-997dv6bet048loapcqgtfpfbqubslr2l.apps.googleusercontent.com';
