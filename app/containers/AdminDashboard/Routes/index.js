@@ -1,8 +1,6 @@
 import React, { Suspense, lazy } from 'react';
-import Switch from 'react-router-dom/Switch';
+import {Route, Switch} from 'react-router-dom';
 import Loader from 'react-loader-spinner';
-import Redirect from 'react-router-dom/Redirect';
-import Route from 'react-router-dom/Route';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectLocation } from 'containers/App/selectors';
