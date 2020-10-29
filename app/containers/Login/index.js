@@ -22,6 +22,7 @@ import {
 } from './selectors';
 import ForgotPassword from './forgot-password/index';
 import { makeSelectUser } from '../App/selectors';
+import { validators } from 'utils/validators';
 import {
   logoutRequest,
   loginRequest,
@@ -107,6 +108,7 @@ class Login extends React.Component {
 
   handleChange = e => {
     e.persist();
+    delete this.state.errors[e.target.name];
     this.setState(state => ({
       data: {
         ...state.data,
@@ -120,6 +122,7 @@ class Login extends React.Component {
     const { isCaptchaEnabled } = this.props;
     const errors = {};
     if (!data.email) errors.email = "Can't be blank";
+    if (data.email && !validators.emailValidator(data.email)) errors.email = 'Please enter valid email';
     if (!data.password) errors.password = 'password_error';
 
     // if (isCaptchaEnabled && !reCaptcha)

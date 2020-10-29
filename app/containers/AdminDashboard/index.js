@@ -34,56 +34,104 @@ class AdminDashboard extends React.Component {
     moduleList: [],
   };
 
-  componentWillMount() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      try {
-        const decoded = jwtDecode(token);
-        this.setState({
-          userRole: decoded.user.role,
-        });
-        if (decoded.user.user_role[0] !== 'superadmin') {
-          const allowed_actions = localStorage.getItem('allowed_actions');
-          const module_list = [];
-          if (allowed_actions) {
-            try {
-              const decoded = jwtDecode(allowed_actions);
-              decoded.allowed_actions.map(group_list =>
-                module_list.push(group_list.group_title),
-              );
-            } catch (error) {
-              localStorage.clear();
-            }
-            this.setState({
-              moduleList: module_list,
-            });
-          }
-          const action_list = [];
-          if (allowed_actions) {
-            try {
-              const decoded = jwtDecode(allowed_actions);
-              decoded.allowed_actions.map(group_list =>
-                group_list.allowed_actions.map(action_group =>
-                  action_list.push(action_group.action_title),
-                ),
-              );
-            } catch (error) {
-              localStorage.clear();
-              sessionStorage.removeItem('token');
-            }
-            this.setState({
-              actionList: action_list,
-            });
-          }
-        }
-      } catch (error) {
-        localStorage.clear();
-        sessionStorage.removeItem('token');
-      }
-    }
-  }
+  // componentWillMount() {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     try {
+  //       const decoded = jwtDecode(token);
+  //       this.setState({
+  //         userRole: decoded.user.role,
+  //       });
+  //       if (decoded.user.user_role[0] !== 'superadmin') {
+  //         const allowed_actions = localStorage.getItem('allowed_actions');
+  //         const module_list = [];
+  //         if (allowed_actions) {
+  //           try {
+  //             const decoded = jwtDecode(allowed_actions);
+  //             decoded.allowed_actions.map(group_list =>
+  //               module_list.push(group_list.group_title),
+  //             );
+  //           } catch (error) {
+  //             localStorage.clear();
+  //           }
+  //           this.setState({
+  //             moduleList: module_list,
+  //           });
+  //         }
+  //         const action_list = [];
+  //         if (allowed_actions) {
+  //           try {
+  //             const decoded = jwtDecode(allowed_actions);
+  //             decoded.allowed_actions.map(group_list =>
+  //               group_list.allowed_actions.map(action_group =>
+  //                 action_list.push(action_group.action_title),
+  //               ),
+  //             );
+  //           } catch (error) {
+  //             localStorage.clear();
+  //             sessionStorage.removeItem('token');
+  //           }
+  //           this.setState({
+  //             actionList: action_list,
+  //           });
+  //         }
+  //       }
+  //     } catch (error) {
+  //       localStorage.clear();
+  //       sessionStorage.removeItem('token');
+  //     }
+  //   }
+  // }
 
   componentDidMount() {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const decoded = jwtDecode(token);
+          this.setState({
+            userRole: decoded.user.role,
+          });
+          if (decoded.user.user_role[0] !== 'superadmin') {
+            const allowed_actions = localStorage.getItem('allowed_actions');
+            const module_list = [];
+            if (allowed_actions) {
+              try {
+                const decoded = jwtDecode(allowed_actions);
+                decoded.allowed_actions.map(group_list =>
+                  module_list.push(group_list.group_title),
+                );
+              } catch (error) {
+                localStorage.clear();
+              }
+              this.setState({
+                moduleList: module_list,
+              });
+            }
+            const action_list = [];
+            if (allowed_actions) {
+              try {
+                const decoded = jwtDecode(allowed_actions);
+                decoded.allowed_actions.map(group_list =>
+                  group_list.allowed_actions.map(action_group =>
+                    action_list.push(action_group.action_title),
+                  ),
+                );
+              } catch (error) {
+                localStorage.clear();
+                sessionStorage.removeItem('token');
+              }
+              this.setState({
+                actionList: action_list,
+              });
+            }
+          }
+        } catch (error) {
+          localStorage.clear();
+          sessionStorage.removeItem('token');
+        }
+      }
+
+
     let username;
     const { user } = this.props;
     const userInfo = user && user;
