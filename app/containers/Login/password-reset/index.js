@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import Link from 'react-router-dom/Link';
+import { Link } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
 import { passwordResetRequest, newPasswordRequest } from './actions';
 import {

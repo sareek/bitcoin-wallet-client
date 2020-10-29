@@ -9,6 +9,8 @@ const makeSelectErrorResponse = () => createSelector(selectMultiFactorAuth, stat
 const makeSelectRequesting = () => createSelector(selectMultiFactorAuth, state => state.get('isLoading'));
 const makeSelectSuccessResponse = () => createSelector(selectMultiFactorAuth, state => state.get('response'));
 
+const makeSelectBasicInfoRequesting = () => createSelector(selectMultiFactorAuth, state => state.get('basicInfoRequesting'));
+
 const makeSelectRecoveryCodes = () => createSelector(selectMultiFactorAuth, state => state.get('recoveryCodes'));
 const makeSelectMessage = () => createSelector(selectMultiFactorAuth, state => state.get('message'));
 const makeSelectRecoveryCodeGeneratedOn = () => createSelector(selectMultiFactorAuth, state => state.get('recovery_code_generated_on'));
@@ -23,6 +25,6 @@ export {
   makeSelectMessage,
   makeSelectRecoveryCodeGeneratedOn,
   makeSelectUser,
-
+  makeSelectBasicInfoRequesting,
   makeSelectEnable2FAResponse
 };

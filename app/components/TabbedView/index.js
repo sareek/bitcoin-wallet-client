@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
+import { NavLink } from 'react-router-dom';
 const TabbedView = ({ items, Link, ...props }) =>
   <div className="ui pointing secondary menu" style={styles.tabbedView} {...props}>
     {items &&
       items.map(({ label, to, isVisible = true }) => {
         return (
-          <Link
+          <NavLink
             to={to}
             key={to}
             style={{ display: isVisible ? 'visible' : 'none' }}
@@ -14,7 +15,7 @@ const TabbedView = ({ items, Link, ...props }) =>
             className="item"
           >
             {label}
-          </Link>
+          </NavLink>
         );
       })}
   </div>;
@@ -26,7 +27,6 @@ TabbedView.propTypes = {
       label: PropTypes.string.isRequired
     })
   ).isRequired,
-  Link: PropTypes.func.isRequired
 };
 
 export default TabbedView;

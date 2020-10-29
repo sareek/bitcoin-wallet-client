@@ -4,6 +4,7 @@ import { LOGOUT_SUCCESS } from "containers/Login/constants";
 
 const initialState = fromJS({
   requesting: false,
+  basicInfoRequesting: false,
   isLoading: false,
   response: null,
   error: null,
@@ -17,7 +18,6 @@ const initialState = fromJS({
 
 function multiFactorAuthReducer(state = initialState, action) {
   switch (action.type) {
-    case types.LOAD_BASIC_INFO_REQUEST:
     case types.GET_MULTI_FACTOR_AUTH_REQUEST:
     case types.ENABLE_2FA_AUTH_REQUEST:
     case types.DISABLE_MULTI_FACTOR_AUTH_REQUEST:
@@ -32,10 +32,19 @@ function multiFactorAuthReducer(state = initialState, action) {
         message: '',
         isLoading: true
       });
+    
+    case types.LOAD_BASIC_INFO_REQUEST: 
+      return state.merge({
+        basicInfoRequesting: true,
+        response: null,
+        error: null,
+        message: '',
+        isLoading: true
+      });
     case types.LOAD_BASIC_INFO_SUCCESS:
       return state.merge({
         isLoading: false,
-        requesting: false,
+        basicInfoRequesting: false,
         error: null,
         response: null,
         success: true,

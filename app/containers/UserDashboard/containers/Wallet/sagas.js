@@ -77,7 +77,7 @@ function* getWallentInfoRequest(action) {
   }
 }
 
-export default function* reportsWatcher() {
+export default function* walletWatcher() {
   yield takeLatest(types.GET_NEW_ADDRESS_REQUEST, getNewAddressRequest);
   yield takeLatest(types.GET_BALANCE_REQUEST, getBalanceRequest);
   yield takeLatest(types.GET_WALLENT_INFO_REQUEST, getWallentInfoRequest);
