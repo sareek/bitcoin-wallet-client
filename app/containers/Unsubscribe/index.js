@@ -39,23 +39,23 @@ export class Unsubscribe extends React.Component {
     this.setState({ token: unsubscribe_token });
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     if (
-      nextProps.successResponse &&
-      nextProps.successResponse !== this.props.successResponse
+      prevProps.successResponse &&
+      prevProps.successResponse !== this.props.successResponse
     ) {
       this.setState({
-        successResponse: nextProps.successResponse,
+        successResponse: this.props.successResponse,
         showButton: false,
       });
     }
 
     if (
-      nextProps.errorResponse &&
-      nextProps.errorResponse !== this.props.errorResponse
+      prevProps.errorResponse &&
+      prevProps.errorResponse !== this.props.errorResponse
     ) {
       this.setState({
-        errorResponse: nextProps.errorResponse,
+        errorResponse: this.props.errorResponse,
         showButton: false,
       });
     }

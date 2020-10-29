@@ -7,11 +7,6 @@ import { makeSelectLocation } from 'containers/App/selectors';
 import BasicInfo from '../BasicInfo/Loadable';
 import Password from '../Password/Loadable';
 import MultiFactorAuth from '../MultiFactorAuth/Loadable';
-// import Mobile from '../Mobile/Loadable';
-// import BankAccount from '../BankAccount/Loadable';
-// import EmergencyContactInfo from '../EmergencyContactInfo/Loadable';
-// import Connections from '../Connections/Loadable';
-// import Documents from '../Documents/Loadable';
 
 const mapStateToProps = createStructuredSelector({
   location: makeSelectLocation()

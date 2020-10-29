@@ -5,8 +5,6 @@ import InputField from 'components/common/Forms/InputField';
 import DatePicker from 'components/common/DatePicker/index';
 import Avatar from 'assets/images/avatar.png';
 import Countries from 'components/common/countries';
-// import AvatarEditor from 'react-avatar-editor';
-// import ImageCropper from 'components/common/ImageCropper';
 
 const countries = Countries.map(country => (
   <option key={country.code} value={country.name}>
@@ -38,10 +36,6 @@ const BasicInfoForm = ({
 }) => (
   <Form className="form" onSubmit={handleSubmit}>
     <div className="stackable grid">
-      {/* <ImageCropper
-        handleImageChange={handleImageChange}
-        oldImage={user?.image_name?.document_name}
-      /> */}
       <div className="twelve wide column">
         <div className="field">
           <label>User Name</label>

@@ -44,7 +44,7 @@ class MultiFactorLogin extends React.Component {
     errors: {},
   };
 
-  componentWillMount() {
+  componentWillUnMount() {
     this.props.loginClearState();
   }
 

@@ -9,7 +9,6 @@ import Password from '../Password/Loadable';
 // import Mobile from '../Mobile/Loadable';
 import MultiFactorAuth from '../MultiFactorAuth/Loadable';
 import BankAccount from '../BankAccount/Loadable';
-import EmergencyContactInfo from '../EmergencyContactInfo/Loadable';
 import Connections from '../Connections/Loadable';
 import Documents from '../Documents/Loadable';
 
@@ -27,7 +26,6 @@ function ProfileRoutes({ location }) {
       <Route path="/*/dashboard/profile/documents" render={props => <Documents {...props} />} />
       <Route path="/*/dashboard/profile/multi-factor-auth" render={props => <MultiFactorAuth {...props} />} />
       <Route path="/*/dashboard/profile/bank-account" render={props => <BankAccount {...props} />} />
-      <Route path="/*/dashboard/profile/emergency-contact-info" render={props => <EmergencyContactInfo {...props} />} />
     </Switch>
   );
 }

@@ -56,22 +56,22 @@ class Wallet extends React.Component {
     this.props.dispatchGetWalletInfoRequest();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.newAddress != nextProps.newAddress) {
+  componentDidUpdate(prevProps) {
+    if (this.props.newAddress != prevProps.newAddress) {
       this.setState({
-        newAddress: nextProps.newAddress && nextProps.newAddress.toJS(),
+        newAddress: this.props.newAddress && this.props.newAddress.toJS(),
       });
     }   
 
-    if (this.props.currentBalance != nextProps.currentBalance) {
+    if (this.props.currentBalance != prevProps.currentBalance) {
       this.setState({
-        currentBalance: nextProps.currentBalance && nextProps.currentBalance.toJS(),
+        currentBalance: this.props.currentBalance && this.props.currentBalance.toJS(),
       });
     } 
     
-    if (this.props.walletInfo != nextProps.walletInfo) {
+    if (this.props.walletInfo != prevProps.walletInfo) {
       this.setState({
-        walletInfo: nextProps.walletInfo && nextProps.walletInfo.toJS(),
+        walletInfo: this.props.walletInfo && this.props.walletInfo.toJS(),
       }, () => {
         if(this.state.walletInfo) this.props.dispatchGetBalanceRequest(this.state.walletInfo);
       });

@@ -79,9 +79,9 @@ class BankAccount extends React.Component {
     this.props.getBankAccount(this.props.user.get('_id'));
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.bankInfo !== this.props.bankInfo) {
-      const newBankInfo = nextProps.bankInfo.toJS();
+  componentDidUpdate(prevProps) {
+    if (prevProps.bankInfo !== this.props.bankInfo) {
+      const newBankInfo = this.props.bankInfo.toJS();
       this.setState({
         bank_details: {
           ...this.state.bank_details,
@@ -104,7 +104,7 @@ class BankAccount extends React.Component {
           // swift_code: bankInfo.get('swift_code'),
           // iban_ifsc_code: bankInfo.get('iban_ifsc_code')
         },
-        document: nextProps.bankInfo.get('document'),
+        document: this.props.bankInfo.get('document'),
         file: (this.state.btn_action !== 'delete') ? [] : [...this.state.file],
         btn_action: ''
       });

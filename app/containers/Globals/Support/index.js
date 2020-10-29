@@ -71,18 +71,16 @@ class Support extends React.Component {
     success: false,
     openTickets: []
   };
-  componentWillMount() {
-    window.scrollTo(0, 0);
-  }
+
   componentDidMount() {
     const { page, perPage, query } = this.state;
     this.props.getSupportTickets(page, perPage, query);
     this.props.getOpenTickets();
   }
-  componentWillReceiveProps(nextProps) {
-    this.setState({ success: nextProps.success });
-    if (nextProps.openTickets !== this.props.openTickets) {
-      const openTickets = nextProps.openTickets.get('dataList').toJS();
+  componentDidUpdate(prevProps) {
+    this.setState({ success: this.props.success });
+    if (prevProps.openTickets !== this.props.openTickets) {
+      const openTickets = this.props.openTickets.get('dataList').toJS();
       this.setState({ openTickets })
     }
   }

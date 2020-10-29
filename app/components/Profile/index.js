@@ -10,11 +10,9 @@ class Profile extends React.Component {
     tabs: PropTypes.array.isRequired
   };
   state = {
-    tabs: []
+    tabs: this.props.tabs ? this.props.tabs : []
   };
-  componentWillMount() {
-    this.setState({ tabs: this.props.tabs });
-  }
+
   render() {
     return (
       <div>

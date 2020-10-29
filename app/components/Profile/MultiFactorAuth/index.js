@@ -109,21 +109,21 @@ class MultiFactorAuth extends React.Component {
            }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     if (
-      this.props.user && this.props.user.get('multi_factor_auth_enable') !==
-      nextProps.user.get('multi_factor_auth_enable')
+      prevProps.user && this.props.user && this.props.user.get('multi_factor_auth_enable') !==
+      prevProps.user.get('multi_factor_auth_enable')
     ) {
       this.setState({
-        multiFactorAuth: nextProps.user.get('multi_factor_auth_enable'),
+        multiFactorAuth: this.props.user.get('multi_factor_auth_enable'),
         showMultiFactorAuthDisable: false
       });
     }
-    if (nextProps.user !== this.props.user) {
-      const user = nextProps.user.toJS();
+    if (prevProps.user !== this.props.user) {
+      const user = prevProps.user.toJS();
       this.setState({
         user,
-        multiFactorAuth: nextProps.user.get('multi_factor_auth_enable'),
+        multiFactorAuth: this.props.user.get('multi_factor_auth_enable'),
       });
     }
   }

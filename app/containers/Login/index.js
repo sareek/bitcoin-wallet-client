@@ -141,33 +141,32 @@ class Login extends React.Component {
     }
   };
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     if (
-      nextProps.error &&
-      nextProps.error != this.props.error &&
-      nextProps.error.length > 0
+      this.props.error &&
+      prevProps.error != this.props.error &&
+      this.props.error.length > 0
     ) {
       this.setState(
         {
-          err: nextProps.error,
+          err: this.props.error,
         },
         () => {
           localStorage.clear();
         },
       );
     }
-
     if (
-      nextProps.userResponse &&
-      nextProps.userResponse.size > 0 &&
-      nextProps.userResponse !== this.props.userResponse
+      this.props.userResponse &&
+      this.props.userResponse.size > 0 &&
+      prevProps.userResponse !== this.props.userResponse
     ) {
-      const userInfo = nextProps.userResponse.toJS() && 
-                              nextProps.userResponse.toJS().userInfo &&
-                                   nextProps.userResponse.toJS().userInfo; 
-      const setToken = nextProps.userResponse.toJS() && 
-                      nextProps.userResponse.toJS().token &&
-                            nextProps.userResponse.toJS().token;                           
+      const userInfo = this.props.userResponse.toJS() && 
+                              this.props.userResponse.toJS().userInfo &&
+                                   this.props.userResponse.toJS().userInfo; 
+      const setToken = this.props.userResponse.toJS() && 
+                      this.props.userResponse.toJS().token &&
+                            this.props.userResponse.toJS().token;                           
       let user_id;
       let userEmail;
       let multi_factor_auth_enable;
@@ -177,10 +176,7 @@ class Login extends React.Component {
          userEmail = userInfo.email;
          multi_factor_auth_enable = userInfo.multi_factor_auth_enable;
       }                      
-      // const {
-      //   userInfo: { multi_factor_auth_enable, user_id },
-      //   multi_factor_auth_enable_mobile,
-      // } = nextProps.userResponse.toJS();
+
       if (user_id) {
         if (multi_factor_auth_enable || multi_factor_auth_enable_mobile) {
           // this.props.showDialog(<MultiFactorAuth user_id={user_id} />);

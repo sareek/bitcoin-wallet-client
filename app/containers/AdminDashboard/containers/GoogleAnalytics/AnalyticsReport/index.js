@@ -40,7 +40,7 @@ class GoogleAnalyticsReport extends React.Component {
     data: {},
   };
 
-  componentWillMount() {
+  componentWillUnMount() {
     this.props.clearMessage();
   }
 
@@ -48,10 +48,10 @@ class GoogleAnalyticsReport extends React.Component {
     this.props.loadAnalyticsReport();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.reportData !== this.props.reportData) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.reportData !== this.props.reportData) {
       this.setState(state => ({
-        data: nextProps.reportData.toJS(),
+        data: this.props.reportData.toJS(),
       }));
     }
   }

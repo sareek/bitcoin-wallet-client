@@ -21,7 +21,7 @@ import {Link} from 'react-router-dom';
 
 /* eslint-disable react/prefer-stateless-function */
 export class UserConfirmation extends React.Component {
-  componentWillMount(){
+  componentDidMount(){
     const id = this.props.match.params.id ? this.props.match.params.id : null;
     this.props.userConfirmationRequest(id);
   }

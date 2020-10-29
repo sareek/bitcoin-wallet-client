@@ -103,9 +103,9 @@ class AdminDashboard extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.user !== nextProps.user) {
-      const userInfo = nextProps.user;
+  componentDidUpdate(prevProps) {
+    if (this.props.user !== prevProps.user) {
+      const userInfo = this.props.user;
       const department_name = userInfo.get('department_name');
       const last_name = userInfo.get('last_name');
       const username = department_name;

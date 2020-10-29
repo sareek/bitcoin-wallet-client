@@ -40,7 +40,7 @@ class App extends React.Component {
     ownDashboard: true,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const token =
       this.props.location.pathname.split('/')[1] === 'admin'
         ? localStorage.getItem('token')

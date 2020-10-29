@@ -92,12 +92,12 @@ class UserDashboard extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.user !== nextProps.user) {
-      if (nextProps.user.get('confirmed')) {
+  componentDidUpdate(prevProps) {
+    if (this.props.user !== prevProps.user) {
+      if (this.props.user.get('confirmed')) {
         this.setState({ isConfirmed: true });
       }
-      const userInfo = nextProps.user;
+      const userInfo = this.props.user;
       const email = userInfo.get('email');
       const firstName = userInfo.get('first_name');
       const lastName = userInfo.get('last_name');

@@ -101,15 +101,15 @@ class SignupForm extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.verify_data != nextProps.verify_data) {
+  componentDidUpdate(prevProps) {
+    if (this.props.verify_data != prevProps.verify_data) {
       this.setState({
-        verify_data: nextProps.verify_data.toJS(),
+        verify_data: this.props.verify_data.toJS(),
       });
     }
-    if (this.props.verify != nextProps.verify) {
+    if (this.props.verify != prevProps.verify) {
       this.setState({
-        verify: nextProps.verify.toJS(),
+        verify: this.props.verify.toJS(),
       });
     }
   }

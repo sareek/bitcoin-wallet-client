@@ -57,8 +57,8 @@ class HandleSupport extends React.Component {
     this.props.getSupportTicketByid(this.props.detailId);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({ details: nextProps.supportCurrentTicket.toJS() });
+  componentDidUpdate(prevProps) {
+    this.setState({ details: this.props.supportCurrentTicket.toJS() });
   }
 
   handleReplyClick = (e) =>
