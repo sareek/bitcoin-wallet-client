@@ -16,7 +16,6 @@ import {
 } from './selectors';
 import * as actions from './actions';
 import Toaster from 'components/Toaster';
-import { GOOGLE_CLIENT_ID, LINKEDIN_CLIENT_ID } from './constants';
 import saga from './sagas'
 import reducer from './reducers'
 import injectSaga from 'utils/injectSaga';
@@ -147,70 +146,6 @@ class Connections extends React.Component {
                 </div>}
             </Card.Content>
           </Card>
-          {/* <Card>
-            <Card.Content>
-              <Image size="mini" src={google_logo} />
-              <Card.Header>Google</Card.Header>
-            </Card.Content>
-            <Card.Content extra>
-              {connection_status.status_google
-                ? <Button
-                  name="google"
-                  onClick={this.disconnectGoogle}
-                  className="ui button"
-                >
-                  Disconnect
-                  </Button>
-                : <GoogleLogin
-                  className="button primary"
-                  clientId={GOOGLE_CLIENT_ID}
-                  buttonText="Connect"
-                  scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me email profile"
-                  onSuccess={this.connectGoogle}
-                  onFailure={this.connectGoogleError}
-                />}
-            </Card.Content>
-          </Card> */}
-          {/* <Card>
-            <Card.Content>
-              <Image floated="right" size="mini" src={twitter_logo} />
-              <Card.Header>Twitter</Card.Header>
-            </Card.Content>
-            <Card.Content extra>
-              {connection_status.status_twitter ?
-                <Button name="twitter" onClick={this.disconnectTwitter} className="ui button">
-                  Disconnect
-                </Button>
-                : <Button name="twitter" onClick={this.connectTwitter} primary>
-                  Connect
-                </Button>}
-            </Card.Content>
-          </Card> */}
-          {/* <Card>
-            <Card.Content>
-              <Image size="mini" src={linkedin_logo} />
-              <Card.Header>Linkedin</Card.Header>
-            </Card.Content>
-            <Card.Content extra>
-              {connection_status.status_linkedin
-                ? <Button
-                  name="linkedin"
-                  onClick={this.disconnectLinkedin}
-                  className="ui button"
-                >
-                  Disconnect
-                  </Button>
-                :
-                <LinkedIn
-                  clientId={`${LINKEDIN_CLIENT_ID}`}
-                  callback={this.connectLinkedin}
-                  className="ui primary button"
-                  text="CONNECT"
-                  scope={['r_basicprofile', 'r_emailaddress']}
-                />
-              }
-            </Card.Content>
-          </Card> */}
         </Card.Group>
       </div>
     );

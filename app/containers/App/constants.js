@@ -5,8 +5,6 @@ export const API_BASE = isProdEnv
   // : 'http://localhost:4001/api/';
    : 'http://104.197.123.145:8000/api/';
 
-export const GOOGLE_CLIENT_ID =
-  '632673995527-997dv6bet048loapcqgtfpfbqubslr2l.apps.googleusercontent.com';
 export const RECAPTCHA_SITE_KEY = '6LfRNdgUAAAAANYlMF47bUNQDuIQSdIj-pd8RZv6';
 export const TINY_MCE_API_KEY =
   '71o0brn86hzecge3iws7rnliwju4auv5zk5ku0v5uo56ten2';

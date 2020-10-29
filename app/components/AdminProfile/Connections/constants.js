@@ -1,4 +1,3 @@
-export const GOOGLE_CLIENT_ID = "632673995527-997dv6bet048loapcqgtfpfbqubslr2l.apps.googleusercontent.com";
 export const LINKEDIN_CLIENT_ID = "81n67gesa75m7h";
 
 export const GET_CONNECTION_STATUS_REQUEST = "APP/AdminProfile/Connections/GET_CONNECTION_STATUS_REQUEST";
