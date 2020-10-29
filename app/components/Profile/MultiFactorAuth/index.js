@@ -26,7 +26,8 @@ import {
   makeSelectRecoveryCodes,
   makeSelectMessage,
   makeSelectRecoveryCodeGeneratedOn,
-  makeSelectUser
+  makeSelectUser,
+  makeSelectBasicInfoRequesting
 } from './selectors';
 import {
   getMultiFactorAuthRequest,
@@ -58,6 +59,7 @@ const mapStateToProps = createStructuredSelector({
   successResponse: makeSelectSuccessResponse(),
   errorResponse: makeSelectErrorResponse(),
   isRequesting: makeSelectRequesting(),
+  basicInfoRequesting: makeSelectBasicInfoRequesting(),
   recoveryCodes: makeSelectRecoveryCodes(),
   message: makeSelectMessage(),
   recovery_code_generated_on: makeSelectRecoveryCodeGeneratedOn()
@@ -202,7 +204,7 @@ class MultiFactorAuth extends React.Component {
 
   render() {
     const { multiFactorAuth, showMultiFactorAuthDisable, data, errors } = this.state;
-    const { successResponse, errorResponse, isRequesting, recoveryCodes, user } = this.props;
+    const { successResponse, errorResponse, isRequesting, basicInfoRequesting, recoveryCodes, user } = this.props;
     let message;
     if (successResponse && typeof successResponse === 'string') {
       message = <Toaster message={successResponse} timeout={1000} success />;
@@ -213,8 +215,11 @@ class MultiFactorAuth extends React.Component {
     return (
       <div>
         <div className="section">
-          {message && message}
-          <div className="segment">
+          {/* {message && message} */}
+          {basicInfoRequesting ? (
+            <div className="loader_wallet"></div>
+          ): (
+            <div className="segment">
             <br />
             {this.props.user && this.props.user.get('multi_factor_auth_enable') &&
             <div>
@@ -294,17 +299,6 @@ class MultiFactorAuth extends React.Component {
                 {this.props.enable2FAResponse &&
                 <QRCode value={this.props.enable2FAResponse} />
                 }
-                {/* <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="255"
-                  height="255"
-                >
-                  <path
-                    transform='scale(5)'
-                    d={this.props.enable2FAResponse}
-                    className="qr-code"
-                  />
-                </svg> */}
                 <div>
                   <Form onSubmit={this.handleSubmit}>
                     <FormField
@@ -322,43 +316,9 @@ class MultiFactorAuth extends React.Component {
               </div>}
             </div>}
           </div>
+          )}
+       
         </div>
-        {/* {this.props.user.get('multi_factor_auth_enable') && <div style={{marginLeft: '200px'}} className="segment">
-          <h2>Manage Codes</h2>
-          <div className="message info">These codes can be used to sign into your account if you have problems in receiving the code during sign-in. Each code can be used only once.</div>
-          <br/>
-          <p>Backup verification codes</p>
-          <ul className="ui tag labels">
-            {
-              recoveryCodes
-              .entrySeq()
-              .map(([key, value]) => <li className="label" key={`${key}_${value}`}>{value}</li>)
-              .toArray()
-            }
-          </ul>
-          <p className="muted mg-btm-md">
-            Generated Time : {this.props.recovery_code_generated_on}
-          </p>
-          <div className="print_save mg-top-sm inline-block">
-            <Button
-              secondary data-tooltip={user.get("email")}
-              className="button"
-              onClick={this.sendMultiFactorRecoveryCodesEmailRequest}
-              disabled={isRequesting}
-            >
-              Send codes to email
-            </Button>
-          </div>
-          <div className="button_wrapper inline-block">
-            <Button
-              className="button primary"
-              onClick={this.generateRecoveryCodeRequest}
-              disabled={isRequesting}
-            >
-              Generate new Codes
-            </Button>
-          </div>
-        </div>} */}
       </div>
     );
   }
