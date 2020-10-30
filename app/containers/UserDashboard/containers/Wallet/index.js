@@ -134,7 +134,7 @@ class Wallet extends React.Component {
                 positive
                 disabled
               />
-              <Grid.Row style={{marginTop: '2rem'}} >
+              {/* <Grid.Row style={{marginTop: '2rem'}} >
                 <Grid.Column width={4}>
                   {loading ? (
                     <div className="loader_wallet"></div>
@@ -191,7 +191,7 @@ class Wallet extends React.Component {
                   <p><b>Transactions</b></p>
                   <p>All your Bitcoin transactions will show up here.</p>
                 </Grid.Column>
-              </Grid.Row>
+              </Grid.Row> */}
         </Grid>
       </div>
     );
