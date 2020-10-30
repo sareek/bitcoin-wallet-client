@@ -118,7 +118,6 @@ class Wallet extends React.Component {
              copiedBit={copiedBit}
            />
          )}
-         <div>Loading...</div>
         <Grid>
             <Button 
                content="Receive"
@@ -134,7 +133,7 @@ class Wallet extends React.Component {
                 positive
                 disabled
               />
-              {/* <Grid.Row style={{marginTop: '2rem'}} >
+              <Grid.Row>
                 <Grid.Column width={4}>
                   {loading ? (
                     <div className="loader_wallet"></div>
@@ -186,12 +185,12 @@ class Wallet extends React.Component {
                 </Grid.Column>
                 ) : null }
               </Grid.Row>
-              <Grid.Row style={{marginTop: '2rem'}} className="currency__transcation">
+              <Grid.Row>
                 <Grid.Column>
                   <p><b>Transactions</b></p>
                   <p>All your Bitcoin transactions will show up here.</p>
                 </Grid.Column>
-              </Grid.Row> */}
+              </Grid.Row>
         </Grid>
       </div>
     );
