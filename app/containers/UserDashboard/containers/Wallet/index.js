@@ -133,7 +133,7 @@ class Wallet extends React.Component {
                 positive
                 disabled
               />
-              <Grid.Row>
+              {/* <Grid.Row>
                 <Grid.Column width={4}>
                   {loading ? (
                     <div className="loader_wallet"></div>
@@ -184,7 +184,7 @@ class Wallet extends React.Component {
                   </Segment>
                 </Grid.Column>
                 ) : null }
-              </Grid.Row>
+              </Grid.Row> */}
               <Grid.Row>
                 <Grid.Column>
                   <p><b>Transactions</b></p>
