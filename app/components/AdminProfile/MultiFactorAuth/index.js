@@ -68,7 +68,7 @@ class MultiFactorAuth extends React.Component {
     data: {
       totp_token: '',
     },
-    multiFactorAuth: this.props.user.get('multi_factor_auth_enable'),
+    multiFactorAuth: this.props.user && this.props.user.get('multi_factor_auth_enable'),
     showMultiFactorAuthDisable: false,
     errors: {},
     recoveryCodes: [],

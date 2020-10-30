@@ -17,7 +17,7 @@ import {
   makeSelectCurrentBalance,
   makeSelectGetWalletInfo
 } from './selectors';
-// import { Button, Grid, Segment, Loader } from 'semantic-ui-react';
+import { Button, Grid, Segment, Loader } from 'semantic-ui-react';
 import { makeSelectLocation } from '../../../App/selectors';
 import ReceiveCryptoForm from './components/ReceiveCryptoForm';
 
@@ -119,7 +119,7 @@ class Wallet extends React.Component {
            />
          )}
          <div>Loading...</div>
-        {/* <Grid columns='equal'>
+        <Grid>
             <Button 
                content="Receive"
                labelPosition='right'
@@ -192,7 +192,7 @@ class Wallet extends React.Component {
                   <p>All your Bitcoin transactions will show up here.</p>
                 </Grid.Column>
               </Grid.Row>
-        </Grid> */}
+        </Grid>
       </div>
     );
   }
