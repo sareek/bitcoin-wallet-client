@@ -133,47 +133,35 @@ class Wallet extends React.Component {
                 positive
                 disabled
               />
-              {/* <Grid.Row>
+              {loading ? (
+                <Grid.Row>
+                  <Grid.Column width={4}>
+                   <div className="loader_wallet"></div>
+                  </Grid.Column>
+                </Grid.Row>
+              ) : (
+                <>
+                  <Grid.Row>
                 <Grid.Column width={4}>
-                  {loading ? (
-                    <div className="loader_wallet"></div>
-                  ) : (
                     <Segment>
                     <p><b>BTC Balance:</b></p>
                     <p>{walletInfo && walletInfo.btc_balance ? 
                               `$${walletInfo.btc_balance}` : 'N/A'}</p>
-
                   </Segment>
-                  )} 
                 </Grid.Column>
                 <Grid.Column width={4}>
-                  {loading ? (
-                    <div className="loader_wallet"></div>
-                  ) : (
                     <Segment>
                     <p><b>BTC Price:</b></p>
-                    {loading ? (
-                          <Dimmer active>
-                          <Loader size='small'>Loading</Loader>
-                        </Dimmer>
-                    ) : (
                       <p>{walletInfo && walletInfo.btc_price ? 
                         `$${walletInfo.btc_price}` : 'N/A'}</p>
-                    )}
                   </Segment>
-                  )} 
                 </Grid.Column>
                 <Grid.Column width={4}>
-                  {loading ? (
-                    <div className="loader_wallet"></div>
-                  ) : (
                     <Segment>
                     <p><b>USD Balance:</b></p>
                     <p>{walletInfo && walletInfo.usd_balance ? 
                               `$${walletInfo.usd_balance}` : 'N/A'}</p>
-
                   </Segment>
-                  )} 
                 </Grid.Column>
                 {currentBalance && currentBalance.unconfirmed_balance ? (
                   <Grid.Column width={4}>
@@ -184,13 +172,16 @@ class Wallet extends React.Component {
                   </Segment>
                 </Grid.Column>
                 ) : null }
-              </Grid.Row> */}
+              </Grid.Row>
               <Grid.Row>
                 <Grid.Column>
                   <p><b>Transactions</b></p>
                   <p>All your Bitcoin transactions will show up here.</p>
                 </Grid.Column>
               </Grid.Row>
+                </>
+              )}
+            
         </Grid>
       </div>
     );
