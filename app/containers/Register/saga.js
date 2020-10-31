@@ -22,7 +22,6 @@ import PasswordSetForm from './PasswordSetForm';
 
 function* redirectOnSignupSuccess() {
   const action = yield take(types.SIGNUP_SUCCESS);
-  yield put(push('/'));
 }
 
 function* signupFailureFlow() {

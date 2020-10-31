@@ -37,7 +37,7 @@ const LoginForm = ({
 
       <Form.Field style={{margin: '0 auto 2rem auto'}} width={12}>
     <Button
-    style={{margin: '0 auto 2rem auto'}}
+      style={{margin: '0 auto 2rem auto'}}
       color="blue"
       fluid
       type="submit"

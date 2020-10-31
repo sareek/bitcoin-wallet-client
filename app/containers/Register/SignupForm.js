@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { prefixes } from '../App/constants';
 import UserRegistrationForm from './components/UserRegistrationForm';
@@ -19,7 +20,7 @@ import { showDialog } from '../App/actions';
 import {
   makeSelectError,
   makeSelectRequesting,
-  makeSelectResponse,
+  makeSelectSignUpResponse,
   makeSelectSMSRequesting,
   makeSelectSmsSent,
   makeSelectMobileNumberValidated,
@@ -49,7 +50,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-  successResponse: makeSelectResponse(),
+  successResponse: makeSelectSignUpResponse(),
   errorResponse: makeSelectError(),
   isRequesting: makeSelectRequesting(),
   is_sms_Requesting: makeSelectSMSRequesting(),
@@ -102,6 +103,11 @@ class SignupForm extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (this.props.successResponse != prevProps.successResponse) {
+      toast.success('User Resistered Successfully');
+       this.props.history.push(`/`);
+    }
+
     if (this.props.verify_data != prevProps.verify_data) {
       this.setState({
         verify_data: this.props.verify_data.toJS(),
@@ -179,9 +185,9 @@ class SignupForm extends React.Component {
       <ReferErrorPage message={this.state.verify_data.message} />
     ) : (
       <div className="signup__wrap">
-        {errorResponse && <p className="negative message">{errorResponse}</p>}
         <UserRegistrationForm
           handleSubmit={this.handleSubmit}
+          errorResponse={errorResponse}
           handleSemanticChange={this.handleSemanticChange}
           handleChange={this.handleChange}
           data={data}

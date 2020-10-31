@@ -9,6 +9,7 @@ import { SET_PASSWORD_FAILURE } from '../Register/PasswordSetForm/constants';
 // todo: handle user confirmation email resend flow in here
 const initialState = fromJS({
   requesting: false,
+  loginRequesting: false,
   success: true,
   response: '',
   error: '',
@@ -31,15 +32,25 @@ function loginReducer(state = initialState, action) {
       });
     case types.LOGIN_BY_TOKEN_REQUEST:
     case types.LOGIN_REQUEST:
-    case types.LOGOUT_REQUEST:
       return state.merge({
-        requesting: true,
+        loginRequesting: true,
         success: false,
         error: null,
         response: null,
         userId: '',
         email: '',
       });
+
+    case types.LOGOUT_REQUEST:
+        return state.merge({
+          requesting: true,
+          success: false,
+          error: null,
+          response: null,
+          userId: '',
+          email: '',
+        });
+      
     case types.RESEND_CONFIRMATION_REQUEST:
       return state.merge({
         resendEmailRequesting: true,
@@ -72,9 +83,9 @@ function loginReducer(state = initialState, action) {
       });
     case types.LOGIN_FAILURE:
       return state.merge({
-        requesting: false,
+        loginRequesting: false,
         success: false,
-        error: action.error.message,
+        error: action.error.msg,
         response: '',
         userId:
           action.error.data && action.error.data.user_id
@@ -121,6 +132,7 @@ function loginReducer(state = initialState, action) {
             action.user.data.allowed_actions,
           );
         return state.merge({
+          loginRequesting: false,
           userInfo: fromJS(action.user.data.userInfo),
           isLoggedIn: true,
           error: null,

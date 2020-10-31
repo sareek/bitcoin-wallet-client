@@ -1,9 +1,11 @@
 import { createSelector } from "reselect";
+// import { initialState } from './reducer';
 
 const selectSignup = state => state.get('register');
 
 const makeSelectSuccess = () => createSelector(selectSignup, state => state.get('success'));
-const makeSelectResponse = () => createSelector(selectSignup, state => state.get('response'));
+const makeSelectSignUpResponse = () => createSelector(selectSignup, state => state && state.get('response'));
+// const makeSelectSignUpResponse = () => createSelector(selectSignup, state => state.get('success'));
 const makeSelectError = () => createSelector(selectSignup, state => state.get('error'));
 const makeSelectRequesting = () => createSelector(selectSignup, state => state.get('requesting'));
 const makeSelectSMSRequesting = () => createSelector(selectSignup, state => state.get('is_sms_Requesting'));
@@ -16,7 +18,7 @@ const makeSelectVerify = () => createSelector(selectSignup, state => state.get('
 
 export {
   makeSelectSuccess,
-  makeSelectResponse,
+  // makeSelectResponse,
   makeSelectError,
   makeSelectRequesting,
   makeSelectSMSRequesting,
@@ -25,5 +27,6 @@ export {
   makeSelectVerificationError,
   makeSelectVerificationResponse,
   makeSelectVerificationData,
-  makeSelectVerify
+  makeSelectVerify,
+  makeSelectSignUpResponse
 };

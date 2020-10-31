@@ -5,7 +5,7 @@ const selectLogin = state => state.get('login');
 const makeSelectSuccess = () => createSelector(selectLogin, state => state.get('success'));
 const makeSelectResponse = () => createSelector(selectLogin, state => state.get('response'));
 const makeSelectError = () => createSelector(selectLogin, state => state.get('error'));
-const makeSelectRequesting = () => createSelector(selectLogin, state => state.get('requesting'));
+const makeSelectRequesting = () => createSelector(selectLogin, state => state.get('loginRequesting'));
 const makeSelectCaptchaEnabled = () => createSelector(selectLogin, state => state.get('isCaptchaEnabled'));
 const makeSelectUserConfirmation = () => createSelector(selectLogin, state => state.get('user_confirmation'));
 const makeSelectIsLoggedIn = () => createSelector(selectLogin, state => state.get('isLoggedIn'));

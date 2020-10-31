@@ -22,6 +22,7 @@ import {
 } from './selectors';
 import ForgotPassword from './forgot-password/index';
 import { makeSelectUser } from '../App/selectors';
+import { makeSelectSignUpResponse } from '../Register/selectors';
 import { validators } from 'utils/validators';
 import {
   logoutRequest,
@@ -66,6 +67,7 @@ const mapStateToProps = createStructuredSelector({
   isCaptchaEnabled: makeSelectCaptchaEnabled(),
   unverifiedImpUserId: makeSelectUserId(),
   email: makeSelectEmail(),
+  signUpResponse: makeSelectSignUpResponse(),
   // dialog: makeSelectDialog(),
 });
 
@@ -278,6 +280,7 @@ class Login extends React.Component {
             />
           )}
           {err && err.length > 0 && (
+            <div className="invalid_cred_msg">
             <Message negative icon>
               <Icon name="warning circle" />
               <Message.Content>
@@ -285,6 +288,7 @@ class Login extends React.Component {
                 <p>{err}</p>
               </Message.Content>
             </Message>
+            </div>
           )}
 
           {response && <div className="positive message">{response}</div>}

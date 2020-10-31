@@ -17,6 +17,9 @@ import history from 'utils/history';
 import 'semantic-ui-css/semantic.min.css';
 import 'assets/scss/styles.scss';
 
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
 // Import root app
 import App from 'containers/App';
 
@@ -44,6 +47,7 @@ const render = messages => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
+          <ToastContainer />
           <App />
         </ConnectedRouter>
       </LanguageProvider>

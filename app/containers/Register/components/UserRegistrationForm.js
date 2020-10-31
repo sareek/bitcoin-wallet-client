@@ -2,7 +2,7 @@
  * Created by lakhe on 7/5/17.
  */
 import React from 'react';
-import { Form, Dropdown, Button, Icon } from 'semantic-ui-react';
+import { Form, Button, Icon, Message } from 'semantic-ui-react';
 import Captcha from 'components/Captcha';
 import PasswordInputField from 'components/common/Forms/PasswordInputField';
 import FormField from 'components/common/Forms/FormField';
@@ -21,10 +21,22 @@ const UserRegistrationForm = (
     isRequesting,
     prefixes,
     referCode,
-    handleBlur
+    handleBlur,
+    errorResponse
   }) => {
   return (
     <div className="register__box" style={{padding: '30px'}}>
+      {errorResponse && (
+          <div className="invalid_cred_msg">
+          <Message negative icon>
+            <Icon name="warning circle" />
+            <Message.Content>
+              <Message.Header>Error !</Message.Header>
+              <p>{errorResponse}</p>
+            </Message.Content>
+          </Message>
+          </div>
+      )}
     <Form style={{padding: '30px'}} onSubmit={handleSubmit}>
         <FormField 
           label="Username" name="username" value={data.username || ''} onChange={handleChange}

@@ -1,14 +1,15 @@
 import { fromJS } from "immutable";
 import * as types from "./constants";
 
-const initialState = fromJS({
+export const initialState = fromJS({
+  signupResponse: '',
   response: '',
   error: '',
   requesting: false,
   success: true,
   mobile_number_validated: false,
   sms_sent: false,
-  is_sms_Requesting: false
+  is_sms_Requesting: false,
 });
 
 function signupReducer(state = initialState, action) {
@@ -18,6 +19,7 @@ function signupReducer(state = initialState, action) {
         requesting: true,
         error: '',
         response: '',
+        signupResponse: '',
       });
     case types.VERIFY_REFER_CODE_REQUEST:
       return state.merge({
@@ -34,7 +36,8 @@ function signupReducer(state = initialState, action) {
     case types.SIGNUP_SUCCESS:
       return state.merge({
         requesting: false,
-        response: action.response.message,
+        response: action.response.data.message,
+        signupResponse: action.response.data.message,
         error: '',
       });
     case types.VERIFY_REFER_CODE_SUCCESS:

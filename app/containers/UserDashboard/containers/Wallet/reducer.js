@@ -47,10 +47,19 @@ function walletSettings(state = initialState, action) {
     case types.GET_NEW_ADDRESS_FAILURE:
     case types.GET_BALANCE_FAILURE:
     case types.GET_WALLENT_INFO_FAILURE:
-    return state.merge({
-      error: action.error.message,
-      response: '',
-      loading: false,
+      if(action.error.msg === "Unauthorized user / session expired") {
+         localStorage.removeItem("token");
+         window.location.reload();
+          return state.merge({
+            error: action.error.message,
+            response: '',
+            loading: false,
+        });
+      }
+      return state.merge({
+        error: action.error.message,
+        response: '',
+        loading: false,
     });
 
     case types.CLEAR_MESSAGE:

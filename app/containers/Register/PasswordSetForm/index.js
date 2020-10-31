@@ -58,7 +58,10 @@ class PasswordSetForm extends React.Component {
     }
 
   }
-  componentWillUnmount() {
+  // componentWillUnmount() {
+  //   this.props.clearState();
+  // }
+  componentDidMount() {
     this.props.clearState();
   }
   handleChange = (e) => {

@@ -15,23 +15,27 @@ import {
   makeSelectLoading,
   makeSelectNewAddress,
   makeSelectCurrentBalance,
-  makeSelectGetWalletInfo
+  makeSelectGetWalletInfo,
+  makeSelectError
 } from './selectors';
-import { Button, Grid, Segment, Loader } from 'semantic-ui-react';
-import { makeSelectLocation } from '../../../App/selectors';
+import { Button, Grid, Segment, Loader, IconGroup } from 'semantic-ui-react';
+// import { makeSelectLocation } from '../../../App/selectors';
 import ReceiveCryptoForm from './components/ReceiveCryptoForm';
+import { Redirect } from 'react-router-dom';
 
 import {
   getNewAddressRequest,
   getBalanceRequest,
   getWalletInfoRequest,
 } from './actions'
+// import { makeSelectError } from '../../../Register/PasswordSetForm/selectors';
 
 const mapStateToProps = createStructuredSelector({
   newAddress: makeSelectNewAddress(),
   currentBalance: makeSelectCurrentBalance(),
   walletInfo: makeSelectGetWalletInfo(),
-  loading: makeSelectLoading() 
+  loading: makeSelectLoading(),
+  error: makeSelectError() 
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -57,6 +61,10 @@ class Wallet extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    if(this.props.error === "Unauthorized user / session expired") {
+      localStorage.removeItem("token");
+      return <Redirect to={'/'} />;
+   }
     if (this.props.newAddress != prevProps.newAddress) {
       this.setState({
         newAddress: this.props.newAddress && this.props.newAddress.toJS(),
