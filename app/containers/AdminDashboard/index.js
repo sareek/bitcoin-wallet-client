@@ -7,7 +7,6 @@ import jwtDecode from 'jwt-decode';
 import { Button } from 'semantic-ui-react';
 import { DOCUMENT_URL_UPDATE } from 'containers/App/constants';
 import ProfilePic from 'assets/images/avatar.png';
-import AdminNotification from 'containers/Globals/AdminNotifications/Loadable';
 import { makeSelectUser, makeSelectLocation } from '../App/selectors';
 import { logoutRequest } from '../Login/actions';
 import TopNavigation from './components/TopNavigation';
