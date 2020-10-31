@@ -10,7 +10,6 @@ const initialState = fromJS({
   token: '',
   user: {},
   contentTemplateNormalized: {},
-  countryLanguage: '',
   localeSet: false,
 });
 
@@ -32,27 +31,7 @@ function reducer(state = initialState, action = {}) {
       return state.merge({
         user: fromJS(action.payload),
       });
-    case types.LOAD_CONTENT_TEMPLATE_SUCCESS:
-      return state.merge({
-        // contentTemplate: fromJS(action.response.data.dataList),
-        contentTemplateNormalized: fromJS(normalize(action.response.data.dataList, [contentTemplateSchema]).entities.contentTemplate || {}),
-      });
-
-      case types.COUNTRY_LANGUAGE_SUCCESS:
-      return state.merge({
-        countryLanguage: action.response.data.country,
-        localeSet: true,
-      });
-
-    case types.LOAD_CONTENT_TEMPLATE_FAILURE:
-    case types.COUNTRY_LANGUAGE_FAILURE:
-      return state.merge({
-        requesting: false,
-      });
-    case types.LOAD_CONTENT_TEMPLATE_REQUEST:
-    case types.COUNTRY_LANGUAGE_REQUEST:
-      return state.merge({
-      });
+ 
     default:
       return state;
   }

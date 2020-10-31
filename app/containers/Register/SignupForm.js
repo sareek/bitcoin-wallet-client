@@ -6,7 +6,6 @@ import { createStructuredSelector } from 'reselect';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { prefixes } from '../App/constants';
 import UserRegistrationForm from './components/UserRegistrationForm';
 import {
   signupRequest,
@@ -195,7 +194,6 @@ class SignupForm extends React.Component {
           handleCheckbox={this.handleCheckbox}
           onRecaptchaChange={this.onRecaptchaChange}
           isRequesting={isRequesting}
-          prefixes={prefixes}
           referCode={referCode}
           handleBlur={this.handleBlur}
         />

@@ -12,16 +12,10 @@ import { Link } from 'react-router-dom';
 const UserRegistrationForm = (
   {
     handleSubmit,
-    handleSemanticChange,
     handleChange,
     data,
     errors,
-    handleCheckbox,
-    onRecaptchaChange,
     isRequesting,
-    prefixes,
-    referCode,
-    handleBlur,
     errorResponse
   }) => {
   return (

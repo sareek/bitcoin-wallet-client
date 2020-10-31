@@ -25,10 +25,3 @@ export const loginByTokenFailure = action(
 // export const logoutSuccess = action(loginTypes.LOGOUT_SUCCESS, 'response');
 // export const logoutFailure = action(loginTypes.LOGOUT_FAILURE, 'error');
 
-export const loadContentTemplateRequest = action(types.LOAD_CONTENT_TEMPLATE_REQUEST);
-export const loadContentTemplateSuccess = action(types.LOAD_CONTENT_TEMPLATE_SUCCESS, 'response');
-export const loadContentTemplateFailure = action(types.LOAD_CONTENT_TEMPLATE_FAILURE, 'error');
-
-export const countryLanguageRequest = action(types.COUNTRY_LANGUAGE_REQUEST);
-export const countryLanguageSuccess = action(types.COUNTRY_LANGUAGE_SUCCESS, 'response');
-export const countryLanguageFailure = action(types.COUNTRY_LANGUAGE_FAILURE, 'error');

@@ -38,21 +38,21 @@ function* redirectOnLoginByTokenSuccess() {
   yield take(loginTypes.LOGIN_BY_TOKEN_SUCCESS);
 }
 
-function* loginByTokenFlow(action) {
-  const successWatcher = yield fork(redirectOnLoginByTokenSuccess);
-  const { userId } = action;
-  // const token = localStorage.getItem('token');
-  // yield fork(
-  //   Api.get(
-  //     `user/data/${userId}`,
-  //     loginByTokenSuccess,
-  //     loginByTokenFailure,
-  //     token,
-  //   ),
-  // );
-  // yield take(loginTypes.LOGIN_BY_TOKEN_FAILURE);
-  // yield cancel(successWatcher);
-}
+// function* loginByTokenFlow(action) {
+//   const successWatcher = yield fork(redirectOnLoginByTokenSuccess);
+//   const { userId } = action;
+//   const token = localStorage.getItem('token');
+//   yield fork(
+//     Api.get(
+//       `user/data/${userId}`,
+//       loginByTokenSuccess,
+//       loginByTokenFailure,
+//       token,
+//     ),
+//   );
+//   yield take(loginTypes.LOGIN_BY_TOKEN_FAILURE);
+//   yield cancel(successWatcher);
+// }
 
 const checkIfMultiFactor = response => {
   if (response.data && response.data.multi_factor_auth_enable_mobile) {
@@ -156,46 +156,10 @@ function* logoutUser() {
   }
 }
 
-function* loadContentTemplateRequest() {
-  yield call(
-    Api.get(
-      'content-template?page=1&perpage=20',
-      actions.loadContentTemplateSuccess,
-      actions.loadContentTemplateFailure,
-    ),
-  );
-}
-
-function* changeLanguageOnSuccess() {
-  // if(DEFAULT_LOCALE=='')
-  const langMapper = { kr: 'ko' };
-  const { response } = yield take(types.COUNTRY_LANGUAGE_SUCCESS);
-  yield put(changeLocale(langMapper[response.data.country] || 'en'));
-}
-
-function* countryLanguageRequest() {
-  const successWatcher = yield fork(changeLanguageOnSuccess);
-  const token = yield select(makeSelectToken());
-  yield fork(
-    Api.get(
-      'location/country',
-      actions.countryLanguageSuccess,
-      actions.countryLanguageFailure,
-    ),
-  );
-  yield take([LOCATION_CHANGE, loginTypes.LOGOUT_FAILURE]);
-  yield cancel(successWatcher);
-}
-
 // Individual exports for testing
 export default function* defaultSaga() {
   yield takeLatest(loginTypes.LOGIN_REQUEST, loginFlow);
   yield takeLatest(loginTypes.CHECK_CAPTCHA_REQUEST, checkCaptchaFlow);
   yield takeLatest(loginTypes.LOGOUT_REQUEST, logoutUser);
-  yield takeLatest(loginTypes.LOGIN_BY_TOKEN_REQUEST, loginByTokenFlow);
-  yield takeLatest(
-    types.LOAD_CONTENT_TEMPLATE_REQUEST,
-    loadContentTemplateRequest,
-  );
-  yield takeLatest(types.COUNTRY_LANGUAGE_REQUEST, countryLanguageRequest);
+  // yield takeLatest(loginTypes.LOGIN_BY_TOKEN_REQUEST, loginByTokenFlow);
 }
