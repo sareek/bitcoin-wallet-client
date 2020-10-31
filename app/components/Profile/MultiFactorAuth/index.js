@@ -40,6 +40,7 @@ import {
   loadBasicInfoRequest
 } from './actions';
 import Toaster from 'components/Toaster';
+import { toast } from 'react-toastify';
 
 const mapDispatchToProps = (dispatch) => ({
   getMultiFactorAuthRequest: () => dispatch(getMultiFactorAuthRequest()),
@@ -112,6 +113,9 @@ class MultiFactorAuth extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (this.props.errorResponse && prevProps.errorResponse !== this.props.errorResponse) {
+      toast.error(this.props.errorResponse ? this.props.errorResponse : 'error')
+    }
     if (
       this.props.user && this.props.user && this.props.user.get('multi_factor_auth_enable') !==
       prevProps.user.get('multi_factor_auth_enable')
