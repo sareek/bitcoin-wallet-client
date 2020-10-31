@@ -2,15 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { showDialog } from 'containers/App/actions';
-import { makeSelectUserId, makeSelectDialog } from 'containers/App/selectors';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './sagas';
 import { compose } from 'redux';
 import bitcoinLogo from 'assets/images/exchange/additional/bitcoin.svg'
-import Toaster from 'components/Toaster';
-import { Link } from 'react-router-dom'
 import {
   makeSelectLoading,
   makeSelectNewAddress,
@@ -18,8 +15,7 @@ import {
   makeSelectGetWalletInfo,
   makeSelectError
 } from './selectors';
-import { Button, Grid, Segment, Loader, IconGroup } from 'semantic-ui-react';
-// import { makeSelectLocation } from '../../../App/selectors';
+import { Button, Grid, Segment } from 'semantic-ui-react';
 import ReceiveCryptoForm from './components/ReceiveCryptoForm';
 import { Redirect } from 'react-router-dom';
 
@@ -28,7 +24,6 @@ import {
   getBalanceRequest,
   getWalletInfoRequest,
 } from './actions'
-// import { makeSelectError } from '../../../Register/PasswordSetForm/selectors';
 
 const mapStateToProps = createStructuredSelector({
   newAddress: makeSelectNewAddress(),
