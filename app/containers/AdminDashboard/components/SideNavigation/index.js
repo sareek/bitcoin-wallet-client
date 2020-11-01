@@ -117,7 +117,7 @@ class SideNavigation extends React.Component {
         <Menu.Item>
           <Link className="nav__link" to="/admin/dashboard/">
             <span className="nav__icon">
-              <i className="icon-home" />
+              <i className="icon home" />
             </span>
             <span className="nav__text">Dashboard</span>
           </Link>

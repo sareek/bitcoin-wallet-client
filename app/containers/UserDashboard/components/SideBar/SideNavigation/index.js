@@ -6,7 +6,7 @@ const mainMenu = [
    {
       title: 'Dashboard',
       path: '/user/dashboard',
-      icon: "icon-home",
+      icon: "icon home",
     },
   //   {
   //   title: 'Product',
@@ -35,7 +35,7 @@ const mainMenu = [
   {
     title: 'Bitcoin Wallet',
     path: '/user/dashboard/wallet',
-    icon: "icon-bitcoin",
+    icon: "icon bitcoin",
   },
 ];
 

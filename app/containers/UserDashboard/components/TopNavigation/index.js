@@ -13,10 +13,10 @@ class TopNavigation extends React.Component {
 
   render() {
     return (
-      <div className="dashboard__header">
-        <div>
+      <div className="header">
+        <div className="header__logo">
           <Link to="/admin/dashboard">
-            <Image src={Logo} size="tiny" alt="XAL" spaced />
+            <Image src={Logo}  alt="logo"  />
           </Link>
         </div>
         <ul className="header__menu">
@@ -38,7 +38,7 @@ class TopNavigation extends React.Component {
                   role="option"
                   className="item"
                 >
-                  <i className="icon icon-user" />
+                  <i className="icon user" />
                   <span className="text">Profile</span>
                 </Link>
                 <div
@@ -46,7 +46,7 @@ class TopNavigation extends React.Component {
                   className="item"
                   onClick={this.props.handleLogout}
                 >
-                  <i className="icon icon-log-out" />
+                  <i className="icon sign-out" />
                   <span className="text">Log Out</span>
                 </div>
               </Dropdown.Menu>
