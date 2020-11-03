@@ -14,8 +14,8 @@ const LoginForm = ({
   showForgotPasswordForm,
   onRecaptchaChange,
 }) => (
-  <Form style={{padding: '4rem', margin: '0 auto'}} onSubmit={handleSubmit}>
-    <Form.Field style={{margin: '0 auto 2rem auto'}} width={12}>
+  <Form  onSubmit={handleSubmit}>
+    <Form.Field  >
       <InputField
         label="Email ID"
         name="email"
@@ -26,7 +26,7 @@ const LoginForm = ({
         error={errors.email ? 'username_error' : null}
       />
     </Form.Field>
-    <Form.Field style={{margin: '0 auto 2rem auto'}} width={12}>
+    <Form.Field >
     <PasswordInputField
       placeholder="Password"
       password={data.password || ''}
@@ -35,9 +35,9 @@ const LoginForm = ({
     />
     </Form.Field>
 
-      <Form.Field style={{margin: '0 auto 2rem auto'}} width={12}>
+      <Form.Field >
     <Button
-      style={{margin: '0 auto 2rem auto'}}
+  
       color="blue"
       fluid
       type="submit"

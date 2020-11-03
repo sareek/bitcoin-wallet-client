@@ -4,10 +4,11 @@ import InputField from './InputField';
 
 class PasswordInputField extends React.Component {
   state = {
-    showPassword: false
+    showPassword: false,
   };
 
-  handlePasswordChecked = () => this.setState({ showPassword: !this.state.showPassword });
+  handlePasswordChecked = () =>
+    this.setState({ showPassword: !this.state.showPassword });
 
   render() {
     const { showPassword } = this.state;
@@ -34,11 +35,11 @@ PasswordInputField.propTypes = {
   password: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
 };
 PasswordInputField.defaultProps = {
-  name: "password",
-  label: "Password"
+  name: 'password',
+  label: 'Password',
 };
 
 export default PasswordInputField;

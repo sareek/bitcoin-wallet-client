@@ -155,19 +155,19 @@ class SideNavigation extends React.Component {
                   </Accordion.Content>
                 </Menu.Item>
               );
-            } else
-              return (
-                <Menu.Item key={`main${idx}`}>
-                  <Link className="nav__link" to={main.path}>
-                    {main.icon && (
-                      <span className="nav__icon">
-                        <i className={main.icon} />
-                      </span>
-                    )}
-                    <span className="nav__text">{main.title}</span>
-                  </Link>
-                </Menu.Item>
-              );
+            }
+            return (
+              <Menu.Item key={`main${idx}`}>
+                <Link className="nav__link" to={main.path}>
+                  {main.icon && (
+                    <span className="nav__icon">
+                      <i className={main.icon} />
+                    </span>
+                  )}
+                  <span className="nav__text">{main.title}</span>
+                </Link>
+              </Menu.Item>
+            );
           })}
       </Accordion>
     );

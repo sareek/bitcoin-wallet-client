@@ -9,6 +9,7 @@ class TopNavigation extends React.Component {
   constructor(props) {
     super(props);
   }
+
   state = {};
 
   render() {
@@ -16,7 +17,7 @@ class TopNavigation extends React.Component {
       <div className="header">
         <div className="header__logo">
           <Link to="/admin/dashboard">
-            <Image src={Logo}  alt="logo"  />
+            <Image src={Logo} alt="logo" />
           </Link>
         </div>
         <ul className="header__menu">

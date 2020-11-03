@@ -2,12 +2,14 @@
  * Created by lakhe on 7/5/17.
  */
 import React from 'react';
-import { Form, Button, Icon, Message } from 'semantic-ui-react';
+import { Form, Button, Icon, Message, Image } from 'semantic-ui-react';
 import Captcha from 'components/Captcha';
 import PasswordInputField from 'components/common/Forms/PasswordInputField';
 import FormField from 'components/common/Forms/FormField';
 import PasswordIndicator from 'components/PasswordIndicator';
 import { Link } from 'react-router-dom';
+// import Logo from '../../assets/images/exchange/Auxledger_Logo_Favicon.png';
+import Logo from "../../../assets/images/exchange/Auxledger_Logo_Favicon.png";
 
 const UserRegistrationForm = (
   {
@@ -19,7 +21,16 @@ const UserRegistrationForm = (
     errorResponse
   }) => {
   return (
-    <div className="register__box" style={{padding: '30px'}}>
+    <div className="login__box " >
+      <div className="login__logo">
+              <Image
+                // spaced="bottom"
+                size="small"
+                src={Logo}
+                alt="XAL"
+                centered
+              />
+            </div>
       {errorResponse && (
           <div className="invalid_cred_msg">
           <Message negative icon>
@@ -31,7 +42,7 @@ const UserRegistrationForm = (
           </Message>
           </div>
       )}
-    <Form style={{padding: '30px'}} onSubmit={handleSubmit}>
+    <Form  onSubmit={handleSubmit}>
         <FormField 
           label="Username" name="username" value={data.username || ''} onChange={handleChange}
           placeholder="Username" error={errors.username}
@@ -46,14 +57,14 @@ const UserRegistrationForm = (
         />
       </div>
       <div className="field">
-          <Button className="button primary large full-width" type="submit"
+          <Button className="button primary  "  fluid type="submit"
             loading={isRequesting}>Register</Button>
       </div>
 
     </Form>
-    <br />
+
     {window.location.pathname.split('/')[1] != 'guest-detail' && (
-          <p style={{paddingLeft: '30px'}}>
+          <p style={{textAlign: 'center', marginTop: '2rem'}}>
             Already a Member? <Link to="/">Login</Link>
           </p>
         )}

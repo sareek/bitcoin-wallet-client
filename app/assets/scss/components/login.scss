@@ -9,17 +9,26 @@
   background-size: cover;
 }
 .login__box {
-  min-width: 70%;
-  flex: 0 0 400px;
+
+
+  flex: 0 0 500px;
   background-color: #eee;
   background-image: url('../images/exchange/white-bg.jpg');
-  padding: 15px 10px;
+  padding: 35px 20px;
   border-radius: 3px;
+  margin: 20px;
   h3 {
     text-align: center;
+    margin-top: 0px;
   }
   p {
     margin-bottom: 0.5rem;
+  }
+  @media(max-width:575px){
+    flex: 0 0 400px;
+  }
+  @media(max-width:375px){
+    flex: 0 0 300px;
   }
 }
 .login__info {
@@ -28,6 +37,10 @@
 .login__logo {
   margin: 0 auto;
   max-width: 120px;
+  margin-bottom: 10px;
+  @media(max-width:475px){
+    max-width:80px;
+  }
 }
 .has-indicator {
   position: relative;

@@ -166,21 +166,21 @@ class Login extends React.Component {
       this.props.userResponse.size > 0 &&
       prevProps.userResponse !== this.props.userResponse
     ) {
-      const userInfo = this.props.userResponse.toJS() && 
-                              this.props.userResponse.toJS().userInfo &&
-                                   this.props.userResponse.toJS().userInfo; 
-      const setToken = this.props.userResponse.toJS() && 
-                      this.props.userResponse.toJS().token &&
-                            this.props.userResponse.toJS().token;                           
+      const userInfo = this.props.userResponse.toJS() &&
+        this.props.userResponse.toJS().userInfo &&
+        this.props.userResponse.toJS().userInfo;
+      const setToken = this.props.userResponse.toJS() &&
+        this.props.userResponse.toJS().token &&
+        this.props.userResponse.toJS().token;
       let user_id;
       let userEmail;
       let multi_factor_auth_enable;
       let multi_factor_auth_enable_mobile;
-      if(userInfo) {
-         user_id = userInfo.user_id;
-         userEmail = userInfo.email;
-         multi_factor_auth_enable = userInfo.multi_factor_auth_enable;
-      }                      
+      if (userInfo) {
+        user_id = userInfo.user_id;
+        userEmail = userInfo.email;
+        multi_factor_auth_enable = userInfo.multi_factor_auth_enable;
+      }
 
       if (user_id) {
         if (multi_factor_auth_enable || multi_factor_auth_enable_mobile) {
@@ -244,96 +244,98 @@ class Login extends React.Component {
       url =
         userResp.role === 'customer'
           ? '/user/dashboard' :
-        '/admin/dashboard';
+          '/admin/dashboard';
     }
     const token = getToken();
-   if(token){
-        try {
-              const decoded = jwtDecode(token);
-              if (
-                typeof decoded === 'object' &&
-                decoded.hasOwnProperty('user_id') 
-              ) {
-                const { role } = decoded;
-                if(role === 'customer')  return <Redirect to="/user/dashboard" />;
-              }
-            } catch(error) {
-                  throw(error);
-            }
-          }
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        if (
+          typeof decoded === 'object' &&
+          decoded.hasOwnProperty('user_id')
+        ) {
+          const { role } = decoded;
+          if (role === 'customer') return <Redirect to="/user/dashboard" />;
+        }
+      } catch (error) {
+        throw (error);
+      }
+    }
 
     return (
       <div className="login__wrap">
         <div className="login__box">
-          <div className="login__logo">
-            <Image
-              // spaced="bottom"
-              size="small"
-              src={Logo}
-              alt="XAL"
-              centered
-            />
-          </div>
-          {this.state.show && (
-            <ForgotPassword
-              showForgotPasswordForm={this.showForgotPasswordForm}
-            />
-          )}
-          {err && err.length > 0 && (
-            <div className="invalid_cred_msg">
-            <Message negative icon>
-              <Icon name="warning circle" />
-              <Message.Content>
-                <Message.Header>Error !</Message.Header>
-                <p>{err}</p>
-              </Message.Content>
-            </Message>
+          <div>
+            <div className="login__logo">
+              <Image
+                // spaced="bottom"
+                size="small"
+                src={Logo}
+                alt="XAL"
+                centered
+              />
             </div>
-          )}
+            {this.state.show && (
+              <ForgotPassword
+                showForgotPasswordForm={this.showForgotPasswordForm}
+              />
+            )}
+            {err && err.length > 0 && (
+              <div className="invalid_cred_msg">
+                <Message negative icon>
+                  <Icon name="warning circle" />
+                  <Message.Content>
+                    <Message.Header>Error !</Message.Header>
+                    <p>{err}</p>
+                  </Message.Content>
+                </Message>
+              </div>
+            )}
 
-          {response && <div className="positive message">{response}</div>}
-          <h3>
-            {userResp && typeof userResp === 'object' && Object.keys(userResp).length > 1
-              ? 'Already Logged in'
-              : 'Login'}
-          </h3>
-          {userResp && typeof userResp === 'object' && !('_id' in userResp) && (
-            <LoginForm
-              data={data}
-              errors={errors}
-              requesting={requesting}
-              handleSubmit={this.handleSubmit}
-              handleChange={this.handleChange}
-              onRecaptchaChange={this.onRecaptchaChange}
-              showForgotPasswordForm={this.showForgotPasswordForm}
-            />
-          )}
-          {userResp && Object.keys(userResp).length > 1 && userResp._id && (
-            <div className="login__info">
-              <p>
-                You are already logged in. Go to{' '}
-                <Link className="alt-link" to={url}>
-                  Dashboard
+            {response && <div className="positive message">{response}</div>}
+            <h3>
+              {userResp && typeof userResp === 'object' && Object.keys(userResp).length > 1
+                ? 'Already Logged in'
+                : 'Login'}
+            </h3>
+            {userResp && typeof userResp === 'object' && !('_id' in userResp) && (
+              <LoginForm
+                data={data}
+                errors={errors}
+                requesting={requesting}
+                handleSubmit={this.handleSubmit}
+                handleChange={this.handleChange}
+                onRecaptchaChange={this.onRecaptchaChange}
+                showForgotPasswordForm={this.showForgotPasswordForm}
+              />
+            )}
+            {userResp && Object.keys(userResp).length > 1 && userResp._id && (
+              <div className="login__info">
+                <p>
+                  You are already logged in. Go to{' '}
+                  <Link className="alt-link" to={url}>
+                    Dashboard
                 </Link>
                 .
               </p>
-              <p>OR</p>
-              <p>
-                <span className="alt-link" onClick={this.props.logout}>
-                  Logout
+                <p>OR</p>
+                <p>
+                  <span className="alt-link" onClick={this.props.logout}>
+                    Logout
                 </span>{' '}
                 and sign in using different account.
               </p>
-            </div>
-          )}
-          {showMultifactorForm && (
-            <MultiFactorAuth
-              user_id={user_id}
-              userEmail={userEmail}
-              token={setToken}
-              showMultifactorDialog={this.showMultifactorDialog}
-            />
-          )}
+              </div>
+            )}
+            {showMultifactorForm && (
+              <MultiFactorAuth
+                user_id={user_id}
+                userEmail={userEmail}
+                token={setToken}
+                showMultifactorDialog={this.showMultifactorDialog}
+              />
+            )}
+          </div>
         </div>
       </div>
     );

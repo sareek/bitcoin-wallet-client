@@ -183,7 +183,7 @@ class SignupForm extends React.Component {
     return this.state.verify_data && this.state.verify_data.message ? (
       <ReferErrorPage message={this.state.verify_data.message} />
     ) : (
-      <div className="signup__wrap">
+      <div className="login__wrap">
         <UserRegistrationForm
           handleSubmit={this.handleSubmit}
           errorResponse={errorResponse}
