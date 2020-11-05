@@ -65,3 +65,25 @@
   100% { transform: rotate(360deg); }
 }
 
+// title
+
+.title{
+  .icon{
+    font-size: 36px;
+    &.bitcoin{
+      color: #ff7b00;
+    }
+  }
+}
+
+// stats card
+.stats{
+  &__title{
+    text-transform: uppercase;
+    color: #777;
+  }
+  &__value{
+    font-size: 24px;
+    font-weight: 800;
+  }
+}

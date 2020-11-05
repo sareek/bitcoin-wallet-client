@@ -95,7 +95,7 @@ class SideNavigation extends React.Component {
             mainMenu.map((main, idx) => {
               if (main.subMenues) {
                 return (
-                  <Menu.Item key={`sub${idx}`}>
+                  <Menu.Item key={`sub${idx}`} >
                     {main.subMenues.length > 0 && (
                       <div>
                         <Accordion.Title
@@ -107,7 +107,7 @@ class SideNavigation extends React.Component {
                           <span className="nav__link">
                             <span className="nav__icon">
                               <i className={main.icon} />
-                              &nbsp;
+                             
                             </span>
                             <span className="nav__text">{main.title}</span>
                           </span>
@@ -120,7 +120,7 @@ class SideNavigation extends React.Component {
                             <div
                               className={
                                 this.state.subTitle == menu.title
-                                  ? 'active'
+                                  ? 'menu-active'
                                   : ''
                               }
                               onClick={() => this.contentClick(idx, menu.title)}
@@ -129,7 +129,7 @@ class SideNavigation extends React.Component {
                               <Link className="nav__link" to={menu.path}>
                                 <span className="nav__icon">
                                   <i className={menu.icon} />
-                                  &nbsp;
+                                  
                                 </span>
                                 <span className="nav__text">{menu.title}</span>
                               </Link>
@@ -144,14 +144,14 @@ class SideNavigation extends React.Component {
               return (
                 <div
                   onClick={() => this.handleClickActive(main.title)}
-                  className={this.state.setActive == main.title ? 'active' : ''}
+                  className={this.state.setActive == main.title ? 'menu-active' : ''}
                   key={`main${idx}`}
                 >
                   <Menu.Item>
                     <Link className="nav__link" to={main.path}>
                       <span className="nav__icon">
                         <i className={main.icon} />
-                        &nbsp;
+                      
                       </span>
                       <span className="nav__text">{main.title}</span>
                     </Link>

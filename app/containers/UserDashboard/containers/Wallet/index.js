@@ -110,7 +110,9 @@ class Wallet extends React.Component {
    const { loading } = this.props;
     return (
       <div>
-         <h1>  <img style={{height: '2rem', width: '2rem'}} src={bitcoinLogo} alt="bitcoin_img" /> BitCoin Wallet </h1>
+         {/* <h1>  <img style={{height: '2rem', width: '2rem'}} src={bitcoinLogo} alt="bitcoin_img" /> BitCoin Wallet </h1> */}
+          <h1 className="title">  <i className="icon bitcoin"></i> Bitcoin Wallet </h1>
+          
          <br />
          {!!showReceiveModal && (
            <ReceiveCryptoForm 
@@ -122,20 +124,24 @@ class Wallet extends React.Component {
            />
          )}
         <Grid>
+          <Grid.Row>
+            <Grid.Column>
             <Button 
                content="Receive"
                labelPosition='right'
                icon='download'
                onClick={this.showReceiveModal}
-               positive
+               color="blue"
             />
              <Button 
                 content="Send"
                 labelPosition='right'
                 icon='send'
-                positive
+                color="blue"
                 disabled
               />
+              </Grid.Column>
+              </Grid.Row>
               {loading ? (
                 <Grid.Row>
                   <Grid.Column width={4}>
@@ -146,31 +152,31 @@ class Wallet extends React.Component {
                 <>
                   <Grid.Row>
                 <Grid.Column width={4}>
-                    <Segment>
-                    <p><b>BTC Balance:</b></p>
-                    <p>{walletInfo && walletInfo.btc_balance ? 
+                    <Segment className="stats">
+                    <p className="stats__title">BTC Balance</p>
+                    <p className="stats__value">{walletInfo && walletInfo.btc_balance ? 
                               `$${walletInfo.btc_balance}` : 'N/A'}</p>
                   </Segment>
                 </Grid.Column>
                 <Grid.Column width={4}>
-                    <Segment>
-                    <p><b>BTC Price:</b></p>
-                      <p>{walletInfo && walletInfo.btc_price ? 
+                    <Segment className="stats">
+                    <p className="stats__title">BTC Price</p>
+                      <p className="stats__value">{walletInfo && walletInfo.btc_price ? 
                         `$${walletInfo.btc_price}` : 'N/A'}</p>
                   </Segment>
                 </Grid.Column>
                 <Grid.Column width={4}>
-                    <Segment>
-                    <p><b>USD Balance:</b></p>
-                    <p>{walletInfo && walletInfo.usd_balance ? 
+                    <Segment className="stats">
+                    <p className="stats__title">USD Balance</p>
+                    <p className="stats__value">{walletInfo && walletInfo.usd_balance ? 
                               `$${walletInfo.usd_balance}` : 'N/A'}</p>
                   </Segment>
                 </Grid.Column>
                 {currentBalance && currentBalance.unconfirmed_balance ? (
                   <Grid.Column width={4}>
-                  <Segment>
-                  <p><b>Pending BTC Balance:</b></p>
-                  <p>{walletInfo && walletInfo.btc_balance ? 
+                  <Segment className="stats">
+                  <p className="stats__title">Pending BTC Balance</p>
+                  <p className="stats__value">{walletInfo && walletInfo.btc_balance ? 
                               `$${walletInfo.btc_balance}` : 'N/A'}</p>
                   </Segment>
                 </Grid.Column>
