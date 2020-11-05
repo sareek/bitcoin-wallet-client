@@ -36,10 +36,12 @@ class BasicInfo extends React.Component {
   };
   state = {
     data: {},
+    files: {},
     avatarImage: this.props.user.get('image_name') ? `${DOCUMENT_URL_UPDATE}${this.props.user.get('image_name')}` : null,
     imageFile: null,
     date: null,
     focused: false,
+    errors: {}
   };
   componentDidMount() {
     if (this.props.user.size > 0) {
@@ -92,6 +94,51 @@ class BasicInfo extends React.Component {
     this.setState({imageFile: imgFile[0],avatarImage: imgFile[0].preview, newImage:true});
   }
 
+
+  handleFileRemove = (imageName, errorName) => {
+    delete this.state.files[imageName];
+    delete this.state.errors[errorName];
+    this.setState({
+      files: {
+        ...this.state.files
+      }
+    });
+    this.setState({
+      errors: {
+        ...this.state.errors
+      }
+    });
+  };
+
+  handleOnDropRejected = (receivedFiles, errorName) => {
+    if (receivedFiles && receivedFiles.length > 0) {
+      this.setState({
+        ...errors,
+        [errorName]: receivedFiles[receivedFiles.length - 1].errors[0].message,
+      });
+    }
+  };
+
+  handleOnDrop = (receivedFiles, fileName) => {
+    if (receivedFiles.length === 1) {
+      receivedFiles[0].file_name = fileName;
+      this.setState({
+        files: {
+          ...this.state.files,
+          [fileName]: receivedFiles,
+        }
+      })
+    }
+    if (this.state.errors.submissionError) {
+      delete this.state.errors.submissionError;
+      this.setState({ 
+        errors: {
+          ...this.state.errors
+        }
+      });
+    }
+  };
+
   setEditorRef = (editor) => this.editor = editor;
 
   onCrop = (e) => {
@@ -119,12 +166,12 @@ class BasicInfo extends React.Component {
     })
   }
 
-
-
   handleRadioChange = (e, { name, value }) => this.setState({ data: { ...this.state.data, [name]: value } });
   handleSubmit = e => {
     e.preventDefault();
-    const { data, imageFile } = this.state;
+    const { data, imageFile, files } = this.state;
+    console.log({data}, {files})
+    debugger;
     if (!!imageFile) {
       this.props.updateBasicInfoRequest(data, imageFile);
     } else {
@@ -136,7 +183,7 @@ class BasicInfo extends React.Component {
   isOutsideRange = day => !(day.isBefore(moment()));
 
   render() {
-    const { data, avatarImage, date, focused, newImage } = this.state;
+    const { data, avatarImage, date, focused, newImage, files, errors } = this.state;
     const { successResponse, errorResponse, requesting } = this.props;
     let message;
     if (successResponse && typeof successResponse === "string") {
@@ -156,6 +203,11 @@ class BasicInfo extends React.Component {
           datechange={this.handleDateChange} handleCheckBox={this.handleCheckBox}
           handleGenderChange={this.handleRadioChange}
           setEditorRef={this.setEditorRef} onCrop={this.onCrop} newImage={newImage}
+          handleFileRemove={this.handleFileRemove}
+          handleOnDropRejected={this.handleOnDropRejected}
+          handleOnDrop={this.handleOnDrop}
+          files={files}
+          errors={errors}
         />
       </div>
     );

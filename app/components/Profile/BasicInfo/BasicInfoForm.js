@@ -3,6 +3,7 @@ import { Button, Form, Segment, Radio } from 'semantic-ui-react';
 import InputField from 'components/common/Forms/InputField';
 import DatePicker from 'components/common/DatePicker';
 import Countries from 'components/common/countries';
+import FileDropZone from 'components/FileDropZone';
 
 const countries = Countries.map((country) =>
   (<option key={country.code} value={country.name}>
@@ -13,7 +14,8 @@ const countries = Countries.map((country) =>
 const BasicInfoForm = (
   {
     date, focused, onDateChange, onFocusChange, isOutsideRange, user, avatarImage,
-    handleChange, handleSubmit, handleCheckBox, onDrop, handleGenderChange, isLoading, datechange, setEditorRef, onCrop, newImage
+    handleChange, handleSubmit, handleCheckBox, onDrop, handleGenderChange, isLoading, datechange, setEditorRef, onCrop, newImage,
+    handleOnDrop, handleOnDropRejected, files, handleFileRemove, errors
   }
 ) =>
 
@@ -92,6 +94,19 @@ const BasicInfoForm = (
           <InputField type="text" label="ZIP/Postal Code" name="address_zip_postal_code"
             value={user.address_zip_postal_code || ''} onChange={handleChange} />
         </Form.Group>
+      </Segment>
+      <Segment>
+      <div>
+        <h5>Upload a File</h5>
+        <FileDropZone
+          files={files}
+          // errors={errors}
+          handleOnDrop={handleOnDrop}
+          handleOnDropRejected={handleOnDropRejected}
+          handleFileRemove={handleFileRemove}
+          fileName="kycFile"
+        />
+      </div>
       </Segment>
       <Button type="submit" primary loading={isLoading} disabled={isLoading}>Save</Button>
     </div>
