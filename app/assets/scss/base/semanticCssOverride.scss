@@ -10,3 +10,22 @@
 .ui.table{
     border: none;
 }
+.ui.secondary.pointing.menu {
+    a.item{
+        font-weight: 700;
+        &:hover{
+            color: $main-color;    
+        }
+        &.active{
+            border-color: $main-color;
+            background: #f3f3f3;
+            color: $main-color;
+            &:hover{
+                border-color: $main-color;
+                background: #f3f3f3;
+                color: $main-color;    
+            }
+        }
+    }
+
+}

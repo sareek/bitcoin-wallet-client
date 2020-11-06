@@ -136,7 +136,7 @@ class WalletsList extends React.Component {
 
     return (
       <Segment>
-        <div className="tbl-heading"><span className="tbl-title"><i class="list ul icon"></i> Wallets List</span> <Button
+        <div className="tbl-heading"><span className="tbl-title"><i class="list ul icon"></i> Wallet Addresses </span> <Button
           content="New Wallet"
           labelPosition='right'
           icon='add circle'
