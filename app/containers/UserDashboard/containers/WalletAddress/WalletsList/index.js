@@ -136,7 +136,15 @@ class WalletsList extends React.Component {
 
     return (
       <Segment>
-        <p>Wallets List</p>
+        <div className="tbl-heading"><span className="tbl-title"><i class="list ul icon"></i> Wallets List</span> <Button
+          content="New Wallet"
+          labelPosition='right'
+          icon='add circle'
+          color="blue"
+          onClick={this.showAddWalletModal}
+          title="Add new Wallet"
+        />
+        </div>
         {!!showAddWalletModal && (
           <AddWallet
             hideModal={this.hideModal}
@@ -147,16 +155,8 @@ class WalletsList extends React.Component {
             errors={errors}
           />
         )}
-        <Button
-          content="New Wallet"
-          labelPosition='right'
-          icon='add circle'
-          color="blue"
-          onClick={this.showAddWalletModal}
-          title="Add new Wallet"
-        />
-        <br />
-        <br />
+        
+        
         <WalletListTable
           headers={headers}
           tableData={walletAddressesList}

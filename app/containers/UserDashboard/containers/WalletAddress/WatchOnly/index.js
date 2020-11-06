@@ -42,7 +42,7 @@ class WatchOnlyAddress extends React.Component {
     const {  } = this.props;
     return (
       <Segment>
-       <p>Watch Only</p>
+       <p className="tbl-title">Watch Only</p>
       </Segment>
     );
   }

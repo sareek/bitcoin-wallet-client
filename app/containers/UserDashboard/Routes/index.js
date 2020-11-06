@@ -28,7 +28,7 @@ import WalletAddress from '../containers/WalletAddress';
 
 // import UserDashboard from '../containers/DashboardView/Loadable'
 
-import { Segment } from 'semantic-ui-react';
+
 
 function check(status) {
 	let isValid = false,

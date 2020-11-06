@@ -97,3 +97,14 @@
   }
 }
 
+//table-title
+.tbl-heading{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.tbl-title{
+  font-size: 18px;
+  font-weight: 800;
+}
