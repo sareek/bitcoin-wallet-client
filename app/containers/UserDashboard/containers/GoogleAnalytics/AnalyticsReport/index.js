@@ -73,7 +73,7 @@ class GoogleAnalyticsReport extends React.Component {
       <div>
        <Grid divided='vertically'>
     <Grid.Row >
-      <Grid.Column width={12}>
+      <Grid.Column width={11}>
       
         {message && message}
        <div className="main-heading">
@@ -101,10 +101,11 @@ class GoogleAnalyticsReport extends React.Component {
          </div>
        </Segment>
       </Grid.Column>
-      <Grid.Column width={4}>
+      <Grid.Column width={5}>
       <Segment className="announcements">
         <div className="sm-heading"><p className="title"><span><i className="icon bullhorn"></i></span> Announcements </p></div>
       
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
       </Segment>
       </Grid.Column>
