@@ -19,7 +19,7 @@ function* getWatchOnlyAddressRequest(action) {
           `btc/get_addresses/`,
           actions.getWatchOnlyAddressSuccess,
           actions.getWatchOnlyAddressFailure,
-          {email: decoded.email},
+          {email: decoded.email, address_type: 'watch_only', currency_name: 'bitcoin'},
           token,
         ),
       );

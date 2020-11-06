@@ -28,8 +28,6 @@ const ReceiveCryptoForm = ({ hideModal, showReceiveModal, newAddress, copyToClip
             options={crytoCoinsOptions}
             value={'1'}
           />
-
-
         </Form.Field>
         <Form.Field className="qr"><QRCode value={'mm7hpftYhHU8hqTxGGLawrXwGCq7i147FG'} /></Form.Field>
         <Form.Field>

@@ -19,7 +19,7 @@ function* getAddressRequest(action) {
             `btc/get_addresses/`,
             actions.getAddressSuccess,
             actions.getAddressFailure,
-            {email: decoded.email},
+            {email: decoded.email, address_type: 'wallet', currency_name: 'bitcoin'},
             token,
           ),
         );

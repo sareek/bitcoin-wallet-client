@@ -8,7 +8,7 @@ export class TableComponent extends Component {
         const { headers, tableData, requesting } = this.props;
         return (
             <div>
-                <Table celled>
+                <Table celled striped size='large'>
                     {headers.length > 0 && (
                         <Table.Header>
                             <Table.Row>

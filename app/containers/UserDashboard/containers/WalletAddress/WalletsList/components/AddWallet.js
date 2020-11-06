@@ -3,46 +3,42 @@ import { Button, Header, Form, Modal, Dropdown, Popup } from 'semantic-ui-react'
 import InputField from 'components/common/Forms/InputField';
 
 const AddWallet = ({ hideModal, showModal, handleChange, handleSubmit, data, errors }) => (
-    <Modal
-      size="tiny"
-      onClose={() => hideModal(true)}
-      closeOnDimmerClick= {false}
+  <Modal
+    size="tiny"
+    onClose={() => hideModal(true)}
+    closeOnDimmerClick={false}
     //   onOpen={() => setOpen(true)}
-      open={showModal}
-      closeIcon
-      trigger={<Button>Show Modal</Button>}
-    >
-     
-      <Header icon='plus circle' content='Add New Bitcoin Wallet' />
-      <Modal.Content>
-        <Form size="large">
-        <Form.Field>
-            <InputField
-                label="Wallet Name"
-                name="label"
-                type="text"
-                placeholder="Wallet Name..."
-                value={data.label || ''}
-                onChange={handleChange}
-                error={errors.label ? 'Enter a value' : null}
-            />
-            </Form.Field>
-            <Form.Field>
-            <Button
-          onClick={handleSubmit}
-          color="blue"
-          fluid
-        >
-          Create New Wallet
-        </Button>
-            </Form.Field>
-        </Form>
-   
-      </Modal.Content>
+    open={showModal}
+    closeIcon
+    trigger={<Button>Show Modal</Button>}
+  >
 
-       
-     
-    </Modal>
+    <Header icon='plus circle' content='Add New Bitcoin Wallet' />
+    <Modal.Content>
+      <Form size="large">
+        <Form.Field>
+          <InputField
+            label="Wallet Name"
+            name="label"
+            type="text"
+            placeholder="Wallet Name..."
+            value={data.label || ''}
+            onChange={handleChange}
+            error={errors.label ? 'Enter a value' : null}
+          />
+        </Form.Field>
+        <Form.Field>
+          <Button
+            onClick={handleSubmit}
+            color="blue"
+            fluid
+          >
+            Create New Wallet
+        </Button>
+        </Form.Field>
+      </Form>
+    </Modal.Content>
+  </Modal>
 )
 
 export default AddWallet;

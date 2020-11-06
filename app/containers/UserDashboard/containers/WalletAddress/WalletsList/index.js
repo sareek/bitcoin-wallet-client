@@ -21,6 +21,8 @@ import WalletListTable from 'components/Table';
 import AddWallet from './components/AddWallet';
 import { toast } from 'react-toastify';
 
+import { Segment } from 'semantic-ui-react'
+
 const mapStateToProps = createStructuredSelector({
   walletAddressesResponse: makeSelectWalletAddressesResponse(),
   postWalletAddressResponse: makeSelectPostWalletAddressResponse(),
@@ -133,8 +135,16 @@ class WalletsList extends React.Component {
     ];
 
     return (
-      <div className="segment">
-        <h2>Wallets List</h2>
+      <Segment>
+        <div className="tbl-heading"><span className="tbl-title"><i className="list ul icon"></i> Wallet Addresses </span> <Button
+          content="New Wallet"
+          labelPosition='right'
+          icon='add circle'
+          color="blue"
+          onClick={this.showAddWalletModal}
+          title="Add new Wallet"
+        />
+        </div>
         {!!showAddWalletModal && (
           <AddWallet
             hideModal={this.hideModal}
@@ -145,21 +155,12 @@ class WalletsList extends React.Component {
             errors={errors}
           />
         )}
-        <Button
-          content="New Wallet"
-          labelPosition='right'
-          icon='add circle'
-          color="blue"
-          onClick={this.showAddWalletModal}
-        />
-        <br />
-        <br />
         <WalletListTable
           headers={headers}
           tableData={walletAddressesList}
           requesting={getWalletAddressesRequesting}
         />
-      </div>
+      </Segment>
     );
   }
 }

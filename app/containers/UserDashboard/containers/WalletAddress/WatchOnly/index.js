@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Button } from 'semantic-ui-react';
+import { Button, Segment } from 'semantic-ui-react';
 
 import { clearState, getWatchOnlyAddressRequest, generateWatchOnlyWalletAddress } from './actions';
 import { 
@@ -19,6 +19,9 @@ import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import {compose} from "redux";
 import AddWallet from './components/AddWallet';
+import WatchOnlyTable from 'components/Table';
+
+import { toast } from 'react-toastify';
 
 const mapStateToProps = createStructuredSelector({
   errorResponse: makeSelectError(),
@@ -50,6 +53,28 @@ class WatchOnlyAddress extends React.Component {
   componentDidMount() {
     this.props.dispatchGetWatchOnlyAddressRequest();
   }
+  
+  componentDidUpdate(prevProps) {
+    if (this.props.generateWatchOnlyAddressResponse != prevProps.generateWatchOnlyAddressResponse) {
+      if (this.props.generateWatchOnlyAddressResponse &&
+        this.props.generateWatchOnlyAddressResponse.toJS() &&
+        this.props.generateWatchOnlyAddressResponse.toJS().status === 200) {
+        this.setState({ showAddWalletModal: false }, () => {
+          toast.success("Wallet Generated Successfully");
+          this.props.dispatchGetWatchOnlyAddressRequest();
+        })
+      }
+    }
+
+    if (this.props.getWatchOnlyAddressResponse != prevProps.getWatchOnlyAddressResponse) {
+      if (this.props.getWatchOnlyAddressResponse &&
+        this.props.getWatchOnlyAddressResponse.toJS() &&
+        this.props.getWatchOnlyAddressResponse.toJS().status === 200) {
+          this.setState({walletAddressesList: this.props.getWatchOnlyAddressResponse.toJS().data.address_list});
+        }
+    }
+  }
+
   componentWillUnmount() {
     this.props.clearState();
   }
@@ -94,10 +119,36 @@ class WatchOnlyAddress extends React.Component {
   render() {
     const { showAddWalletModal, data, errors, walletAddressesList } = this.state;
     const { getWatchOnlyAddressRequesting } = this.props;
+
+    const headers = [
+      {
+        key: 1,
+        name: 'Wallet Name',
+        field: 'label',
+      },
+      {
+        name: 'Balance',
+        key: 2,
+        format: data => {
+          return data
+            ? data.balance
+            : '---';
+        },
+      }
+    ];
    
     return (
-      <div className="segment">
+      <Segment>
        <h1>Watch Only</h1>
+       <div className="tbl-heading"><span className="tbl-title"><i className="list ul icon"></i> Wallet Addresses </span> <Button
+          content="New Watch Only Wallet"
+          labelPosition='right'
+          icon='add circle'
+          color="blue"
+          onClick={this.showAddWalletModal}
+          title="Add new Wallet"
+        />
+        </div>
        {!!showAddWalletModal && (
           <AddWallet
             hideModal={this.hideModal}
@@ -108,14 +159,12 @@ class WatchOnlyAddress extends React.Component {
             errors={errors}
           />
         )}
-       <Button
-          content="New Watch Only Wallet"
-          labelPosition='right'
-          icon='add circle'
-          color="blue"
-          onClick={this.showAddWalletModal}
+          <WatchOnlyTable
+          headers={headers}
+          tableData={walletAddressesList}
+          requesting={getWatchOnlyAddressRequesting}
         />
-      </div>
+      </Segment>
     );
   }
 }
