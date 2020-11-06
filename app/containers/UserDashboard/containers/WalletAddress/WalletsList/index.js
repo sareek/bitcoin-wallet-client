@@ -17,7 +17,7 @@ import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import { compose } from "redux";
 import { Button } from 'semantic-ui-react';
-import WalletListTable from './WalletListTable';
+import WalletListTable from 'components/Table';
 import AddWallet from './components/AddWallet';
 import { toast } from 'react-toastify';
 

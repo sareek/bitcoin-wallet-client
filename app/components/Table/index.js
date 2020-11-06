@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Table } from 'semantic-ui-react'
 
 
-export class WalletListTable extends Component {
+export class TableComponent extends Component {
     render() {
         const customFormatter = (data, customFormat = (d) => d) => customFormat(data);
         const { headers, tableData, requesting } = this.props;
@@ -95,4 +95,4 @@ export class WalletListTable extends Component {
     }
 }
 
-export default WalletListTable
+export default TableComponent
