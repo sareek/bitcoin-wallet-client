@@ -68,6 +68,11 @@
 // title
 
 .title{
+  
+  font-size: 28px;
+  margin-bottom: 15px;
+  font-weight:700;
+
   .icon{
     font-size: 36px;
     &.bitcoin{
@@ -96,8 +101,34 @@
     border-radius: .28571429rem;
   }
 }
+// main-heading
+.text-muted{
+  opacity: 0.5;
+  font-size: 18px;
+}
+// small-heading
 
-//table-title
+.sm-heading{
+  margin-bottom: 15px;
+  .title{
+    font-size: 18px;
+    span{
+      height: 30px;
+      width: 30px;
+      display: inline-block;
+      line-height: 30px;
+      background: #eeeeee;
+      text-align: center;
+
+      border-radius: 50%;
+    }
+    i.icon{
+      font-size: 15px;
+
+    }
+  }
+}
+//table-heading
 .tbl-heading{
   display: flex;
   justify-content: space-between;
@@ -107,4 +138,48 @@
 .tbl-title{
   font-size: 18px;
   font-weight: 800;
+}
+
+// statistics
+.text-green{
+  color:#00b527;
+}
+.text-red{
+  color:#DB2828;
+}
+.main-statistics{
+  display: flex;
+  height: 100px;
+  div{
+   
+    flex-basis: 0;
+    flex: 1 1 0px;
+    position: relative;
+    
+    p{
+      position: absolute;
+      &.title{
+        top: 0;
+      }
+      &.value{
+        bottom: 0;
+      }
+    }
+    &:first-of-type{
+      .value{
+        font-weight: 800;
+        font-size: 32px;
+      }
+    }
+  }
+  .title{
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+  .value{
+    font-weight: 800;
+    font-size: 22px;
+  }
+
 }
