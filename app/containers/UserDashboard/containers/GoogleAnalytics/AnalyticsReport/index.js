@@ -70,7 +70,7 @@ class GoogleAnalyticsReport extends React.Component {
     return (
       <div>
         {message && message}
-        <h1>User</h1>
+        <h1>Analyticss</h1>
       </div>
     );
   }

@@ -14,13 +14,13 @@ class TopNavigation extends React.Component {
 
   render() {
     return (
-      <div className="header">
-        <div className="header__logo">
+      <div className="main-header">
+        <div className="main-header__logo">
           <Link to="/admin/dashboard">
             <Image src={Logo} alt="logo" />
           </Link>
         </div>
-        <ul className="header__menu">
+        <ul className="main-header__menu">
           <li className="nav__item">
             <div className="nav__link">
               {/* <span className="badge__holder">
