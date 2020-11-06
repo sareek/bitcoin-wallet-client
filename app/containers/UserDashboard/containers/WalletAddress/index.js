@@ -1,7 +1,6 @@
 import React from 'react';
-import styles from './styles.css';
 import Routes from './Routes';
-import TabbedView from '../TabbedView';
+import TabbedView from 'components/TabbedView';
 import PropTypes from 'prop-types';
 
 class Profile extends React.Component {
@@ -11,7 +10,6 @@ class Profile extends React.Component {
   state = {
     tabs: this.props.tabs ? this.props.tabs : []
   };
-  
   render() {
     return (
       <div>

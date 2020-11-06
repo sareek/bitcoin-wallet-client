@@ -12,6 +12,7 @@ import { Redirect } from 'react-router-dom';
 // import MyPackage from '../containers/PackageList/Cart/SubscribedPackage';
 
 import Wallet from '../containers/Wallet/Loadable'
+import WalletAddress from '../containers/WalletAddress';
 //  import ReportDetails from '../containers/Report/Detail'
 
 // import Cart from '../containers/Cart/Loadable'
@@ -46,9 +47,9 @@ function check(status) {
 	return value;
 }
 
-function UserRoutes({ location, handleCartSize, status }) {
+function UserRoutes({ location, status }) {
 	return (
-		<Switch location={location} handleCartSize={handleCartSize}>
+		<Switch location={location} >
 			<Route
 				path="/user/dashboard/profile"
 				render={(props) => (
@@ -66,7 +67,21 @@ function UserRoutes({ location, handleCartSize, status }) {
 				)}
 			/>
 
+			<Route
+				path="/user/dashboard/wallet-address"
+				render={(props) => (
+					<WalletAddress
+						tabs={[
+							{ to: '/user/dashboard/wallet-address/list', label: 'Wallet Addresses' },
+							{ to: '/user/dashboard/wallet-address/watchonly', label: 'Watch Only' },
+						]}
+						{...props}
+					/>
+				)}
+			/>
+
 			<Route exact path="/user/dashboard/wallet" component={Wallet} />
+			
 			{/* <Route exact path="/user/dashboard/report/detail/:id" component={ReportDetails} /> */}
 
 			{/* <Route 

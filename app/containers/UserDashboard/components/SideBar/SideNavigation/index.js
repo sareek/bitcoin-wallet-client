@@ -37,6 +37,11 @@ const mainMenu = [
     path: '/user/dashboard/wallet',
     icon: 'icon bitcoin',
   },
+  {
+    title: 'Wallet And Address',
+    path: '/user/dashboard/wallet-address/list',
+    icon: 'icon archive',
+  },
 ];
 
 class SideNavigation extends React.Component {
