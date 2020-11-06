@@ -72,7 +72,7 @@ class WalletsList extends React.Component {
   }
 
   showAddWalletModal = () => {
-    this.setState({ showAddWalletModal: true })
+    this.setState({ showAddWalletModal: true, data: {}, errors: {}})
   }
 
   hideModal = () => {
