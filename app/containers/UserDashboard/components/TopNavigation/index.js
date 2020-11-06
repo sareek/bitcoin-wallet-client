@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Image, Dropdown, Label } from 'semantic-ui-react';
 import avatarImg from 'assets/images/avatar.png';
-import Logo from 'assets/images/exchange/Auxledger_Logo_Favicon.png';
+import Logo from 'assets/Btcwallet_logo/Version 3/Btcwallet_logo_3-01.png';
 
 const avatar = <Image src={avatarImg} avatar />;
 class TopNavigation extends React.Component {
