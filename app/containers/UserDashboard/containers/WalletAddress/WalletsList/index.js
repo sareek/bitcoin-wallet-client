@@ -7,7 +7,8 @@ import {
   makeSelectWalletAddressesResponse,
   makeSelectPostWalletAddressResponse,
   makeSelectError,
-  makeSelectRequesting,
+  makeSelectGetWalletAddressRequesting,
+  makeSelectPostWalletAddressRequesting,
   makeSelectSuccess
 } from './selectors';
 import saga from './sagas'
@@ -24,7 +25,8 @@ const mapStateToProps = createStructuredSelector({
   walletAddressesResponse: makeSelectWalletAddressesResponse(),
   postWalletAddressResponse: makeSelectPostWalletAddressResponse(),
   errorResponse: makeSelectError(),
-  requesting: makeSelectRequesting(),
+  getWalletAddressesRequesting: makeSelectGetWalletAddressRequesting(),
+  postWalletAddressRequesting:makeSelectPostWalletAddressRequesting(),
   success: makeSelectSuccess()
 });
 
@@ -55,6 +57,7 @@ class WalletsList extends React.Component {
         this.props.postWalletAddressResponse.toJS().status === 200) {
         this.setState({ showAddWalletModal: false }, () => {
           toast.success("Wallet Generated Successfully");
+          this.props.dispatchGetAddressRequest();
         })
       }
     }
@@ -110,7 +113,7 @@ class WalletsList extends React.Component {
 
   render() {
     const { showAddWalletModal, data, errors, walletAddressesList } = this.state;
-    const { } = this.props;
+    const { getWalletAddressesRequesting } = this.props;
 
     const headers = [
       {
@@ -159,6 +162,7 @@ class WalletsList extends React.Component {
         <WalletListTable
           headers={headers}
           walletAddressesList={walletAddressesList}
+          getWalletAddressesRequesting={getWalletAddressesRequesting}
         />
       </div>
     );
