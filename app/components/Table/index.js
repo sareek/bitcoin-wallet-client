@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { Table } from 'semantic-ui-react'
 
 
-export class WalletListTable extends Component {
+export class TableComponent extends Component {
     render() {
-        const { headers, walletAddressesList, getWalletAddressesRequesting } = this.props;
+        const customFormatter = (data, customFormat = (d) => d) => customFormat(data);
+        const { headers, tableData, requesting } = this.props;
         return (
             <div>
                 <Table celled>
@@ -22,11 +23,49 @@ export class WalletListTable extends Component {
                             </Table.Row>
                         </Table.Header>
                     )}
-                    {!getWalletAddressesRequesting ? (
+                              {tableData.length === 0 ? (
+            <tbody>
+              {requesting ? (
+                <>
+                  <tr>
+                      <td>
+                        <p className="loader_wallet"></p>
+                      </td>
+                  </tr>
+                </>
+              ) : (
+                <tr>
+                  <td colSpan={headers.length + 1}>No Data</td>
+                </tr>
+              )}
+            </tbody>
+          ) : (
+            <tbody>
+              {tableData?.map((eachData, index) => {
+                const uniqueVal = JSON.stringify(eachData + index);
+                return (
+                  <tr key={`header-${uniqueVal}`}>
+                    {headers?.map((eachHeader, headerIndex) => (
+                      <td key={`table-cell-${headerIndex}-${uniqueVal}`}>
+                        {customFormatter(
+                          eachData,
+                          eachHeader?.format
+                            ? eachHeader?.format
+                            : (data) =>
+                                data?.[eachHeader?.field] ? data?.[eachHeader?.field] : '-',
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          )}
+                    {/* {!requesting ? (
                         <Table.Body>
-                            {walletAddressesList && walletAddressesList.length > 0 ?
+                            {tableData && tableData.length > 0 ?
                                 (<>
-                                    {walletAddressesList.map((item, index) => {
+                                    {tableData.map((item, index) => {
                                         return (
                                             <Table.Row key={index}>
                                                 <Table.Cell>{item.label}</Table.Cell>
@@ -48,7 +87,7 @@ export class WalletListTable extends Component {
                                 </Table.Row>
                             </Table.Body>
 
-                        )}
+                        )} */}
 
                 </Table>
             </div>
@@ -56,4 +95,4 @@ export class WalletListTable extends Component {
     }
 }
 
-export default WalletListTable
+export default TableComponent
