@@ -12,6 +12,8 @@ import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import {compose} from "redux";
 
+import { Segment } from 'semantic-ui-react';
+
 const mapStateToProps = createStructuredSelector({
   errorResponse: makeSelectError(),
   requesting: makeSelectRequesting(),
@@ -38,11 +40,10 @@ class WatchOnlyAddress extends React.Component {
   render() {
     const {  } = this.state;
     const {  } = this.props;
-   
     return (
-      <div className="segment">
-       <h1>Watch Only</h1>
-      </div>
+      <Segment>
+       <p>Watch Only</p>
+      </Segment>
     );
   }
 }

@@ -21,6 +21,8 @@ import WalletListTable from './WalletListTable';
 import AddWallet from './components/AddWallet';
 import { toast } from 'react-toastify';
 
+import { Segment } from 'semantic-ui-react'
+
 const mapStateToProps = createStructuredSelector({
   walletAddressesResponse: makeSelectWalletAddressesResponse(),
   postWalletAddressResponse: makeSelectPostWalletAddressResponse(),
@@ -138,8 +140,8 @@ class WalletsList extends React.Component {
     ];
 
     return (
-      <div className="segment">
-        <h2>Wallets List</h2>
+      <Segment>
+        <p>Wallets List</p>
         {!!showAddWalletModal && (
           <AddWallet
             hideModal={this.hideModal}
@@ -156,6 +158,7 @@ class WalletsList extends React.Component {
           icon='add circle'
           color="blue"
           onClick={this.showAddWalletModal}
+          title="Add new Wallet"
         />
         <br />
         <br />
@@ -164,7 +167,7 @@ class WalletsList extends React.Component {
           walletAddressesList={walletAddressesList}
           getWalletAddressesRequesting={getWalletAddressesRequesting}
         />
-      </div>
+      </Segment>
     );
   }
 }
