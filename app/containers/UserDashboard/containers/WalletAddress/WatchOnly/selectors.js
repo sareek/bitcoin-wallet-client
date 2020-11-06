@@ -3,14 +3,18 @@ import { createSelector } from "reselect";
 const selectWatchOnlyAddress = state => state.get("watchOnlyAddress");
 
 const makeSelectSuccess = () => createSelector(selectWatchOnlyAddress, state => state.get('success'));
-const makeSelectResponse = () => createSelector(selectWatchOnlyAddress, state => state.get('response'));
+const makeSelectGetWatchOnlyAddressResponse = () => createSelector(selectWatchOnlyAddress, state => state.get('watchOnlyAddressResponse'));
+const makeSelectGenerateWatchOnlyAddressResponse = () => createSelector(selectWatchOnlyAddress, state => state.get('generateWatchOnlyAddressResponse'));
 const makeSelectError = () => createSelector(selectWatchOnlyAddress, state => state.get('error'));
-const makeSelectRequesting = () => createSelector(selectWatchOnlyAddress, state => state.get('requesting'));
+const makeSelectGetWatchOnlyAddressRequesting = () => createSelector(selectWatchOnlyAddress, state => state.get('getWatchOnlyWalletAddressRequesting'));
+const makeSelectPostWatchOnlyAddressRequesting = () => createSelector(selectWatchOnlyAddress, state => state.get('postWatchOnlyWalletAddressRequesting'));
 
 
 export {
   makeSelectSuccess,
-  makeSelectResponse,
-  makeSelectRequesting,
-  makeSelectError
+  makeSelectError,
+  makeSelectGetWatchOnlyAddressResponse,
+  makeSelectGenerateWatchOnlyAddressResponse,
+  makeSelectGetWatchOnlyAddressRequesting,
+  makeSelectPostWatchOnlyAddressRequesting
 };

@@ -4,31 +4,56 @@ import { LOGOUT_SUCCESS } from "containers/Login/constants";
 
 const initialState = fromJS({
   requesting: false,
+  getWatchOnlyWalletAddressRequesting: false,
+  postWatchOnlyWalletAddressRequesting: false,
   success: false,
-  response: null,
+  watchOnlyAddressResponse: null,
+  generateWatchOnlyAddressResponse: null,
   error: null
 });
 
 function passwordReducer(state = initialState, action) {
   switch (action.type) {
-    case type.GET_WATCH_ONLY_ADDRESS_REQUEST:
+    case type.GET_WATCHONLY_ADDRESS_REQUEST:
       return state.merge({
-        requesting: true,
+        getWatchOnlyWalletAddressRequesting: true,
         error: null,
-        response: null,
+        watchOnlyAddressResponse: null,
         success: false
       });
-    case type.GET_WATCH_ONLY_ADDRESS_SUCCESS:
+    case type.GET_WATCHONLY_ADDRESS_SUCCESS:
       return state.merge({
-        requesting: false,
-        response: action.response.message,
+        getWatchOnlyWalletAddressRequesting: false,
+        watchOnlyAddressResponse: action.response,
         error: null,
         success: true
       });
-    case type.GET_WATCH_ONLY_ADDRESS_FAILURE:
+    case type.GET_WATCHONLY_ADDRESS_FAILURE:
       return state.merge({
-        requesting: false,
-        response: null,
+        getWatchOnlyWalletAddressRequesting: false,
+        watchOnlyAddressResponse: null,
+        error: action.error.message,
+        success: false
+      });
+
+    case type.POST_WATCHONLY_WALLET_ADDRESS_REQUEST:
+      return state.merge({
+        postWatchOnlyWalletAddressRequesting: true,
+        error: null,
+        generateWatchOnlyAddressResponse: null,
+        success: false
+      });
+    case type.POST_WATCHONLY_WALLET_ADDRESS_SUCCESS:
+      return state.merge({
+        postWatchOnlyWalletAddressRequesting: false,
+        generateWatchOnlyAddressResponse: action.response,
+        error: null,
+        success: true
+      });
+    case type.POST_WATCHONLY_WALLET_ADDRESS_FAILURE:
+      return state.merge({
+        postWatchOnlyWalletAddressRequesting: false,
+        generateWatchOnlyAddressResponse: null,
         error: action.error.message,
         success: false
       });

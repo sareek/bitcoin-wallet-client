@@ -1,16 +1,59 @@
-import { takeLatest, take, select, fork, cancel } from "redux-saga/effects";
-import { LOCATION_CHANGE } from "react-router-redux";
-import * as type from "./constants";
-import { updatePasswordSuccess, updatePasswordFailure } from "./actions";
-import { logoutRequest } from 'containers/Login/actions';
+import { call, takeLatest } from 'redux-saga/effects';
 import API from 'utils/apiHelper';
-import { makeSelectUser } from 'containers/App/selectors';
+import * as types from './constants';
+import * as actions from './actions';
 import getToken from 'utils/getToken';
+import jwtDecode from 'jwt-decode';
 
-// function* getWatchOnlyAddressService(action) {
-//   const token = getToken();
-// }
+
+function* getWatchOnlyAddressRequest(action) {
+  const token = getToken();
+  try {
+    const decoded = jwtDecode(token);
+    if (
+      typeof decoded === 'object' &&
+      decoded.hasOwnProperty('email') 
+    ) {
+      yield call(
+        API.post(
+          `btc/get_addresses/`,
+          actions.getWatchOnlyAddressSuccess,
+          actions.getWatchOnlyAddressFailure,
+          {email: decoded.email},
+          token,
+        ),
+      );
+    }
+  } catch(error) {
+    throw(error);
+  }
+}
+
+function* generateWatchOnlyWalletAddressService(action) {
+  const { label } = action.payload;
+  const token = getToken();
+  try {
+    const decoded = jwtDecode(token);
+    if (
+      typeof decoded === 'object' &&
+      decoded.hasOwnProperty('email') 
+    ) {
+      yield call(
+        API.post(
+          `btc/generate_watch_only_address/`,
+          actions.generateWatchOnlyWalletSuccess,
+          actions.generateWatchOnlyWalletFailure,
+          {label: label, email: decoded.email},
+          token,
+        ),
+      );
+    }
+  } catch(error) {
+    throw(error);
+  }
+}
 
 export default function* watchOnlyWatcher() {
-  // yield takeLatest(type.GET_WATCH_ONLY_ADDRESS_REQUEST, getWatchOnlyAddressService);
+  yield takeLatest(types.GET_WATCHONLY_ADDRESS_REQUEST, getWatchOnlyAddressRequest);
+  yield takeLatest(types.POST_WATCHONLY_WALLET_ADDRESS_REQUEST, generateWatchOnlyWalletAddressService);
 }

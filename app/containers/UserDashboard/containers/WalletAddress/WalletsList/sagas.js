@@ -57,5 +57,4 @@ function* getAddressRequest(action) {
 export default function* walletsListWatcher() {
   yield takeLatest(types.GET_ADDRESS_REQUEST, getAddressRequest);
   yield takeLatest(types.POST_WALLET_ADDRESS_REQUEST, generateWalletAddressService);
-
 }
