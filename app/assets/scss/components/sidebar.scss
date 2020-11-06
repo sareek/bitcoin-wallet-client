@@ -58,15 +58,36 @@
   .nav__link {
     color: #222;
     display: block;
-    padding: 10px 15px;
-    font-size: 14px;
+    padding: 12px 15px;
+    font-size: 16px;
     line-height: 20px;
     transition: all 200ms ease-in-out;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    transition: 0.2 ease-in-out;
+    .nav__icon{
+      color:$main-color;
+      transition:0.2 ease-in-out ;
+    }
+    
     &:hover {
-      .nav__icon,
-      .nav__text {
-        color: #e54d4d;
+      background:$main-color ;
+      color: #ffffff;
+      .nav__icon{
+      
+        color: #ffffff;
+      }
+    }
+  }
+  .menu-active{
+    .nav__link{
+      background:$main-color ;
+      color: #ffffff;
+      .nav__icon{
+      
+        color: #ffffff;
       }
     }
   }
