@@ -4,7 +4,7 @@ import InputField from 'components/common/Forms/InputField';
 
 const AddWallet = ({ hideModal, showModal, handleChange, handleSubmit, data, errors }) => (
     <Modal
-      size="small"
+      size="tiny"
       onClose={() => hideModal(true)}
       closeOnDimmerClick= {false}
     //   onOpen={() => setOpen(true)}
@@ -12,9 +12,10 @@ const AddWallet = ({ hideModal, showModal, handleChange, handleSubmit, data, err
       closeIcon
       trigger={<Button>Show Modal</Button>}
     >
-      <Modal.Header><Header>Add New Bitcoin Wallet</Header></Modal.Header>
+     
+      <Header icon='plus circle' content='Add New Bitcoin Wallet' />
       <Modal.Content>
-        <Form>
+        <Form size="large">
         <Form.Field>
             <InputField
                 label="Wallet Name"
@@ -26,17 +27,21 @@ const AddWallet = ({ hideModal, showModal, handleChange, handleSubmit, data, err
                 error={errors.label ? 'Enter a value' : null}
             />
             </Form.Field>
-        </Form>
-   
-      </Modal.Content>
-      <Modal.Actions>
-        <Button
+            <Form.Field>
+            <Button
           onClick={handleSubmit}
-          positive
+          color="blue"
+          fluid
         >
           Create New Wallet
         </Button>
-      </Modal.Actions>
+            </Form.Field>
+        </Form>
+   
+      </Modal.Content>
+
+       
+     
     </Modal>
 )
 
