@@ -1,4 +1,4 @@
-.header {
+.main-header {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -34,6 +34,7 @@
       padding: 4px;
       display: inline-block;
       vertical-align: top;
+      
     }
     .nav__link .badge__holder {
       position: relative;
