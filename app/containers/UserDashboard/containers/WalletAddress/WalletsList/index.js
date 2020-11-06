@@ -117,21 +117,16 @@ class WalletsList extends React.Component {
 
     const headers = [
       {
-        name: 'Wallet Name',
         key: 1,
-        format: data => {
-          return data
-            ? 'data'
-            : '---';
-        },
+        name: 'Wallet Name',
+        field: 'label',
       },
       {
         name: 'Balance',
-        key: 3,
-        field: 'active',
+        key: 2,
         format: data => {
           return data
-            ? 'data'
+            ? data.balance
             : '---';
         },
       }
@@ -161,8 +156,8 @@ class WalletsList extends React.Component {
         <br />
         <WalletListTable
           headers={headers}
-          walletAddressesList={walletAddressesList}
-          getWalletAddressesRequesting={getWalletAddressesRequesting}
+          tableData={walletAddressesList}
+          requesting={getWalletAddressesRequesting}
         />
       </div>
     );
