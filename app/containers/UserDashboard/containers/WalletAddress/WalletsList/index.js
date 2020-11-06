@@ -1,54 +1,165 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {createStructuredSelector} from 'reselect';
+import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
-import { basicInfoClearState } from './actions';
-import { makeSelectResponse, makeSelectError, makeSelectRequesting, makeSelectSuccess } from './selectors';
-import { makeSelectUser } from 'containers/App/selectors';
+import { clearState, getAddressRequest, generateWalletAddress } from './actions';
+import {
+  makeSelectWalletAddressesResponse,
+  makeSelectPostWalletAddressResponse,
+  makeSelectError,
+  makeSelectRequesting,
+  makeSelectSuccess
+} from './selectors';
 import saga from './sagas'
 import reducer from './reducer'
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import {compose} from "redux";
+import { compose } from "redux";
+import { Button } from 'semantic-ui-react';
+import WalletListTable from './WalletListTable';
+import AddWallet from './components/AddWallet';
+import { toast } from 'react-toastify';
 
 const mapStateToProps = createStructuredSelector({
-  user: makeSelectUser(),
-  successResponse: makeSelectResponse(),
+  walletAddressesResponse: makeSelectWalletAddressesResponse(),
+  postWalletAddressResponse: makeSelectPostWalletAddressResponse(),
   errorResponse: makeSelectError(),
   requesting: makeSelectRequesting(),
   success: makeSelectSuccess()
 });
 
 const mapDispatchToProps = dispatch => ({
-  // dispatchGetAddressRequest: payload => dispatch(getAddressRequest(payload)),
-  clearState: () => dispatch(basicInfoClearState()),
+  dispatchGetAddressRequest: payload => dispatch(getAddressRequest(payload)),
+  dispatchGenerateWalletAddress: payload => dispatch(generateWalletAddress(payload)),
+  clearState: () => dispatch(clearState()),
 });
 
 class WalletsList extends React.Component {
   static propTypes = {
- 
+
   };
   state = {
-  
+    showAddWalletModal: false,
+    data: {
+    },
+    walletAddressesList: [],
+    errors: {}
   };
   componentDidMount() {
-  
+    this.props.dispatchGetAddressRequest();
   }
   componentDidUpdate(prevProps) {
-   
+    if (this.props.postWalletAddressResponse != prevProps.postWalletAddressResponse) {
+      if (this.props.postWalletAddressResponse &&
+        this.props.postWalletAddressResponse.toJS() &&
+        this.props.postWalletAddressResponse.toJS().status === 200) {
+        this.setState({ showAddWalletModal: false }, () => {
+          toast.success("Wallet Generated Successfully");
+        })
+      }
+    }
+
+    if (this.props.walletAddressesResponse != prevProps.walletAddressesResponse) {
+      if (this.props.walletAddressesResponse &&
+        this.props.walletAddressesResponse.toJS() &&
+        this.props.walletAddressesResponse.toJS().status === 200) {
+          this.setState({walletAddressesList: this.props.walletAddressesResponse.toJS().data.address_list});
+        }
+    }
   }
   componentWillUnmount() {
     this.props.clearState();
   }
 
+  showAddWalletModal = () => {
+    this.setState({ showAddWalletModal: true, data: {}, errors: {}})
+  }
+
+  hideModal = () => {
+    this.setState({ showAddWalletModal: false, data: {}, errors: {} })
+  }
+
+  handleChange = e => {
+    e.persist();
+    delete this.state.errors[e.target.name];
+    this.setState(state => ({
+      data: {
+        ...state.data,
+        [e.target.name]: e.target.value,
+      },
+    }));
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const { data } = this.state;
+    const errors = this.validate();
+    this.setState({ errors });
+    if (Object.keys(errors).length === 0) {
+      this.props.dispatchGenerateWalletAddress({ label: data.label })
+    }
+  };
+
+  validate = () => {
+    const { data } = this.state;
+    const errors = {};
+    if (!data.label) errors.label = "Can't be blank";
+
+    return errors;
+  };
+
   render() {
-    const {  } = this.state;
-    const {  } = this.props;
- 
+    const { showAddWalletModal, data, errors, walletAddressesList } = this.state;
+    const { } = this.props;
+
+    const headers = [
+      {
+        name: 'Wallet Name',
+        key: 1,
+        format: data => {
+          return data
+            ? 'data'
+            : '---';
+        },
+      },
+      {
+        name: 'Balance',
+        key: 3,
+        field: 'active',
+        format: data => {
+          return data
+            ? 'data'
+            : '---';
+        },
+      }
+    ];
+
     return (
       <div className="segment">
         <h2>Wallets List</h2>
-     
+        {!!showAddWalletModal && (
+          <AddWallet
+            hideModal={this.hideModal}
+            showModal={showAddWalletModal}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            data={data}
+            errors={errors}
+          />
+        )}
+        <Button
+          content="New Wallet"
+          labelPosition='right'
+          icon='add circle'
+          color="blue"
+          onClick={this.showAddWalletModal}
+        />
+        <br />
+        <br />
+        <WalletListTable
+          headers={headers}
+          walletAddressesList={walletAddressesList}
+        />
       </div>
     );
   }
