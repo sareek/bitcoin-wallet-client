@@ -76,7 +76,7 @@ class Wallet extends React.Component {
       this.setState({
         walletInfo: this.props.walletInfo && this.props.walletInfo.toJS(),
       }, () => {
-        if(this.state.walletInfo && this.state.walletInfo.btc_address && this.state.walletInfo.btc_address !== 'NA') this.props.dispatchGetBalanceRequest(this.state.walletInfo);
+        // if(this.state.walletInfo && this.state.walletInfo.btc_address && this.state.walletInfo.btc_address !== 'NA') this.props.dispatchGetBalanceRequest(this.state.walletInfo);
       });
     }  
   }
