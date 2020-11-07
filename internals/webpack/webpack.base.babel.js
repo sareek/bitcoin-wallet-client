@@ -35,14 +35,6 @@ module.exports = options => ({
         },
       },
       {
-        test: /\.js$/, // Transform all .js files required somewhere with Babel
-        include: ['/node_modules/@amcharts'],
-        use: {
-          loader: 'babel-loader',
-          options: options.babelQuery,
-        },
-      },
-      {
         // Preprocess our own .css files
         // This is the place to add your own loaders (e.g. sass/less etc.)
         // for a list of loaders, see https://webpack.js.org/loaders/#styling
