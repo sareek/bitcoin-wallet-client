@@ -7,14 +7,12 @@ export const crytoCoinsOptions = [
       key: 'Bitcoin',
       text: 'Bitcoin',
       value: '1',
-    //   image: { avatar: true, src: '/images/avatar/small/jenny.jpg' },
     },
     {
       key: 'Ether',
       text: 'Ether',
       value: '2',
       disabled: true
-    //   image: { avatar: true, src: '/images/avatar/small/elliot.jpg' },
     },
   ]
 

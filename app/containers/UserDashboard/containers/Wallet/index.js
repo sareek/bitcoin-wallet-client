@@ -10,10 +10,11 @@ import { compose } from 'redux';
 import bitcoinLogo from 'assets/images/exchange/additional/bitcoin.svg'
 import {
   makeSelectLoading,
-  makeSelectNewAddress,
+  makeSelectGetWalletAddresses,
   makeSelectCurrentBalance,
   makeSelectGetWalletInfo,
-  makeSelectError
+  makeSelectError,
+  makeSelectGetWalletAddressesRequesting
 } from './selectors';
 import { Button, Grid, Segment } from 'semantic-ui-react';
 import ReceiveCryptoForm from './components/ReceiveCryptoForm';
@@ -26,11 +27,12 @@ import {
 } from './actions'
 
 const mapStateToProps = createStructuredSelector({
-  newAddress: makeSelectNewAddress(),
+  walletAddresses: makeSelectGetWalletAddresses(),
   currentBalance: makeSelectCurrentBalance(),
   walletInfo: makeSelectGetWalletInfo(),
   loading: makeSelectLoading(),
-  error: makeSelectError() 
+  error: makeSelectError(),
+  getWalletAddressesRequesting: makeSelectGetWalletAddressesRequesting() 
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -44,8 +46,9 @@ class Wallet extends React.Component {
   constructor(props) {
     super(props);
       this.state = {
+        data: {},
         showReceiveModal: false,
-        newAddress: {},
+        walletAddresses: [],
         currentBalance: {},
         walletInfo: {},
         copiedBit: false
@@ -60,9 +63,20 @@ class Wallet extends React.Component {
       localStorage.removeItem("token");
       return <Redirect to={'/'} />;
    }
-    if (this.props.newAddress != prevProps.newAddress) {
+    if (this.props.walletAddresses != prevProps.walletAddresses) {
+      const addresses = this.props.walletAddresses && 
+                            this.props.walletAddresses.toJS() &&
+                                this.props.walletAddresses.toJS().address_list;
+
+       const walletOptions = addresses && addresses.length > 0 && addresses.map((item) => {
+          return {
+            key: item.address,
+            text:item.address,
+            value: item.address
+          }
+        })
       this.setState({
-        newAddress: this.props.newAddress && this.props.newAddress.toJS(),
+        walletAddresses: walletOptions,
       });
     }   
 
@@ -83,11 +97,11 @@ class Wallet extends React.Component {
 
   showReceiveModal = () => {
     this.props.dispatchGetNewAddressRequest()
-    this.setState({showReceiveModal: true})
+    this.setState({showReceiveModal: true, data: {}})
   }
 
   hideModal = () => {
-    this.setState({showReceiveModal: false})
+    this.setState({showReceiveModal: false, data: {}})
     this.props.dispatchGetWalletInfoRequest();
   }
 
@@ -105,19 +119,31 @@ class Wallet extends React.Component {
     }, 1000);
   };
 
+  handleDropDown = (e, se) => {
+    this.setState({
+      data: {
+        ...this.state.data,
+        [se.name]: se.value
+      }
+    })
+  }
+
   render() {
-   const { showReceiveModal, newAddress, currentBalance, walletInfo, copiedBit } = this.state;
-   const { loading } = this.props;
-    return (
+   const { showReceiveModal, walletAddresses, currentBalance, walletInfo, copiedBit, data } = this.state;
+   const { loading, getWalletAddressesRequesting } = this.props;
+   return (
       <div>
         <p className="title">  <i className="icon bitcoin"></i> Bitcoin Wallet </p>
          {!!showReceiveModal && (
            <ReceiveCryptoForm 
+             data={data}
              hideModal= {this.hideModal}
              showReceiveModal={showReceiveModal}
-             newAddress={newAddress}
+             walletOptions={walletAddresses}
+             handleDropDown={this.handleDropDown}
              copyToClipBoard= {this.copyToClipBoard}
              copiedBit={copiedBit}
+             getWalletAddressesRequesting={getWalletAddressesRequesting}
            />
          )}
         <Grid>

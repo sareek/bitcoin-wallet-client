@@ -17,10 +17,10 @@ function* getNewAddressRequest(action) {
     ) {
       yield call(
         API.post(
-          `btc/generate_wallet_address/`,
+          `btc/get_addresses/`,
           actions.getNewAddressSuccess,
           actions.getNewAddressFailure,
-          {email: decoded.email, label: 'default'},
+          {email: decoded.email, address_type: 'wallet', currency_name: 'bitcoin'},
           token,
         ),
       );

@@ -7,10 +7,10 @@ const makeSelectResponse = () =>
     selectWallet,
     state => state.get('response'),
   );
-const makeSelectNewAddress = () =>
+const makeSelectGetWalletAddresses = () =>
   createSelector(
     selectWallet,
-    state => state.get('newAddress'),
+    state => state.get('walletAddresses'),
   );
 const makeSelectCurrentBalance = () =>
   createSelector(
@@ -33,12 +33,19 @@ const makeSelectLoading = () =>
     selectWallet,
     state => state.get('loading'),
   );
-
+ 
+const makeSelectGetWalletAddressesRequesting = () =>
+  createSelector(
+    selectWallet,
+    state => state.get('getWalletAddressesRequesting'),
+  ); 
+  
 export {
   makeSelectResponse,
   makeSelectError,
   makeSelectLoading,
-  makeSelectNewAddress,
+  makeSelectGetWalletAddresses,
   makeSelectCurrentBalance,
-  makeSelectGetWalletInfo
+  makeSelectGetWalletInfo,
+  makeSelectGetWalletAddressesRequesting
 };

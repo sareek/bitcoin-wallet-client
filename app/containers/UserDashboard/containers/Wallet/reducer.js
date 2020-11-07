@@ -5,8 +5,9 @@ import { LOGOUT_SUCCESS } from 'containers/Login/constants';
 const initialState = fromJS({
   loading: '',
   requesting: false,
+  getWalletAddressesRequesting: false,
   response: '',
-  newAddress: {},
+  walletAddresses: {},
   currentBalance: {},
   walletInfo: {},
   error: '',
@@ -14,21 +15,31 @@ const initialState = fromJS({
 
 function walletSettings(state = initialState, action) {
   switch (action.type) {
-    case types.GET_NEW_ADDRESS_REQUEST:
+    
     case types.GET_BALANCE_REQUEST:  
     case types.GET_WALLENT_INFO_REQUEST:
       return state.merge({
         loading: true,
         response: '',
-        newAddress: '',
+        walletAddresses: '',
         error: '',
       });
+    
+    case types.GET_NEW_ADDRESS_REQUEST:
+        return state.merge({
+          loading: true,
+          getWalletAddressesRequesting: true,
+          response: '',
+          walletAddresses: '',
+          error: '',
+        });
  
     case types.GET_NEW_ADDRESS_SUCCESS:
       return state.merge({
         loading: false,
+        getWalletAddressesRequesting: false,
         response: '',
-        newAddress: fromJS(action.response.data)
+        walletAddresses: fromJS(action.response.data)
       });
     case types.GET_BALANCE_SUCCESS:
         return state.merge({
@@ -45,6 +56,13 @@ function walletSettings(state = initialState, action) {
         });
 
     case types.GET_NEW_ADDRESS_FAILURE:
+        return state.merge({
+          getWalletAddressesRequesting: false,
+          error: action.error.message,
+          response: '',
+          loading: false,
+      });
+
     case types.GET_BALANCE_FAILURE:
     case types.GET_WALLENT_INFO_FAILURE:
       if(action.error.msg === "Unauthorized user / session expired") {
