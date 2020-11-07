@@ -9,31 +9,33 @@ import { compose } from 'redux';
 import {
   makeSelectLoading,
   makeSelectError,
-  makeSelectUser
+  makeSelectUser,
+  makeSelectBitcoinExchangeRequesting,
+  makeSelectBitcoinExchangeData
 } from './selectors';
 import { Grid, Segment, Message, Divider } from 'semantic-ui-react';
-
-import * as apiAction from "utils/apiHelperNormal";
 
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 
-import { chartData, mockData } from 'utils/constants';
-
 import {
-  loadBasicInfoRequest
+  loadBasicInfoRequest,
+  getBitcoinExchangesRequest
 } from './actions'
 
 const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
   error: makeSelectError(),
-  user: makeSelectUser()
+  user: makeSelectUser(),
+  bitcoinExchangeRequesting: makeSelectBitcoinExchangeRequesting(),
+  bitcoinExchangeData: makeSelectBitcoinExchangeData()
 });
 
 const mapDispatchToProps = dispatch => ({
-  dispatchLoadBasicInfoRequest: (userEmail) => dispatch(loadBasicInfoRequest(userEmail))
+  dispatchLoadBasicInfoRequest: (userEmail) => dispatch(loadBasicInfoRequest(userEmail)),
+  dispatchGetBitcoinExchangesRequest: () => dispatch(getBitcoinExchangesRequest())
 });
 
 class DashboardMain extends React.Component {
@@ -45,24 +47,24 @@ class DashboardMain extends React.Component {
   }
   componentDidMount() {
     this.props.dispatchLoadBasicInfoRequest();
-  //  apiAction
-  //   .getData("https://api.blockchain.info/charts/market-price?timespan=5weeks&rollingAverage=8hours&format=json")
-  //   .then(res => {
-  //      console.log(res,'[[---')
-  //   });
+    this.props.dispatchGetBitcoinExchangesRequest();
+  }
 
+  componentWillUnmount() {
+    if (this.chart) {
+      this.chart.dispose();
+    }
+  }
 
+  renderBitcoinExchangesGraph({ values }) {
     let chart = am4core.create("chartdiv", am4charts.XYChart);
+       
+    let xAxis = chart.xAxes.push(new am4charts.DateAxis());
+        xAxis.title.text = "Date";
+        xAxis.title.fontWeight = "bold";
 
-    // let xAxis = chart.xAxes.push(new am4charts.DateAxis());
-    // xAxis.title.text = "Date";
-    // xAxis.dateFormatter = new am4core.DateFormatter();
-    // xAxis.dateFormatter.dateFormat = "yyyy-MM-dd";
-    // chart.dateFormatter.dateFormat = "yyyy-MM-dd";
-
-    chart.paddingRight = 20;
-
-    chart.data = mockData;
+        chart.paddingRight = 20;
+        chart.data = values;
 
     let title = chart.titles.create();
       title.text = "Average USD market price across major bitcoin exchanges.";
@@ -74,26 +76,26 @@ class DashboardMain extends React.Component {
 
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.tooltip.disabled = true;
-    valueAxis.renderer.minWidth = 35;
+    valueAxis.renderer.minWidth = 15;
+
+        valueAxis.title.text = "Price (USD)";
+        valueAxis.title.fontWeight = "bold";
+        valueAxis.renderer.labels.template.adapter.add("text", (label, target, key) => {
+          return label + " (USD)";
+        })
 
     let series = chart.series.push(new am4charts.LineSeries());
     series.dataFields.dateX = "date";
     series.dataFields.valueY = "value";
 
-    series.tooltipText = "{valueY.value}";
-    chart.cursor = new am4charts.XYCursor();
+        series.tooltipText = "${valueY.value}";
+        chart.cursor = new am4charts.XYCursor();
 
     let scrollbarX = new am4charts.XYChartScrollbar();
     scrollbarX.series.push(series);
     chart.scrollbarX = scrollbarX;
 
-    this.chart = chart;
-  }
-
-  componentWillUnmount() {
-    if (this.chart) {
-      this.chart.dispose();
-    }
+      this.chart = chart;
   }
 
   componentDidUpdate(prevProps) {
@@ -103,11 +105,19 @@ class DashboardMain extends React.Component {
         userDetails: user,
       });
     }
+
+    if (prevProps.bitcoinExchangeData !== this.props.bitcoinExchangeData) {
+      const bitcoinExchangeData = this.props.bitcoinExchangeData.toJS();
+     /////////////////////////Graph logic here
+     if(bitcoinExchangeData && bitcoinExchangeData.values && bitcoinExchangeData.values.length > 0) {
+       this.renderBitcoinExchangesGraph(bitcoinExchangeData);
+     }
+    }
   }
 
   render() {
     const { userDetails } = this.state;
-    const { } = this.props;
+    const { bitcoinExchangeRequesting } = this.props;
     return (
       <div>
         <Grid divided='vertically'>
@@ -129,7 +139,11 @@ class DashboardMain extends React.Component {
                </Message>
                </Segment>
                <Segment>
-               <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+                 {!bitcoinExchangeRequesting ? (
+                   <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+                 ) : (
+                  <div className="loader_wallet m-5"></div>
+                 )}
                </Segment>
               {/* <Segment className="main-statistics">
                 <div>

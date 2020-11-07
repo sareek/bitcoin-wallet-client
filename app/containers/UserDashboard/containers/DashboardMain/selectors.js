@@ -18,11 +18,26 @@ const makeSelectLoading = () =>
     selectWallet,
     state => state.get('loading'),
   );
+
+const makeSelectBitcoinExchangeRequesting = () =>
+  createSelector(
+    selectWallet,
+    state => state.get('bitcoinExchangeDataRequesting'),
+  );
+
+const makeSelectBitcoinExchangeData = () =>
+  createSelector(
+    selectWallet,
+    state => state.get('bitcoinExchangeData'),
+  );  
+
 const makeSelectUser = () => createSelector(selectWallet, state => state.get('user'));  
 
 export {
   makeSelectResponse,
   makeSelectError,
   makeSelectLoading,
-  makeSelectUser
+  makeSelectUser,
+  makeSelectBitcoinExchangeRequesting,
+  makeSelectBitcoinExchangeData
 };
