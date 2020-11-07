@@ -18,7 +18,7 @@ import injectReducer from 'utils/injectReducer';
 import { compose } from "redux";
 import { Button } from 'semantic-ui-react';
 import WalletListTable from 'components/Table';
-import AddWallet from './components/AddWallet';
+import AddWallet from '../components/AddWallet';
 import { toast } from 'react-toastify';
 
 import { Segment } from 'semantic-ui-react'
@@ -147,6 +147,7 @@ class WalletsList extends React.Component {
         </div>
         {!!showAddWalletModal && (
           <AddWallet
+            title="Add New Bitcoin Address"
             hideModal={this.hideModal}
             showModal={showAddWalletModal}
             handleChange={this.handleChange}

@@ -18,7 +18,7 @@ import reducer from './reducer'
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import {compose} from "redux";
-import AddWallet from './components/AddWallet';
+import AddWallet from '../components/AddWallet';
 import WatchOnlyTable from 'components/Table';
 
 import { toast } from 'react-toastify';
@@ -150,6 +150,7 @@ class WatchOnlyAddress extends React.Component {
         </div>
        {!!showAddWalletModal && (
           <AddWallet
+            title="Add Watch Only Address"
             hideModal={this.hideModal}
             showModal={showAddWalletModal}
             handleChange={this.handleChange}

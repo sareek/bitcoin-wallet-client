@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Header, Form, Modal, Dropdown, Popup } from 'semantic-ui-react';
 import InputField from 'components/common/Forms/InputField';
 
-const AddWallet = ({ hideModal, showModal, handleChange, handleSubmit, data, errors }) => (
+const AddWallet = ({ hideModal, showModal, handleChange, handleSubmit, data, errors, title }) => (
   <Modal
     size="tiny"
     onClose={() => hideModal(true)}
@@ -13,7 +13,7 @@ const AddWallet = ({ hideModal, showModal, handleChange, handleSubmit, data, err
     trigger={<Button>Show Modal</Button>}
   >
 
-    <Header icon='plus circle' content='Add New Bitcoin Wallet' />
+    <Header icon='plus circle' content={title} />
     <Modal.Content>
       <Form size="large">
         <Form.Field>
