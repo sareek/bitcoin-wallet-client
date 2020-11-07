@@ -10,7 +10,7 @@ import {
   makeSelectLoading,
   makeSelectError
 } from './selectors';
-import { Grid, Segment } from 'semantic-ui-react';
+import { Grid, Segment, Message, Divider } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 
 import {
@@ -49,10 +49,17 @@ class DashboardMain extends React.Component {
             <Grid.Column width={11}>
               <div className="main-heading">
                 <p className="title">  <i className="icon tv"></i> Dashboard <span className="text-muted">Crypto</span> </p>
-
               </div>
-
-              <Segment className="main-statistics">
+               <Segment className="welcome-dashboard">
+               <Message color='teal'>
+                 <div>
+                   <h2>Welcome, <span className="text-muted">parin</span> </h2>
+                   <Divider clearing />
+                   <p>You are doing awesome</p>
+                 </div>
+               </Message>
+               </Segment>
+              {/* <Segment className="main-statistics">
                 <div>
                   <p className="title">price</p>
                   <p className="value">$15,508.64</p>
@@ -70,7 +77,7 @@ class DashboardMain extends React.Component {
                   <p className="title">VOLUME (24H)</p>
                   <p className="value">$39.44B</p>
                 </div>
-              </Segment>
+              </Segment> */}
             </Grid.Column>
             <Grid.Column width={5}>
               <Segment className="announcements">
