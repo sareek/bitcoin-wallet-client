@@ -59,6 +59,7 @@
     "babel-core": "7.0.0-bridge.0"
   },
   "dependencies": {
+    "@amcharts/amcharts4": "^4.10.10",
     "@babel/polyfill": "^7.4.3",
     "@tinymce/tinymce-react": "^3.0.1",
     "@trendmicro/react-sidenav": "^0.4.5",
