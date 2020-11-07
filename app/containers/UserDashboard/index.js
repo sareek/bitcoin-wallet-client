@@ -16,7 +16,7 @@ import { DOCUMENT_URL_UPDATE } from '../App/constants';
 import Routes from './Routes';
 import TopNavigation from './components/TopNavigation';
 import './assets/style.scss';
-import GoogleAnalyticsReport from './containers/GoogleAnalytics/AnalyticsReport';
+import DashboardMain from './containers/DashboardMain';
 
 import {
   makeSelectError,
@@ -175,7 +175,7 @@ class UserDashboard extends React.Component {
             <div>
             </div>
           )}
-          {(location.pathname === '/user/dashboard') && <GoogleAnalyticsReport />}
+          {(location.pathname === '/user/dashboard') && <DashboardMain />}
             <Routes
               location={this.props.location}
               handleCartSize={this.handleCartSize}
