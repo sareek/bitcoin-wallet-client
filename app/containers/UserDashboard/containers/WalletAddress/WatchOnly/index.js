@@ -139,8 +139,7 @@ class WatchOnlyAddress extends React.Component {
    
     return (
       <Segment>
-       <h1>Watch Only</h1>
-       <div className="tbl-heading"><span className="tbl-title"><i className="list ul icon"></i> Wallet Addresses </span> <Button
+       <div className="tbl-heading"><span className="tbl-title"><i className="list ul icon"></i> Watch Only Addresses </span> <Button
           content="New Watch Only Wallet"
           labelPosition='right'
           icon='add circle'

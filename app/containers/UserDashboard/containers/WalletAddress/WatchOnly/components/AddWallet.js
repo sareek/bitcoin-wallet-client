@@ -12,8 +12,7 @@ const AddWallet = ({ hideModal, showModal, handleChange, handleSubmit, data, err
       closeIcon
       trigger={<Button>Show Modal</Button>}
     >
-     
-      <Header icon='plus circle' content='Add New Bitcoin Wallet' />
+      <Header icon='plus circle' content='Add New Watch Only Wallet' />
       <Modal.Content>
         <Form size="large">
         <Form.Field>

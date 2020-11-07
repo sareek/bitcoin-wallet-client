@@ -50,7 +50,7 @@ const ReceiveCryptoForm = ({ hideModal, showReceiveModal, newAddress, copyToClip
                 className="copyToken ui right icon button"
                 onClick={() => copyToClipBoard(newAddress && newAddress.address)}
               >
-                <i class="copy icon"></i>
+                <i className="copy icon"></i>
               </button>}
             />
 
