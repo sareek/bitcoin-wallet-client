@@ -71,7 +71,7 @@ class Wallet extends React.Component {
        const walletOptions = addresses && addresses.length > 0 && addresses.map((item) => {
           return {
             key: item.address,
-            text:item.address,
+            text:item.label,
             value: item.address
           }
         })

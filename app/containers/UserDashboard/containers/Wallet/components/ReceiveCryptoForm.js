@@ -41,8 +41,9 @@ const ReceiveCryptoForm = ({
           {!getWalletAddressesRequesting ? (
             <>
               {walletOptions && walletOptions.length > 0 ? (
+                <>
                 <Form.Field>
-                  <label>Choose Wallet Addresses:</label>
+                  <label>Receive To:</label>
                   <div className="ui action input">
                     <Dropdown
                       width={6}
@@ -54,7 +55,7 @@ const ReceiveCryptoForm = ({
                       options={walletOptions}
                       onChange={handleDropDown}
                     />
-                    {data && data.selectedAddress && (
+                    {/* {data && data.selectedAddress && (
                       <Popup
                         content={copiedBit ? 'copied' : 'copy'}
                         on='click'
@@ -69,9 +70,37 @@ const ReceiveCryptoForm = ({
                           <i className="copy icon"></i>
                         </button>}
                       />
-                    )}
+                    )} */}
                   </div>
                 </Form.Field>
+                {data && data.selectedAddress && (
+                  <Form.Field>
+                  <label>Address:</label>
+                  <div className="ui action input">
+                    <input
+                      className="copyInput"
+                      placeholder='Address...'
+                      value={data && data.selectedAddress ? data.selectedAddress : ''}
+                      readOnly
+                    />
+                    <Popup
+                      content={copiedBit ? 'copied' : 'copy'}
+                      on='click'
+                      open={copiedBit}
+                      trigger={<button
+                        type="button"
+                        name="copyToken"
+                        value="copy"
+                        className="copyToken ui right icon button"
+                        onClick={() => copyToClipBoard(data.selectedAddress)}
+                      >
+                        <i className="copy icon"></i>
+                      </button>}
+                    />
+                  </div>
+                </Form.Field>
+                )}
+                </>
               ) : (
                   <Form.Field>
                     <Message info>
