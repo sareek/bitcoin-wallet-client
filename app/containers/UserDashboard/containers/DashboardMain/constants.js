@@ -1,2 +1,6 @@
 
+export const LOAD_BASIC_INFO_REQUEST = "APP/Profile/BasicInfo/LOAD_BASIC_INFO_REQUEST";
+export const LOAD_BASIC_INFO_SUCCESS = "APP/Profile/BasicInfo/LOAD_BASIC_INFO_SUCCESS";
+export const LOAD_BASIC_INFO_FAILURE = "APP/Profile/BasicInfo/LOAD_BASIC_INFO_FAILURE";
+
 export const CLEAR_MESSAGE = 'app/ReferShare/CLEAR_MESSAGE';

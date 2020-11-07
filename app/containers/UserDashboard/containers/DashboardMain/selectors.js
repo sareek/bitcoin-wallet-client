@@ -18,9 +18,11 @@ const makeSelectLoading = () =>
     selectWallet,
     state => state.get('loading'),
   );
+const makeSelectUser = () => createSelector(selectWallet, state => state.get('user'));  
 
 export {
   makeSelectResponse,
   makeSelectError,
   makeSelectLoading,
+  makeSelectUser
 };

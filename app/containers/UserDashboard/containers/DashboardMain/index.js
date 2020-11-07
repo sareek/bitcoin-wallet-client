@@ -8,7 +8,8 @@ import saga from './sagas';
 import { compose } from 'redux';
 import {
   makeSelectLoading,
-  makeSelectError
+  makeSelectError,
+  makeSelectUser
 } from './selectors';
 import { Grid, Segment, Message, Divider } from 'semantic-ui-react';
 
@@ -22,30 +23,33 @@ am4core.useTheme(am4themes_animated);
 import { chartData, mockData } from 'utils/constants';
 
 import {
-
+  loadBasicInfoRequest
 } from './actions'
 
 const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
-  error: makeSelectError()
+  error: makeSelectError(),
+  user: makeSelectUser()
 });
 
 const mapDispatchToProps = dispatch => ({
+  dispatchLoadBasicInfoRequest: (userEmail) => dispatch(loadBasicInfoRequest(userEmail))
 });
 
 class DashboardMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      userDetails: {}
     };
   }
   componentDidMount() {
-   apiAction
-    .getData("https://api.blockchain.info/charts/market-price?timespan=5weeks&rollingAverage=8hours&format=json")
-    .then(res => {
-       console.log(res,'[[---')
-    });
+    this.props.dispatchLoadBasicInfoRequest();
+  //  apiAction
+  //   .getData("https://api.blockchain.info/charts/market-price?timespan=5weeks&rollingAverage=8hours&format=json")
+  //   .then(res => {
+  //      console.log(res,'[[---')
+  //   });
 
 
     let chart = am4core.create("chartdiv", am4charts.XYChart);
@@ -93,11 +97,16 @@ class DashboardMain extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-
+    if (prevProps.user !== this.props.user) {
+      const user = this.props.user.toJS();
+      this.setState({
+        userDetails: user,
+      });
+    }
   }
 
   render() {
-    const { } = this.state;
+    const { userDetails } = this.state;
     const { } = this.props;
     return (
       <div>
@@ -110,7 +119,10 @@ class DashboardMain extends React.Component {
                <Segment className="welcome-dashboard">
                <Message color='teal'>
                  <div>
-                   <h2>Welcome, <span className="text-muted">parin</span> </h2>
+                   <h2>Welcome, 
+                     <span className="text-muted">
+                     {userDetails && userDetails.username ? ` ${userDetails.username}` : ''}
+                    </span> </h2>
                    <Divider clearing />
                    <p>You are doing awesome</p>
                  </div>
