@@ -18,11 +18,11 @@
         }
         &.active{
             border-color: $main-color;
-            background: #f3f3f3;
+            background: #eaeaea;
             color: $main-color;
             &:hover{
                 border-color: $main-color;
-                background: #f3f3f3;
+                background: #eaeaea;
                 color: $main-color;    
             }
         }

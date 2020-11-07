@@ -110,10 +110,10 @@ class Wallet extends React.Component {
    const { loading } = this.props;
     return (
       <div>
-         {/* <h1>  <img style={{height: '2rem', width: '2rem'}} src={bitcoinLogo} alt="bitcoin_img" /> BitCoin Wallet </h1> */}
-          <h1 className="title">  <i className="icon bitcoin"></i> Bitcoin Wallet </h1>
+         
+          <p className="title">  <i className="icon bitcoin"></i> Bitcoin Wallet </p>
           
-         <br />
+  
          {!!showReceiveModal && (
            <ReceiveCryptoForm 
              hideModal= {this.hideModal}
