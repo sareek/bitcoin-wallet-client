@@ -21,7 +21,9 @@ import WalletListTable from 'components/Table';
 import AddWallet from '../components/AddWallet';
 import { toast } from 'react-toastify';
 
-import { Segment } from 'semantic-ui-react'
+import { text_truncate } from "utils/helperFunctions";
+
+import { Segment, Popup, Grid } from 'semantic-ui-react'
 
 const mapStateToProps = createStructuredSelector({
   walletAddressesResponse: makeSelectWalletAddressesResponse(),
@@ -47,7 +49,9 @@ class WalletsList extends React.Component {
     data: {
     },
     walletAddressesList: [],
-    errors: {}
+    errors: {},
+    copiedBit: false,
+    copiedAddress: ''
   };
   componentDidMount() {
     this.props.dispatchGetAddressRequest();
@@ -113,8 +117,22 @@ class WalletsList extends React.Component {
     return errors;
   };
 
+  copyToClipBoard = (address) => {
+    var dummyElement = document.createElement('input'),
+      copyText = address;
+    document.body.appendChild(dummyElement);
+    dummyElement.value = copyText;
+    dummyElement.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummyElement);
+    this.setState({copiedBit: true, copiedAddress: address});
+    setTimeout(() => {
+      this.setState({copiedBit: false, copiedAddress: ''});
+    }, 1000);
+  };
+
   render() {
-    const { showAddWalletModal, data, errors, walletAddressesList } = this.state;
+    const { showAddWalletModal, data, errors, walletAddressesList, copiedBit, copiedAddress } = this.state;
     const { getWalletAddressesRequesting } = this.props;
 
     const headers = [
@@ -124,8 +142,48 @@ class WalletsList extends React.Component {
         field: 'label',
       },
       {
-        name: 'Balance',
+        name: 'Address',
         key: 2,
+        format: data => {
+          return (
+            <>
+             <Grid columns='equal'>
+              <Grid.Column width={6}>
+                <Popup
+                    trigger={  
+                    <div className="wallet-address-table">
+                      {data
+                        ? text_truncate(data.address ?  data.address : "---", 33) 
+                        : '---'}
+                      </div>}
+                    content={data.address}
+                    basic
+                  /> 
+              </Grid.Column>
+              <Grid.Column width={2}>
+              <Popup
+                content={copiedBit ? 'copied' : 'copy'}
+                on='click'
+                open={copiedAddress === data.address}
+                trigger={<button
+                  type="button"
+                  name="copyToken"
+                  value="copy"
+                  className="copyToken ui right icon button"
+                  onClick={() => this.copyToClipBoard(data.address)}
+                >
+                  <i className="copy icon"></i>
+                </button>}
+              />
+              </Grid.Column>
+            </Grid>
+          </>
+        )
+        },
+      },
+      {
+        name: 'Balance',
+        key: 3,
         format: data => {
           return data
             ? data.balance

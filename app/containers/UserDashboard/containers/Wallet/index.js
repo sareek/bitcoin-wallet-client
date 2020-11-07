@@ -110,10 +110,7 @@ class Wallet extends React.Component {
    const { loading } = this.props;
     return (
       <div>
-         
-          <p className="title">  <i className="icon bitcoin"></i> Bitcoin Wallet </p>
-          
-  
+        <p className="title">  <i className="icon bitcoin"></i> Bitcoin Wallet </p>
          {!!showReceiveModal && (
            <ReceiveCryptoForm 
              hideModal= {this.hideModal}
