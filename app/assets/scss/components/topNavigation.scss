@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  background-color: #fff;
+  background-color: #292929;
   box-shadow: 0 0 11px rgba(0, 0, 0, 0.13);
   position: fixed;
   top: 0;
@@ -52,6 +52,9 @@
     .basic-nav-menu {
       width: 150px;
     }
+  }
+  .icon.dropdown{
+    color: #fff;
   }
 }
 
