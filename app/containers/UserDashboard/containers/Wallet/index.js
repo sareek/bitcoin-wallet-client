@@ -154,13 +154,13 @@ class Wallet extends React.Component {
                labelPosition='right'
                icon='download'
                onClick={this.showReceiveModal}
-               color="blue"
+               color="purple"
             />
              <Button 
                 content="Send"
                 labelPosition='right'
                 icon='send'
-                color="blue"
+                color="purple"
                 disabled
               />
               </Grid.Column>

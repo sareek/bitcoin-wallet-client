@@ -127,7 +127,7 @@ class DashboardMain extends React.Component {
                 <p className="title">  <i className="icon tv"></i> Dashboard <span className="text-muted">Crypto</span> </p>
               </div>
                <Segment className="welcome-dashboard">
-               <Message color='teal'>
+               <Message color='purple'>
                  <div>
                    <h2>Welcome, 
                      <span className="text-muted">
