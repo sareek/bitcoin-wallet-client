@@ -198,7 +198,7 @@ class WalletsList extends React.Component {
           content="New Wallet"
           labelPosition='right'
           icon='add circle'
-          color="blue"
+          color="purple"
           onClick={this.showAddWalletModal}
           title="Add new Wallet"
         />

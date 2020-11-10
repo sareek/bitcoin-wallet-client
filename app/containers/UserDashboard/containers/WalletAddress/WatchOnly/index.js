@@ -200,7 +200,7 @@ class WatchOnlyAddress extends React.Component {
           content="New Watch Only Wallet"
           labelPosition='right'
           icon='add circle'
-          color="blue"
+          color="purple"
           onClick={this.showAddWalletModal}
           title="Add new Wallet"
         />
