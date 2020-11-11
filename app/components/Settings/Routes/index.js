@@ -3,7 +3,8 @@ import {Route, Switch} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectLocation } from 'containers/App/selectors';
-import BasicInfo from '../BasicInfo/Loadable';
+import Password from '../Password/Loadable';
+import MultiFactorAuth from '../MultiFactorAuth/Loadable';
 
 const mapStateToProps = createStructuredSelector({
   location: makeSelectLocation()
@@ -12,8 +13,8 @@ const mapStateToProps = createStructuredSelector({
 function ProfileRoutes({ location }) {
   return (
     <Switch location={location}>
-      <Route exact path="/*/dashboard/profile" render={props => <BasicInfo {...props} />} />
-      <Route path="/*/dashboard/profile/basic-info" render={props => <BasicInfo {...props} />} />
+      <Route path="/*/dashboard/settings/password" render={props => <Password {...props} />} />
+      <Route path="/*/dashboard/settings/multi-factor-auth" render={props => <MultiFactorAuth {...props} />} />
     </Switch>
   );
 }
