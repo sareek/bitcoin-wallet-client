@@ -22,7 +22,9 @@
 }
 .login__box {
 
-
+a{
+  color: $main-color;
+}
   flex: 0 0 500px;
   background-color: #fff;
   z-index: 1;
