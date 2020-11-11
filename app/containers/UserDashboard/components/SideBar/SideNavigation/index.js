@@ -42,6 +42,11 @@ const mainMenu = [
     path: '/user/dashboard/wallet-address/list',
     icon: 'icon archive',
   },
+  {
+    title: 'Settings',
+    path: '/user/dashboard/settings/password',
+    icon: 'icon settings',
+  },
 ];
 
 class SideNavigation extends React.Component {

@@ -6,6 +6,7 @@ import { makeSelectLocation } from 'containers/App/selectors';
 
 import { makeSelectStatus } from '../selectors';
 import Profile from 'components/Profile';
+import Settings from 'components/Settings';
 import { Redirect } from 'react-router-dom';
 // import PackageList from '../containers/PackageList/';
 // import PackageDetails from '../containers/PackageList/Detail/Loadable'
@@ -58,9 +59,20 @@ function UserRoutes({ location, status }) {
 					<Profile
 						tabs={[
 							{ to: '/user/dashboard/profile/basic-info', label: 'KYC' },
-							{ to: '/user/dashboard/profile/password', label: 'Password' },
+						]}
+						{...props}
+					/>
+				)}
+			/>
+
+			<Route
+				path="/user/dashboard/settings"
+				render={(props) => (
+					<Settings
+						tabs={[
+							{ to: '/user/dashboard/settings/password', label: 'Password' },
 							{
-								to: '/user/dashboard/profile/multi-factor-auth',
+								to: '/user/dashboard/settings/multi-factor-auth',
 								label: 'Two Factor Auth',
 							},
 						]}
