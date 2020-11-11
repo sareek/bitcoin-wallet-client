@@ -1,5 +1,5 @@
-/**
- * Created by lakhe on 7/5/17.
+/*
+  Created by: ui_monkey 11/11/2020
  */
 import React from 'react';
 import { Form, Button, Icon, Message, Image } from 'semantic-ui-react';
@@ -8,8 +8,7 @@ import PasswordInputField from 'components/common/Forms/PasswordInputField';
 import FormField from 'components/common/Forms/FormField';
 import PasswordIndicator from 'components/PasswordIndicator';
 import { Link } from 'react-router-dom';
-// import Logo from '../../assets/images/exchange/Auxledger_Logo_Favicon.png';
-import Logo from "../../../assets/images/exchange/Auxledger_Logo_Favicon.png";
+import Logo from "../../../assets/Btcwallet_logo/Version 1/Btcwallet_logo-01.png";
 
 const UserRegistrationForm = (
   {
@@ -22,15 +21,16 @@ const UserRegistrationForm = (
   }) => {
   return (
     <div className="login__box " >
+      
       <div className="login__logo">
               <Image
                 // spaced="bottom"
-                size="small"
                 src={Logo}
                 alt="XAL"
                 centered
               />
             </div>
+            <p className="title">Create free account</p> 
       {errorResponse && (
           <div className="invalid_cred_msg">
           <Message negative icon>
@@ -57,7 +57,7 @@ const UserRegistrationForm = (
         />
       </div>
       <div className="field">
-          <Button className="button primary  "  fluid type="submit"
+          <Button className="button" color="purple"  fluid type="submit"
             loading={isRequesting}>Register</Button>
       </div>
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 import injectReducer from 'utils/injectReducer';
-import Logo from 'assets/images/exchange/Auxledger_Logo_Favicon.png';
+import Logo from 'assets/Btcwallet_logo/Version 1/Btcwallet_logo-01.png';
 import { Button, Image, Message, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -268,8 +268,7 @@ class Login extends React.Component {
           <div>
             <div className="login__logo">
               <Image
-                // spaced="bottom"
-                size="small"
+               
                 src={Logo}
                 alt="XAL"
                 centered
@@ -293,11 +292,11 @@ class Login extends React.Component {
             )}
 
             {response && <div className="positive message">{response}</div>}
-            <h3>
+            <p className="title">
               {userResp && typeof userResp === 'object' && Object.keys(userResp).length > 1
                 ? 'Already Logged in'
-                : 'Login'}
-            </h3>
+                : 'Login to Btc Wallet'}
+            </p>
             {userResp && typeof userResp === 'object' && !('_id' in userResp) && (
               <LoginForm
                 data={data}
