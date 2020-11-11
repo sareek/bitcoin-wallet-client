@@ -1,5 +1,5 @@
-/**
- * Created by lakhe on 7/16/17.
+/*
+  Created by: ui_monkey 11/11/2020
  */
 const ObjectToFormData = (obj, form, namespace) => {
     let fd = form || new FormData();

@@ -1,5 +1,5 @@
-/**
- * Created by lakhe on 11/19/17.
+/*
+  Created by: ui_monkey 11/11/2020
  */
 
 import jwtDecode from 'jwt-decode';
