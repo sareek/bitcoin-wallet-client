@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { createStructuredSelector } from 'reselect';
-import { Button, Message, Icon, Sidebar } from 'semantic-ui-react';
 import ProfilePic from 'assets/images/noProfile.svg';
 import { makeSelectUserConfirmation } from 'containers/Login/selectors';
 import SideBar from './components/SideBar';
@@ -49,7 +48,6 @@ const mapDispatchToProps = dispatch => ({
   resendConfirmation: () => dispatch(resendConfirmationRequest()),
   navigateToProfilePage: () =>
     dispatch(push('/user/dashboard/profile/basic-info')),
-    getCartItemsNumberRequest: () => dispatch(getCartItemsNumberRequest())
 });
 
 class UserDashboard extends React.Component {
@@ -138,9 +136,7 @@ class UserDashboard extends React.Component {
       });
     }
   };
-  handleCartSize = size => {
-    this.setState({ cartSize: size && size });
-  };
+ 
   handleToggleSidebar = () => {
     this.setState({ sidebar: !this.state.sidebar });
   };
@@ -178,7 +174,6 @@ class UserDashboard extends React.Component {
           {(location.pathname === '/user/dashboard') && <DashboardMain />}
             <Routes
               location={this.props.location}
-              handleCartSize={this.handleCartSize}
             />
           </div>
         </div>
