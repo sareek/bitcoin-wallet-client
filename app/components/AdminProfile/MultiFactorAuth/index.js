@@ -298,7 +298,7 @@ class MultiFactorAuth extends React.Component {
                           error={errors.totp_token && errors.totp_token}
                         />
                         <Button
-                          primary
+                          color="purple"
                           type="submit"
                           loading={isRequesting}
                           disabled={isRequesting}
@@ -349,7 +349,8 @@ class MultiFactorAuth extends React.Component {
             </div>
             <div className="button_wrapper inline-block">
               <Button
-                className="button primary"
+                className="button"
+                color="purple"
                 onClick={this.generateRecoveryCodeRequest}
                 disabled={isRequesting}
               >

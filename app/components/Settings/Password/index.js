@@ -14,6 +14,8 @@ import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import {compose} from "redux";
 
+import {  Segment } from 'semantic-ui-react';
+
 const mapStateToProps = createStructuredSelector({
   errorResponse: makeSelectError(),
   requesting: makeSelectRequesting(),
@@ -86,7 +88,7 @@ class Password extends React.Component {
       message = <Toaster message={errorResponse} timeout={3000} error />;
     }
     return (
-      <div className="segment">
+      <Segment>
         { message && message }
         <Form className="form" onSubmit={this.handleSubmit}>
           <h2>Change Password</h2>
@@ -121,14 +123,15 @@ class Password extends React.Component {
           </div>
           <Button
             type="submit"
-            className="primary button"
+            className="button"
             loading={requesting}
             disabled={requesting}
+            color="purple"
           >
             Save
           </Button>
         </Form>
-      </div>
+      </Segment>
     );
   }
 }

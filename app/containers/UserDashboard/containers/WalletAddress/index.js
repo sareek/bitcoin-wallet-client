@@ -12,7 +12,7 @@ class Profile extends React.Component {
   };
   render() {
     return (
-      <div>
+      <div className="wallet-n-address__tabs">
         <TabbedView items={this.state.tabs} />
         <Routes />
       </div>

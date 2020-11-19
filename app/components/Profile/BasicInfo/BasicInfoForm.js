@@ -22,6 +22,9 @@ const BasicInfoForm = (
   (<Form onSubmit={handleSubmit} className="py-2 form">
     <h2>KYC</h2>
     <div className="form__elements">
+
+      <Segment>
+      <h3>Personal Info</h3>
       <Form.Group widths="equal">
         <Form.Field>
           <label>First Name</label>
@@ -64,6 +67,10 @@ const BasicInfoForm = (
           <input name="email" value={user.email || ''} onChange={handleChange} disabled />
         </Form.Field>
       </Form.Group>
+      </Segment>
+
+
+
       <Segment>
         <h3>Address</h3>
         <Form.Group widths="equal">
@@ -108,7 +115,7 @@ const BasicInfoForm = (
         />
       </div>
       </Segment>
-      <Button type="submit" primary loading={isLoading} disabled={isLoading}>Save</Button>
+      <Button type="submit" color="orange" loading={isLoading} disabled={isLoading}>Save</Button>
     </div>
   </Form>);
 

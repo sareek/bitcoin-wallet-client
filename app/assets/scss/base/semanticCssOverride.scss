@@ -29,3 +29,14 @@
     }
 
 }
+.ui.dropdown .menu>.item:hover{
+    background:rgba(255 , 123, 0, 0.8);
+}
+
+
+// forms border
+.ui.form input:not([type]), .ui.form input[type=date], .ui.form input[type=datetime-local], .ui.form input[type=email], .ui.form input[type=file], .ui.form input[type=number], .ui.form input[type=password], .ui.form input[type=search], .ui.form input[type=tel], .ui.form input[type=text], .ui.form input[type=time], .ui.form input[type=url],.ui.checkbox .box:before, .ui.checkbox label:before, .ui.selection.dropdown, .ui.form select{
+border:1px solid rgba(0 , 123 , 247 , 0.35);
+box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+}
+

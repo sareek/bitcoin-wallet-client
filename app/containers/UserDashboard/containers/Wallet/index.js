@@ -148,13 +148,14 @@ class Wallet extends React.Component {
          )}
         <Grid>
           <Grid.Row>
-            <Grid.Column>
+            <Grid.Column className="text-center">
             <Button 
                content="Receive"
                labelPosition='right'
                icon='download'
                onClick={this.showReceiveModal}
                color="purple"
+               className="mr-2"
             />
              <Button 
                 content="Send"
@@ -162,6 +163,7 @@ class Wallet extends React.Component {
                 icon='send'
                 color="purple"
                 disabled
+              
               />
               </Grid.Column>
               </Grid.Row>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
-import { Form, Button, Checkbox } from 'semantic-ui-react';
+import { Form, Button, Checkbox , Segment} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import getUserObject from "utils/getUserInfo";
 import FormField from 'components/common/Forms/FormField';
@@ -218,13 +218,12 @@ class MultiFactorAuth extends React.Component {
     }
     return (
       <div>
-        <div className="section">
           {/* {message && message} */}
           {basicInfoRequesting ? (
             <div className="loader_wallet"></div>
           ): (
-            <div className="segment">
-            <br />
+            <Segment>
+     
             {this.props.user && this.props.user.get('multi_factor_auth_enable') &&
             <div>
               {!showMultiFactorAuthDisable &&
@@ -292,7 +291,8 @@ class MultiFactorAuth extends React.Component {
               {multiFactorAuth &&
               <div className="mg-top-sm">
                 <div className="message info">
-                  Scan the following QR code with any authenticator App.<br/><br/>
+                <br/>
+                  Scan the following QR code with any authenticator App.<br/>
                   <a className="mg-right-sm" target="_blank" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">
                     <img src='' />
                   </a>
@@ -303,14 +303,16 @@ class MultiFactorAuth extends React.Component {
                 {this.props.enable2FAResponse &&
                 <QRCode value={this.props.enable2FAResponse} />
                 }
+               
                 <div>
+                <br/>
                   <Form onSubmit={this.handleSubmit}>
                     <FormField
                       type="text" name="totp_token" value={data.totp_token} onChange={this.handleChange}
                       placeholder="Enter the token from authenticator app" error={errors.totp_token && errors.totp_token}
                     />
                     <Button
-                      primary
+                     color="purple"
                       type="submit"
                       loading={isRequesting}
                       disabled={isRequesting}
@@ -319,10 +321,10 @@ class MultiFactorAuth extends React.Component {
                 </div>
               </div>}
             </div>}
-          </div>
+          </Segment>
           )}
        
-        </div>
+       
       </div>
     );
   }

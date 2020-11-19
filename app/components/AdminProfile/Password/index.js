@@ -121,9 +121,10 @@ class Password extends React.Component {
           </div>
           <Button
             type="submit"
-            className="primary button"
+            className=" button"
             loading={requesting}
             disabled={requesting}
+            color="purple"
           >
             Save
             </Button>
