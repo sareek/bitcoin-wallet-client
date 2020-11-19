@@ -9,6 +9,8 @@ const Login = lazy(() => import('containers/Login'));
 const Register = lazy(() => import('containers/Register'));
 const AdminDashboard = lazy(() => import('containers/AdminDashboard/Loadable'));
 const UserDashboard = lazy(() => import('containers/UserDashboard/Loadable'));
+const HomeLayout = lazy(() => import('containers/HomeLayout'));
+const HomePage = lazy(() => import('containers/HomePage/Loadable'));
 
 // import Login from 'containers/Login';
 import NotFoundPage from 'containers/NotFoundPage';
@@ -40,7 +42,16 @@ class Routes extends React.PureComponent {
         }
       >
         <Switch location={this.props.location}>
-          <Route exact path="/" render={props => <Login {...props} />} />
+          <Route
+					exact
+					path="/"
+					render={props => (
+						<HomeLayout>
+						<HomePage {...props} />
+						</HomeLayout>
+					)}
+				/>
+          <Route exact path="/login" render={props => <Login {...props} />} />
           <Route exact path="/register" render={props => <Register {...props} />} />
 
           <Route

@@ -151,6 +151,7 @@ function loginReducer(state = initialState, action) {
     case MULTI_FACTOR_AUTH_LOGIN_FAILURE: // todo this should be triggered from multiFactorAuth sagas as loginClearState
     case types.LOGIN_CLEAR_STATE: // remove one of these
     case types.LOGOUT_SUCCESS:
+        localStorage.removeItem('token');
       return initialState;
     case types.LOGOUT_FAILURE:
       return state.merge({
