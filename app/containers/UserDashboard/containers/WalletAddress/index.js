@@ -1,6 +1,6 @@
 import React from 'react';
 import Routes from './Routes';
-import TabbedView from 'components/TabbedView';
+import TabbedView from './components/TabView';
 import PropTypes from 'prop-types';
 
 class Profile extends React.Component {

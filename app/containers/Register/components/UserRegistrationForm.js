@@ -65,7 +65,7 @@ const UserRegistrationForm = (
 
     {window.location.pathname.split('/')[1] != 'guest-detail' && (
           <p style={{textAlign: 'center', marginTop: '2rem'}}>
-            Already a Member? <Link to="/">Login</Link>
+            Already a Member? <Link to="/login">Login</Link>
           </p>
         )}
     </div>
