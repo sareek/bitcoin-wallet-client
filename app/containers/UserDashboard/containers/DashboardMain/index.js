@@ -58,18 +58,18 @@ class DashboardMain extends React.Component {
 
   renderBitcoinExchangesGraph({ values }) {
     let chart = am4core.create("chartdiv", am4charts.XYChart);
-       
-    let xAxis = chart.xAxes.push(new am4charts.DateAxis());
-        xAxis.title.text = "Date";
-        xAxis.title.fontWeight = "bold";
 
-        chart.paddingRight = 20;
-        chart.data = values;
+    let xAxis = chart.xAxes.push(new am4charts.DateAxis());
+    xAxis.title.text = "Date";
+    xAxis.title.fontWeight = "bold";
+
+    chart.paddingRight = 20;
+    chart.data = values;
 
     let title = chart.titles.create();
-      title.text = "Average USD market price across major bitcoin exchanges.";
-      title.fontSize = 25;
-      title.marginBottom = 30;
+    title.text = "Average USD market price across major bitcoin exchanges.";
+    title.fontSize = 25;
+    title.marginBottom = 30;
 
     let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
     dateAxis.renderer.grid.template.location = 0;
@@ -78,24 +78,24 @@ class DashboardMain extends React.Component {
     valueAxis.tooltip.disabled = true;
     valueAxis.renderer.minWidth = 15;
 
-        valueAxis.title.text = "Price (USD)";
-        valueAxis.title.fontWeight = "bold";
-        valueAxis.renderer.labels.template.adapter.add("text", (label, target, key) => {
-          return label + " (USD)";
-        })
+    valueAxis.title.text = "Price (USD)";
+    valueAxis.title.fontWeight = "bold";
+    valueAxis.renderer.labels.template.adapter.add("text", (label, target, key) => {
+      return label + " (USD)";
+    })
 
     let series = chart.series.push(new am4charts.LineSeries());
     series.dataFields.dateX = "date";
     series.dataFields.valueY = "value";
 
-        series.tooltipText = "${valueY.value}";
-        chart.cursor = new am4charts.XYCursor();
+    series.tooltipText = "${valueY.value}";
+    chart.cursor = new am4charts.XYCursor();
 
     let scrollbarX = new am4charts.XYChartScrollbar();
     scrollbarX.series.push(series);
     chart.scrollbarX = scrollbarX;
 
-      this.chart = chart;
+    this.chart = chart;
   }
 
   componentDidUpdate(prevProps) {
@@ -108,10 +108,10 @@ class DashboardMain extends React.Component {
 
     if (prevProps.bitcoinExchangeData !== this.props.bitcoinExchangeData) {
       const bitcoinExchangeData = this.props.bitcoinExchangeData.toJS();
-     /////////////////////////Graph logic here
-     if(bitcoinExchangeData && bitcoinExchangeData.values && bitcoinExchangeData.values.length > 0) {
-       this.renderBitcoinExchangesGraph(bitcoinExchangeData);
-     }
+      /////////////////////////Graph logic here
+      if(bitcoinExchangeData && bitcoinExchangeData.values && bitcoinExchangeData.values.length > 0) {
+        this.renderBitcoinExchangesGraph(bitcoinExchangeData);
+      }
     }
   }
 
@@ -124,27 +124,29 @@ class DashboardMain extends React.Component {
           <Grid.Row >
             <Grid.Column width={11}>
               <div className="main-heading">
-                <p className="title">  <i className="icon tv"></i> Dashboard <span className="text-muted">Crypto</span> </p>
+                <p className="title">  <i className="icon tv"></i> Welcome, <span className="text-muted">
+                  {userDetails && userDetails.username ? ` ${userDetails.username}` : ''}
+                </span> </p>
               </div>
-               <Segment className="welcome-dashboard">
-               <Message color='purple'>
-                 <div>
-                   <h2>Welcome, 
-                     <span className="text-muted">
-                     {userDetails && userDetails.username ? ` ${userDetails.username}` : ''}
-                    </span> </h2>
-                   <Divider clearing />
-                   <p>You are doing awesome</p>
-                 </div>
-               </Message>
-               </Segment>
-               <Segment>
-                 {!bitcoinExchangeRequesting ? (
-                   <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
-                 ) : (
-                  <div className="loader_wallet m-5"></div>
-                 )}
-               </Segment>
+              <Segment className="welcome-dashboard">
+                <Message color='purple'>
+                  <div>
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+                 </p>
+                    <Divider clearing />
+                    <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
+                  </div>
+                </Message>
+              </Segment>
+              <Segment>
+                {!bitcoinExchangeRequesting ? (
+                  <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+                ) : (
+                    <div className="loader_wallet m-5"></div>
+                  )}
+              </Segment>
               {/* <Segment className="main-statistics">
                 <div>
                   <p className="title">price</p>
@@ -168,7 +170,6 @@ class DashboardMain extends React.Component {
             <Grid.Column width={5}>
               <Segment className="announcements">
                 <div className="sm-heading"><p className="title"><span><i className="icon bullhorn"></i></span> Announcements </p></div>
-
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
               </Segment>
