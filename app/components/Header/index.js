@@ -26,7 +26,7 @@ class Header extends React.PureComponent {
               Btc Price
             </Link>
             
-            <Link className="ui item" to='/login'>Login</Link>
+            <Link className="ui button orange item login" to='/login'>Sign In</Link>
           </div>
         </div>
       </header>
