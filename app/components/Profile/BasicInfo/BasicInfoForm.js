@@ -35,7 +35,7 @@ const BasicInfoForm = (
           <input name="last_name" value={user.last_name || ''} onChange={handleChange} />
         </Form.Field>
       </Form.Group>
-      <Form.Group inline>
+      <Form.Group>
         <Form.Field><label>Gender:</label></Form.Field>
         <Form.Field>
           <Radio label="Male" name="gender" value="Male" checked={(user.gender || '').toLowerCase() === 'male'}
@@ -115,7 +115,9 @@ const BasicInfoForm = (
         />
       </div>
       </Segment>
-      <Button type="submit" color="orange" loading={isLoading} disabled={isLoading}>Save</Button>
+      <div className="text-center">
+      <Button type="submit" color="orange" size="large" loading={isLoading} disabled={isLoading}>Save</Button>
+      </div>
     </div>
   </Form>);
 

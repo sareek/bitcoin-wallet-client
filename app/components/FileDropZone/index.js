@@ -38,7 +38,7 @@ const FileDropZone = ({
           </section>
         )}
       </Dropzone>
-      <div>
+      <div className="text-center">
         <Button
         color="red"
           className="remove__file ml-2"
