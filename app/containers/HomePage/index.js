@@ -21,34 +21,87 @@ import EarthIcon2 from '../../assets/images/icons_why/mycollection/002-globe.png
 import TrustIcon from '../../assets/images/icons_why/mycollection/003-honesty.png';
 import VerifiedIcon from  '../../assets/images/icons_why/mycollection/001-verified.png';
 
-
-
+import { toast } from 'react-toastify';
+import { Form, Button, Icon, Message, Image } from 'semantic-ui-react';
+import PasswordInputField from 'components/common/Forms/PasswordInputField';
+import FormField from 'components/common/Forms/FormField';
 
 import {
-
+  userSignUpRequests,
+  clearState,
 } from './actions';
 
 import {
-
+  makeSelectError,
+  makeSelectRequesting,
+  makeSelectSignUpResponse,
 } from './selectors'
 
 
 const mapStateToProps = createStructuredSelector({
-
+  successResponse: makeSelectSignUpResponse(),
+  errorResponse: makeSelectError(),
+  isRequesting: makeSelectRequesting(),
 });
 
 const mapDispatchToProps = dispatch => ({
-
+  userSignUpRequests: data => dispatch(userSignUpRequests(data)),
+  clearState: () => dispatch(clearState()),
 });
 
 class HomePage extends Component {
 
-  state = {
-
+  constructor(props){
+    super(props);
+    this.state={
+      data: {},
+      errors: {}
+    }
   }
 
+  componentWillUnmount() {
+    this.props.clearState();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.successResponse != prevProps.successResponse) {
+      toast.success('User Resistered Successfully');
+      this.props.history.push(`/login`);
+    }
+  }
+
+  handleChange = e => {
+    e.persist();
+    this.setState(state => ({
+      data: { ...state.data, [e.target.name]: e.target.value },
+    }));
+  };
+
+  validate = () => {
+    const { data } = this.state;
+    const errors = {};
+    if (!data.username) errors.username = "Can't be blank";
+    if (data.username && data.username.length > 26)
+      errors.username = "Can't be more than 26 characters";
+    if (data.username && !/^[a-zA-Z]+$/.test(data.username))
+      errors.username = 'Can only contain letters';
+    if (!data.email) errors.email = "Can't be blank";
+    if (!data.password) errors.password = 'password_error';
+    return errors;
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const errors = this.validate();
+    this.setState({ errors });
+    if (Object.keys(errors).length === 0) {
+      this.props.userSignUpRequests(this.state.data);
+    }
+  };
+
   render() {
-    const { } = this.state;
+    const { data, errors } = this.state;
+    const { errorResponse, isRequesting } = this.props;
     return (
       <React.Fragment>
         <Helmet>
@@ -68,7 +121,7 @@ class HomePage extends Component {
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec viverra leo, fringilla ullamcorper dolor. Suspendisse potenti. Pellentesque aliquet nisi et tristique dapibus. Etiam ultrices consectetur felis, sed tincidunt turpis laoreet quis. Nulla non dui sed dolor commodo ultrices nec sit amet lectus. </p>
             </div>
             <div className="column text-center">
-              <Link className="ui button huge orange get-started" >
+              <Link to={"/"} className="ui button huge orange get-started" >
                 Get Started
               </Link>
             </div>
@@ -84,25 +137,56 @@ class HomePage extends Component {
               <h3 className="section-header">Btc wallet helps you buy Bitcoin, Etherium, XRP, <br/>Litecoin in easy steps</h3>
             </div>
             <div className="column">
-              <form className="ui form sign-up">
+            <Form className="ui form sign-up" onSubmit={this.handleSubmit}>
+            <p>Sign Up</p>
+              <FormField 
+                className="field"
+                name="username" 
+                value={data.username || ''} 
+                onChange={this.handleChange}
+                placeholder="Username" error={errors.username}
+              />
+              <FormField
+                name="email" 
+                type="email" 
+                value={data.email || ''} 
+                onChange={this.handleChange}
+                placeholder="Email" 
+                error={errors.email}
+              />
+              <FormField
+                name="password" 
+                type="password" 
+                value={data.password || ''} 
+                onChange={this.handleChange}
+                placeholder="Password" 
+                error={errors.password}
+              />
+            <div className="field">
+             <Button
+               className="ui button orange"
+               fluid 
+               type="submit"
+               loading={isRequesting}>
+                 Sign Up
+              </Button>
+            </div>
+          </Form>
+              {/* <form className="ui form sign-up">
                 <p>Sign Up</p>
                 <div className="field">
-                 
                   <input type="text" name="user-name" placeholder="User Name" />
                 </div>
                 <div className="field">
-                 
                  <input type="email" name="email" placeholder="Email" />
                </div>
                <div className="field">
-                 
                  <input type="password" name="password" placeholder="Password" />
                </div>
-
                <div className="field">
                 <button className="ui button orange" type="submit">Sign Up</button>
                </div>
-              </form>
+              </form> */}
             </div>
           </div>
         </section>
@@ -201,10 +285,6 @@ class HomePage extends Component {
             
           </div>
         </section>
-
-
-
-
       </React.Fragment>
     );
   }

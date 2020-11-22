@@ -6,7 +6,19 @@ import getToken from 'utils/getToken';
 import * as types from './constants';
 import * as actions from './actions';
 
+function* signupFlow(action) {
+    yield fork(
+        API.post(
+        'signup/',
+        actions.userSignUpSuccess,
+        actions.userSignUpFailure,
+        action.data,
+      ),
+    );
+    yield take([LOCATION_CHANGE, types.SIGNUP_FAILURE]);
+  }
+
 
 export default function* homepageSaga() {
-
+    yield takeLatest(types.SIGNUP_REQUEST, signupFlow);
 }

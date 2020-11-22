@@ -32,11 +32,14 @@ function homePageReducer(state = initialState, action = {}) {
       });
 
     case types.SIGNUP_FAILURE:
+      debugger;
       return state.merge({
         requesting: false,
         response: '',
         error: action.error.message,
       });
+    case types.CLEAR_STATE:
+        return initialState;  
     default:
       return state;
   }

@@ -10,21 +10,19 @@ class Header extends React.PureComponent {
 
     return (
       <header id="header" className="home">
-      
-
         <div className="ui secondary  menu">
-          <Link className="brand">
+          <Link to={'/'} className="brand">
             <img src={Logo}/>
            </Link>
           <div className="right menu">
-            <Link className="active item">
+            <Link to={'/'} className="active item">
               About
              </Link>
 
-            <Link className="item">
+            <Link to={'/'} className="item">
               Exchange
             </Link>
-            <Link className="item">
+            <Link to={'/'} className="item">
               Btc Price
             </Link>
             
