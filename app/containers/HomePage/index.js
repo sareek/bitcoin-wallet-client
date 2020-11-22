@@ -21,6 +21,9 @@ import EarthIcon2 from '../../assets/images/icons_why/mycollection/002-globe.png
 import TrustIcon from '../../assets/images/icons_why/mycollection/003-honesty.png';
 import VerifiedIcon from  '../../assets/images/icons_why/mycollection/001-verified.png';
 
+
+
+
 import {
 
 } from './actions';
@@ -154,7 +157,7 @@ class HomePage extends Component {
         <section className="reasons">
           <div className="ui container">
             <div>
-              <h2 className="section-header">BTCWallet is 100%</h2>
+              <h2 className="section-header text-center">BTCWallet is 100%</h2>
             </div>
 
             <div className="ui three column stackable grid ">
@@ -164,7 +167,7 @@ class HomePage extends Component {
                     <img src={TrustIcon}/> 
                 </figure>
                   <figcaption>
-                    <p>BTC Wallet is trusted</p>
+                    <p className="card-title">BTC Wallet is trusted</p>
                     <p>We're early industry pioneers and have been around since 2013, successfully processed more than</p>  
                   </figcaption>
                 </div>
@@ -176,7 +179,7 @@ class HomePage extends Component {
                     <img src={EarthIcon2}/> 
                 </figure>
                   <figcaption>
-                    <p>Global Expertise</p>
+                    <p className="card-title">Global Expertise</p>
                     <p>We're early industry pioneers and have been around since 2013, successfully processed more than</p>  
                   </figcaption>
                 </div>
@@ -188,7 +191,7 @@ class HomePage extends Component {
                     <img src={VerifiedIcon}/> 
                 </figure>
                   <figcaption>
-                    <p>100% secure</p>
+                    <p className="card-title">100% secure</p>
                     <p>We're early industry pioneers and have been around since 2013, successfully processed more than</p>  
                   </figcaption>
                 </div>
@@ -198,6 +201,9 @@ class HomePage extends Component {
             
           </div>
         </section>
+
+
+
 
       </React.Fragment>
     );
