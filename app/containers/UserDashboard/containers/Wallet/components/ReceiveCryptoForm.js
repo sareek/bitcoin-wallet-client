@@ -120,7 +120,7 @@ const ReceiveCryptoForm = ({
               content="Done"
               fluid
               onClick={() => hideModal(true)}
-              color="blue"
+              color="orange"
             />
           </Form.Field>
         </Form>

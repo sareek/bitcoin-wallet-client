@@ -122,11 +122,12 @@ class Password extends React.Component {
             </label>
           </div>
           <Button
+            style={{borderRadius: "20px"}}
             type="submit"
             className="button"
             loading={requesting}
             disabled={requesting}
-            color="purple"
+            color="orange"
           >
             Save
           </Button>

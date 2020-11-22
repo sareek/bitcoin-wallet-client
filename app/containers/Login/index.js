@@ -268,12 +268,15 @@ class Login extends React.Component {
         <div className="login__box">
           <div>
             <div className="login__logo">
+              <Link
+               to="/"
+              >
               <Image
-               
                 src={Logo}
                 alt="XAL"
                 centered
               />
+              </Link>
             </div>
             {this.state.show && (
               <ForgotPassword

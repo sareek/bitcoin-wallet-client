@@ -21,9 +21,8 @@ function homePageReducer(state = initialState, action = {}) {
         response: '',
         signupResponse: '',
       });
-  
    
-    case types.SIGNUP_SUCCESS:
+    case types.USER_SIGNUP_SUCCESS:
       return state.merge({
         requesting: false,
         response: action.response.data.message,
@@ -31,12 +30,14 @@ function homePageReducer(state = initialState, action = {}) {
         error: '',
       });
 
-    case types.SIGNUP_FAILURE:
+    case types.USER_SIGNUP_FAILURE:
       return state.merge({
         requesting: false,
         response: '',
         error: action.error.message,
       });
+    case types.CLEAR_STATE:
+        return initialState;  
     default:
       return state;
   }

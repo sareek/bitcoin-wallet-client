@@ -104,7 +104,7 @@ class SignupForm extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.successResponse != prevProps.successResponse) {
       toast.success('User Resistered Successfully');
-       this.props.history.push(`/`);
+       this.props.history.push(`/login`);
     }
 
     if (this.props.verify_data != prevProps.verify_data) {

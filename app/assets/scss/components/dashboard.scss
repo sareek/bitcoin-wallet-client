@@ -46,7 +46,7 @@
 .loader_wallet {
   border: 16px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 16px solid #3498db;
+  border-top: 16px solid $main-color;
   width: 70px;
   height: 70px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
@@ -195,6 +195,10 @@
 }
 //wallet and address page tab design 
 
-.wallet-n-address__tabs{
-
+.ui.button.eye-button{
+   padding: 0.5em 0.75em;
+   background: transparent;
+   i {
+     margin: 0px;
+   }
 }
