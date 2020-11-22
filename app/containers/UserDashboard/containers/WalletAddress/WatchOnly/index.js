@@ -150,7 +150,7 @@ class WatchOnlyAddress extends React.Component {
           return (
             <>
              <Grid columns='equal'>
-              <Grid.Column width={6}>
+              <Grid.Column width={14}>
                 <Popup
                     trigger={  
                     <div className="wallet-address-table">
@@ -200,7 +200,7 @@ class WatchOnlyAddress extends React.Component {
           content="New Watch Only Wallet"
           labelPosition='right'
           icon='add circle'
-          color="purple"
+          color="orange"
           onClick={this.showAddWalletModal}
           title="Add new Wallet"
         />

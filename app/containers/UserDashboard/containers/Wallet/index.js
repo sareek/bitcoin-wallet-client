@@ -154,14 +154,14 @@ class Wallet extends React.Component {
                labelPosition='right'
                icon='download'
                onClick={this.showReceiveModal}
-               color="purple"
+               color="orange"
                className="mr-2"
             />
              <Button 
                 content="Send"
                 labelPosition='right'
                 icon='send'
-                color="purple"
+                color="orange"
                 disabled
               
               />

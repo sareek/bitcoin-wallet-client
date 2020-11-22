@@ -10,7 +10,7 @@ const TabbedView = () => (
     to={'user/dashboard/wallet-address/list'}
     key={'1'}
     activeClassName="active"
-    className="item"
+    className="ui button item orange"
   >
     Wallet Addresses
   </NavLink>
@@ -18,7 +18,7 @@ const TabbedView = () => (
     to={'user/dashboard/wallet-address/watchonly'}
     key={'2'}
     activeClassName="active"
-    className="item"
+    className="ui button item eye-button"
   >
     <Icon className="eye" />
   </NavLink>

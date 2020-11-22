@@ -148,7 +148,7 @@ class WalletsList extends React.Component {
           return (
             <>
              <Grid columns='equal'>
-              <Grid.Column width={6}>
+              <Grid.Column width={14}>
                 <Popup
                     trigger={  
                     <div className="wallet-address-table">
@@ -198,7 +198,7 @@ class WalletsList extends React.Component {
           content="New Wallet"
           labelPosition='right'
           icon='add circle'
-          color="purple"
+          color="orange"
           onClick={this.showAddWalletModal}
           title="Add new Wallet"
         />
