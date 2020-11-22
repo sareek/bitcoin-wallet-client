@@ -12,6 +12,14 @@ import { Link } from 'react-router-dom';
 
 import Img from '../../assets/images/static/banner.jpg'
 import Logo3 from '../../assets/Btcwallet_logo/Version 3/Btcwallet_logo_3-01.png' 
+import MillionIcon from '../../assets/images/icons_why/svg/003-customer-review.svg';
+import WalletIcon from  '../../assets/images/icons_why/svg/002-purse.svg';
+import EarthIcon from '../../assets/images/icons_why/svg/003-earth.svg';
+
+
+import EarthIcon2 from '../../assets/images/icons_why/mycollection/002-globe.png';
+import TrustIcon from '../../assets/images/icons_why/mycollection/003-honesty.png';
+import VerifiedIcon from  '../../assets/images/icons_why/mycollection/001-verified.png';
 
 import {
 
@@ -46,7 +54,7 @@ class HomePage extends Component {
         </Helmet>
 
         {/* banner section */}
-        <div className="banner">
+        <section className="banner">
        
           <div className="bg-img">
             <img src={Img} alt="bitcoin tech background image" />
@@ -62,18 +70,19 @@ class HomePage extends Component {
               </Link>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* about secion */}
 
-        <div className="about">
+        <section className="about">
           <div className="container ui two column stackable grid ">
             <div className="column">
             <img src={Logo3} alt="btc wallet version 3" />
-              <p>Btc wallet helps you buy Bitcoin, Etherium, XRP, Litecoin in easy steps</p>
+              <h3 className="section-header">Btc wallet helps you buy Bitcoin, Etherium, XRP, <br/>Litecoin in easy steps</h3>
             </div>
             <div className="column">
               <form className="ui form sign-up">
+                <p>Sign Up</p>
                 <div className="field">
                  
                   <input type="text" name="user-name" placeholder="User Name" />
@@ -93,22 +102,22 @@ class HomePage extends Component {
               </form>
             </div>
           </div>
-        </div>
+        </section>
 
 
         {/* why-section */}
 
-        <div className="about">
+        <section className="why">
           <div className="ui container">
             <div>
-              <h3 className="section-header">Why are people from all over the world choosing Bitcoin</h3>
+              <h3 className="section-header">Why are people from all over the world choosing Bitcoin?</h3>
             </div>
 
             <div className="ui three column stackable grid ">
               <div className="column">
-                <div>
+                <div className="card">
                   <figure>
-                    images here
+                    <img src={MillionIcon} alt="customer satisdaction icon" />
                 </figure>
                   <figcaption>1M-Trusted Customers</figcaption>
                 </div>
@@ -117,24 +126,78 @@ class HomePage extends Component {
               <div className="column">
                 <div>
                   <figure>
-                    images here
+                  <img src={WalletIcon} alt="Wallet icon" />
                 </figure>
-                  <figcaption>1M-Trusted Customers</figcaption>
+                  <figcaption>Processed over 1 million</figcaption>
                 </div>
 
               </div>
               <div className="column">
                 <div>
                   <figure>
-                    images here
+                  <img src={EarthIcon} alt="Earth icon" />
                 </figure>
-                  <figcaption>1M-Trusted Customers</figcaption>
+                  <figcaption>Available in 14 Countries</figcaption>
                 </div>
 
               </div>
             </div>
+            <div className="text-center">
+              <button className="ui button orange" type="submit">BUY BITCOIN</button>
+            </div>
           </div>
-        </div>
+        </section>
+
+        {/* 100% section */}
+
+
+        <section className="reasons">
+          <div className="ui container">
+            <div>
+              <h2 className="section-header">BTCWallet is 100%</h2>
+            </div>
+
+            <div className="ui three column stackable grid ">
+              <div className="column">
+                <div className="card">
+                  <figure>
+                    <img src={TrustIcon}/> 
+                </figure>
+                  <figcaption>
+                    <p>BTC Wallet is trusted</p>
+                    <p>We're early industry pioneers and have been around since 2013, successfully processed more than</p>  
+                  </figcaption>
+                </div>
+
+              </div>
+              <div className="column">
+              <div className="card">
+                  <figure>
+                    <img src={EarthIcon2}/> 
+                </figure>
+                  <figcaption>
+                    <p>Global Expertise</p>
+                    <p>We're early industry pioneers and have been around since 2013, successfully processed more than</p>  
+                  </figcaption>
+                </div>
+
+              </div>
+              <div className="column">
+              <div className="card">
+                  <figure>
+                    <img src={VerifiedIcon}/> 
+                </figure>
+                  <figcaption>
+                    <p>100% secure</p>
+                    <p>We're early industry pioneers and have been around since 2013, successfully processed more than</p>  
+                  </figcaption>
+                </div>
+
+              </div>
+            </div>
+            
+          </div>
+        </section>
 
       </React.Fragment>
     );
