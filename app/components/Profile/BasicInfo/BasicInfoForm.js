@@ -115,7 +115,9 @@ const BasicInfoForm = (
         />
       </div>
       </Segment>
-      <Button type="submit" color="orange" loading={isLoading} disabled={isLoading}>Save</Button>
+      <div style={{textAlign: "center"}}>
+       <Button style={{width: '150px', borderRadius: "100px"}} size="big" type="submit" color="orange" loading={isLoading} disabled={isLoading}>Save</Button>
+      </div>
     </div>
   </Form>);
 

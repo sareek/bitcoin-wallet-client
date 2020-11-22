@@ -38,9 +38,10 @@ const FileDropZone = ({
           </section>
         )}
       </Dropzone>
-      <div>
+      <div style={{textAlign: "center"}}>
         <Button
-        color="red"
+          style={{borderRadius: "100px"}}
+          color="orange"
           className="remove__file ml-2"
           title="remove file"
           type="reset"
