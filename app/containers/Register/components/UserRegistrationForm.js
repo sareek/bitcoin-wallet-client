@@ -23,12 +23,14 @@ const UserRegistrationForm = (
     <div className="login__box " >
       
       <div className="login__logo">
+        <Link to="/">
               <Image
                 // spaced="bottom"
                 src={Logo}
                 alt="XAL"
                 centered
               />
+          </Link>
             </div>
             <p className="title">Create free account</p> 
       {errorResponse && (

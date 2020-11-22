@@ -22,7 +22,7 @@ import TrustIcon from '../../assets/images/icons_why/mycollection/003-honesty.pn
 import VerifiedIcon from  '../../assets/images/icons_why/mycollection/001-verified.png';
 
 import { toast } from 'react-toastify';
-import { Form, Button, Icon, Message, Image } from 'semantic-ui-react';
+import { Form, Button, Icon, Message, Image, IconGroup } from 'semantic-ui-react';
 import PasswordInputField from 'components/common/Forms/PasswordInputField';
 import FormField from 'components/common/Forms/FormField';
 
@@ -65,8 +65,15 @@ class HomePage extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.successResponse != prevProps.successResponse) {
-      toast.success('User Resistered Successfully');
-      this.props.history.push(`/login`);
+      if(this.props.successResponse) {
+        toast.success('User Resistered Successfully');
+        this.props.history.push(`/login`);
+      }
+    }
+    if (this.props.errorResponse != prevProps.errorResponse) {
+      if(this.props.errorResponse) {
+        toast.error('User Already Exists');
+      }
     }
   }
 
@@ -137,6 +144,17 @@ class HomePage extends Component {
               <h3 className="section-header">Btc wallet helps you buy Bitcoin, Etherium, XRP, <br/>Litecoin in easy steps</h3>
             </div>
             <div className="column">
+            {/* {errorResponse && (
+          <div className="invalid_cred_msg">
+          <Message negative icon>
+            <Icon name="warning circle" />
+            <Message.Content>
+              <Message.Header>Error !</Message.Header>
+              <p>{errorResponse}</p>
+            </Message.Content>
+          </Message>
+          </div>
+      )} */}
             <Form className="ui form sign-up" onSubmit={this.handleSubmit}>
             <p>Sign Up</p>
               <FormField 
@@ -279,10 +297,8 @@ class HomePage extends Component {
                     <p>We're early industry pioneers and have been around since 2013, successfully processed more than</p>  
                   </figcaption>
                 </div>
-
               </div>
             </div>
-            
           </div>
         </section>
       </React.Fragment>
