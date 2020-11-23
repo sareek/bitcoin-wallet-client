@@ -129,7 +129,7 @@ class DashboardMain extends React.Component {
                 </span> </p>
               </div>
               <Segment className="welcome-dashboard">
-                <Message color=''>
+                <Message>
                 <h2>Welcome Note</h2>
                   <div>
                     <p>

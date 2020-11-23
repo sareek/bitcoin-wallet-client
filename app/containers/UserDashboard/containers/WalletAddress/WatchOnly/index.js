@@ -11,7 +11,8 @@ import {
    makeSelectSuccess, 
    makeSelectError, 
    makeSelectGetWatchOnlyAddressResponse,
-   makeSelectGenerateWatchOnlyAddressResponse
+   makeSelectGenerateWatchOnlyAddressResponse,
+   makeSelectPostWatchOnlyError
 } from './selectors';
 import saga from './sagas'
 import reducer from './reducer'
@@ -30,7 +31,8 @@ const mapStateToProps = createStructuredSelector({
   postWatchOnlyAddressRequesting: makeSelectPostWatchOnlyAddressRequesting(),
   success: makeSelectSuccess(),
   getWatchOnlyAddressResponse: makeSelectGetWatchOnlyAddressResponse(),
-  generateWatchOnlyAddressResponse: makeSelectGenerateWatchOnlyAddressResponse()
+  generateWatchOnlyAddressResponse: makeSelectGenerateWatchOnlyAddressResponse(),
+  postWatchOnlyError: makeSelectPostWatchOnlyError(),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -74,6 +76,16 @@ class WatchOnlyAddress extends React.Component {
         this.props.getWatchOnlyAddressResponse.toJS() &&
         this.props.getWatchOnlyAddressResponse.toJS().status === 200) {
           this.setState({walletAddressesList: this.props.getWatchOnlyAddressResponse.toJS().data.address_list});
+        }
+    }
+
+    if (this.props.postWatchOnlyError != prevProps.postWatchOnlyError) {
+      if (this.props.postWatchOnlyError &&
+        this.props.postWatchOnlyError.toJS() &&
+        this.props.postWatchOnlyError.toJS().status === 400) {
+          this.setState({ showAddWalletModal: false }, () => {
+            toast.error("Address Exists");
+          })
         }
     }
   }
@@ -136,7 +148,7 @@ class WatchOnlyAddress extends React.Component {
  
   render() {
     const { showAddWalletModal, data, errors, walletAddressesList, copiedBit, copiedAddress  } = this.state;
-    const { getWatchOnlyAddressRequesting } = this.props;
+    const { getWatchOnlyAddressRequesting, postWatchOnlyAddressRequesting } = this.props;
 
     const headers = [
       {
@@ -209,6 +221,7 @@ class WatchOnlyAddress extends React.Component {
        {!!showAddWalletModal && (
           <AddWatchOnly
             title="Add Watch Only Address"
+            isRequesting={postWatchOnlyAddressRequesting}
             hideModal={this.hideModal}
             showModal={showAddWalletModal}
             handleChange={this.handleChange}

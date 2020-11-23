@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Header, Form, Modal, Dropdown, Popup } from 'semantic-ui-react';
 import InputField from 'components/common/Forms/InputField';
 
-const AddWallet = ({ hideModal, showModal, handleChange, handleSubmit, data, errors, title }) => (
+const AddWallet = ({ hideModal, showModal,isRequesting, handleChange, handleSubmit, data, errors, title }) => (
   <Modal
     size="tiny"
     onClose={() => hideModal(true)}
@@ -33,7 +33,7 @@ const AddWallet = ({ hideModal, showModal, handleChange, handleSubmit, data, err
             color="blue"
             fluid
           >
-            Create New Wallet
+             {isRequesting ? "Loading..." : "Create New Wallet"}
         </Button>
         </Form.Field>
       </Form>

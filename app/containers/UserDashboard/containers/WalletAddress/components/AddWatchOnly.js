@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Header, Form, Modal, Dropdown, Popup } from 'semantic-ui-react';
 import InputField from 'components/common/Forms/InputField';
 
-const AddWatchOnly = ({ hideModal, showModal, handleChange, handleSubmit, data, errors, title }) => (
+const AddWatchOnly = ({ hideModal, isRequesting, showModal, handleChange, handleSubmit, data, errors, title }) => (
   <Modal
     size="tiny"
     onClose={() => hideModal(true)}
@@ -44,7 +44,7 @@ const AddWatchOnly = ({ hideModal, showModal, handleChange, handleSubmit, data, 
             color="blue"
             fluid
           >
-            Create New Wallet
+            {isRequesting ? "Loading..." : "Create New Wallet"}
         </Button>
         </Form.Field>
       </Form>
