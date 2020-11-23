@@ -30,7 +30,7 @@ function* getWatchOnlyAddressRequest(action) {
 }
 
 function* generateWatchOnlyWalletAddressService(action) {
-  const { label } = action.payload;
+  const { label, address } = action.payload;
   const token = getToken();
   try {
     const decoded = jwtDecode(token);
@@ -40,10 +40,10 @@ function* generateWatchOnlyWalletAddressService(action) {
     ) {
       yield call(
         API.post(
-          `btc/generate_watch_only_address/`,
+          `btc/import_watch_only_address/`,
           actions.generateWatchOnlyWalletSuccess,
           actions.generateWatchOnlyWalletFailure,
-          {label: label, email: decoded.email},
+          {label: label, address: address, email: decoded.email},
           token,
         ),
       );

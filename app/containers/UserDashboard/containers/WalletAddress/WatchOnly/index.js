@@ -18,7 +18,7 @@ import reducer from './reducer'
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import {compose} from "redux";
-import AddWallet from '../components/AddWallet';
+import AddWatchOnly from '../components/AddWatchOnly';
 import WatchOnlyTable from 'components/Table';
 import { text_truncate } from "utils/helperFunctions";
 
@@ -63,7 +63,7 @@ class WatchOnlyAddress extends React.Component {
         this.props.generateWatchOnlyAddressResponse.toJS() &&
         this.props.generateWatchOnlyAddressResponse.toJS().status === 200) {
         this.setState({ showAddWalletModal: false }, () => {
-          toast.success("Wallet Generated Successfully");
+          toast.success("Operation Sucess");
           this.props.dispatchGetWatchOnlyAddressRequest();
         })
       }
@@ -107,7 +107,7 @@ class WatchOnlyAddress extends React.Component {
     const errors = this.validate();
     this.setState({ errors });
     if (Object.keys(errors).length === 0) {
-      this.props.dispatchGenerateWatchOnlyWalletAddress({ label: data.label })
+      this.props.dispatchGenerateWatchOnlyWalletAddress({ label: data.label, address: data.address })
     }
   };
 
@@ -115,6 +115,7 @@ class WatchOnlyAddress extends React.Component {
     const { data } = this.state;
     const errors = {};
     if (!data.label) errors.label = "Can't be blank";
+    if (!data.address) errors.address = "Can't be blank";
 
     return errors;
   };
@@ -206,7 +207,7 @@ class WatchOnlyAddress extends React.Component {
         />
         </div>
        {!!showAddWalletModal && (
-          <AddWallet
+          <AddWatchOnly
             title="Add Watch Only Address"
             hideModal={this.hideModal}
             showModal={showAddWalletModal}
