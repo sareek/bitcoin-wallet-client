@@ -138,7 +138,7 @@ class WalletsList extends React.Component {
     const headers = [
       {
         key: 1,
-        name: 'Wallet Name',
+        name: 'Wallet Label',
         field: 'label',
       },
       {

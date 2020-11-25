@@ -125,7 +125,7 @@ class HomePage extends Component {
           <div className="container ui two column stackable grid content">
             <div className="column">
               <h1>What is Wallet?</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec viverra leo, fringilla ullamcorper dolor. Suspendisse potenti. Pellentesque aliquet nisi et tristique dapibus. Etiam ultrices consectetur felis, sed tincidunt turpis laoreet quis. Nulla non dui sed dolor commodo ultrices nec sit amet lectus. </p>
+              <p>Bitcoin is a decentralized, peer-to-peer cryptocurrency system designed to allow online users to process transactions through digital units of exchange called bitcoins (BTC). It is know as the world’s first widely-adopted cryptocurrency.</p>
             </div>
             <div className="column text-center">
               <Link to={"/"} className="ui button huge orange get-started" >
@@ -141,7 +141,7 @@ class HomePage extends Component {
           <div className="container ui two column stackable grid ">
             <div className="column">
             <img src={Logo3} alt="btc wallet version 3" />
-              <h3 className="section-header">Btc wallet helps you buy Bitcoin, Etherium, XRP, <br/>Litecoin in easy steps</h3>
+              <h3 className="section-header"> BTCwallet is known  as one of the world’s most trusted and secured cryptocurrency platform. With BTCwallet, people can securely, directly and anonymously send each other digital money on the internet with a low transaction fee.  It allows you to safely  and securely send, receive, store and spend your Bitcoin.</h3>
             </div>
             <div className="column">
             {/* {errorResponse && (
@@ -224,7 +224,7 @@ class HomePage extends Component {
                   <figure>
                     <img src={MillionIcon} alt="customer satisdaction icon" />
                 </figure>
-                  <figcaption>1M-Trusted Customers</figcaption>
+                  <figcaption>It is a better way to move money</figcaption>
                 </div>
 
               </div>
@@ -233,7 +233,7 @@ class HomePage extends Component {
                   <figure>
                   <img src={WalletIcon} alt="Wallet icon" />
                 </figure>
-                  <figcaption>Processed over 1 million</figcaption>
+                  <figcaption>Decentralized</figcaption>
                 </div>
 
               </div>
@@ -242,7 +242,7 @@ class HomePage extends Component {
                   <figure>
                   <img src={EarthIcon} alt="Earth icon" />
                 </figure>
-                  <figcaption>Available in 14 Countries</figcaption>
+                  <figcaption>Pseudonymous</figcaption>
                 </div>
 
               </div>
@@ -269,8 +269,12 @@ class HomePage extends Component {
                     <img src={TrustIcon}/> 
                 </figure>
                   <figcaption>
-                    <p className="card-title">BTC Wallet is trusted</p>
-                    <p>We're early industry pioneers and have been around since 2013, successfully processed more than</p>  
+                    <p className="card-title">Privacy and Security</p>
+                    <p>
+                      BtcWallet is 100% secure. When we say your wallet is secure and your privacy is guaranteed, we really mean it. We’ve built some of the world’s most sophisticated Bitcoin security systems and have never been compromised. 
+                      <br />
+                      Btcwallet takes a comprehensive approach to protecting and securing your wallet. Our team of experts have built in a number of sophisticated measures to prevent the theft of money or information. 
+                     </p>  
                   </figcaption>
                 </div>
 
@@ -281,8 +285,8 @@ class HomePage extends Component {
                     <img src={EarthIcon2}/> 
                 </figure>
                   <figcaption>
-                    <p className="card-title">Global Expertise</p>
-                    <p>We're early industry pioneers and have been around since 2013, successfully processed more than</p>  
+                    <p className="card-title">Fast and Efficient</p>
+                    <p>BtcWallet is great for recoveries. It speeds up processes, improves efficiency and lowers cost.</p>  
                   </figcaption>
                 </div>
 
@@ -293,8 +297,8 @@ class HomePage extends Component {
                     <img src={VerifiedIcon}/> 
                 </figure>
                   <figcaption>
-                    <p className="card-title">100% secure</p>
-                    <p>We're early industry pioneers and have been around since 2013, successfully processed more than</p>  
+                    <p className="card-title">Trusted and User-friendly</p>
+                    <p>BtcWallet is trusted and People love our easy-to-use platform. Using digital currency may seem confusing sometimes especially to beginners but we are here to help. While we might have built a simple concept, we know that some aspects of cryptocurrency can seem a bit complex. BtcWallet customer support is available to all customers worldwide by phone or email.  We provide customer support in many different languages, we certainly make your Bitcoin experience the best one.</p>  
                   </figcaption>
                 </div>
               </div>
