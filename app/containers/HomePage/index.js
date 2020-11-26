@@ -224,7 +224,8 @@ class HomePage extends Component {
                   <figure>
                     <img src={MillionIcon} alt="customer satisdaction icon" />
                 </figure>
-                  <figcaption>It is a better way to move money</figcaption>
+                  <figcaption className="card card-title"><b>It is a better way to move money</b></figcaption>
+                  <p style={{color: "#FF9A00"}}>All over the world people make use of bitcoin to send money to friends and family, buy things online,  or even send anonymous transactions. It can be easier, faster, untraceable and requires a very low transaction fee compared to the use of ordinary money.</p>
                 </div>
 
               </div>
@@ -233,7 +234,8 @@ class HomePage extends Component {
                   <figure>
                   <img src={WalletIcon} alt="Wallet icon" />
                 </figure>
-                  <figcaption>Decentralized</figcaption>
+                  <figcaption className="card card-title"><b>Decentralized</b></figcaption>
+                  <p style={{color: "#FF9A00"}}>A key element of bitcoin is its decentralized status, meaning that it is not controlled or regulated by any central authority. This immediately distinguishes it from fiat currencies. Bitcoins are not issued by a central bank or government system like fiat currencies.</p>
                 </div>
 
               </div>
@@ -242,7 +244,8 @@ class HomePage extends Component {
                   <figure>
                   <img src={EarthIcon} alt="Earth icon" />
                 </figure>
-                  <figcaption>Pseudonymous</figcaption>
+                  <figcaption className="card card-title"><b>Pseudonymous</b></figcaption>
+                  <p style={{color: "#FF9A00"}}>Bitcoin transactions are protected by cryptography. This is a type of encryption technology that hides the identity of the sender and receiver involved in the transaction. That’s why Bitcoin and cryptocurrencies in general are considered pseudonymous.</p>
                 </div>
 
               </div>
@@ -270,11 +273,12 @@ class HomePage extends Component {
                 </figure>
                   <figcaption>
                     <p className="card-title">Privacy and Security</p>
-                    <p>
+                  <p>
                       BtcWallet is 100% secure. When we say your wallet is secure and your privacy is guaranteed, we really mean it. We’ve built some of the world’s most sophisticated Bitcoin security systems and have never been compromised. 
                       <br />
                       Btcwallet takes a comprehensive approach to protecting and securing your wallet. Our team of experts have built in a number of sophisticated measures to prevent the theft of money or information. 
                      </p>  
+               
                   </figcaption>
                 </div>
 
