@@ -133,12 +133,12 @@ class WalletsList extends React.Component {
 
   render() {
     const { showAddWalletModal, data, errors, walletAddressesList, copiedBit, copiedAddress } = this.state;
-    const { getWalletAddressesRequesting } = this.props;
+    const { getWalletAddressesRequesting, postWalletAddressRequesting } = this.props;
 
     const headers = [
       {
         key: 1,
-        name: 'Wallet Name',
+        name: 'Wallet Label',
         field: 'label',
       },
       {
@@ -206,6 +206,7 @@ class WalletsList extends React.Component {
         {!!showAddWalletModal && (
           <AddWallet
             title="Add New Bitcoin Address"
+            isRequesting={postWalletAddressRequesting}
             hideModal={this.hideModal}
             showModal={showAddWalletModal}
             handleChange={this.handleChange}

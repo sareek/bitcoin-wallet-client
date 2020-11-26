@@ -8,6 +8,7 @@ const makeSelectGenerateWatchOnlyAddressResponse = () => createSelector(selectWa
 const makeSelectError = () => createSelector(selectWatchOnlyAddress, state => state.get('error'));
 const makeSelectGetWatchOnlyAddressRequesting = () => createSelector(selectWatchOnlyAddress, state => state.get('getWatchOnlyWalletAddressRequesting'));
 const makeSelectPostWatchOnlyAddressRequesting = () => createSelector(selectWatchOnlyAddress, state => state.get('postWatchOnlyWalletAddressRequesting'));
+const makeSelectPostWatchOnlyError = () => createSelector(selectWatchOnlyAddress, state => state.get('postWatchOnlyError'));
 
 
 export {
@@ -16,5 +17,6 @@ export {
   makeSelectGetWatchOnlyAddressResponse,
   makeSelectGenerateWatchOnlyAddressResponse,
   makeSelectGetWatchOnlyAddressRequesting,
-  makeSelectPostWatchOnlyAddressRequesting
+  makeSelectPostWatchOnlyAddressRequesting,
+  makeSelectPostWatchOnlyError,
 };

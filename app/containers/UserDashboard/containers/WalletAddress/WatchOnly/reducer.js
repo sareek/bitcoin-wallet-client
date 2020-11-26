@@ -9,7 +9,8 @@ const initialState = fromJS({
   success: false,
   watchOnlyAddressResponse: null,
   generateWatchOnlyAddressResponse: null,
-  error: null
+  error: null,
+  postWatchOnlyError: null
 });
 
 function passwordReducer(state = initialState, action) {
@@ -39,7 +40,7 @@ function passwordReducer(state = initialState, action) {
     case type.POST_WATCHONLY_WALLET_ADDRESS_REQUEST:
       return state.merge({
         postWatchOnlyWalletAddressRequesting: true,
-        error: null,
+        postWatchOnlyError: null,
         generateWatchOnlyAddressResponse: null,
         success: false
       });
@@ -48,13 +49,14 @@ function passwordReducer(state = initialState, action) {
         postWatchOnlyWalletAddressRequesting: false,
         generateWatchOnlyAddressResponse: action.response,
         error: null,
+        postWatchOnlyError: null,
         success: true
       });
     case type.POST_WATCHONLY_WALLET_ADDRESS_FAILURE:
       return state.merge({
         postWatchOnlyWalletAddressRequesting: false,
         generateWatchOnlyAddressResponse: null,
-        error: action.error.message,
+        postWatchOnlyError: action.error,
         success: false
       });
     case type.CLEAR_STATE:

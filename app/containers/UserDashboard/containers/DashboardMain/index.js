@@ -129,15 +129,14 @@ class DashboardMain extends React.Component {
                 </span> </p>
               </div>
               <Segment className="welcome-dashboard">
-                <Message color=''>
+                <Message>
                 <h2>Welcome Note</h2>
                   <div>
                     <p>
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+                    Welcome to your personal BtcWallet account. Your account is ready to securely send and receive bitcoin. To enjoy full functionalities of this wallet, you may need to verify your account by using the KYC Form in PROFILE, or you can contact us through customersupport@btcwallet.net if you need further assistance.
                  </p>
                     <Divider clearing />
-                    <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
+                    <p> To keep your account more secured, please enable your Two-Factor Authenticator in SETTINGS.</p>
                   </div>
                 </Message>
               </Segment>
@@ -171,8 +170,7 @@ class DashboardMain extends React.Component {
             <Grid.Column width={5}>
               <Segment className="announcements">
                 <div className="sm-heading"><p className="title"><span><i className="icon bullhorn"></i></span> Announcements </p></div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
+                <p>As it is known that Btcwallet tries to update and upgrade its platform at all time. We are pleased to inform you that more cryptocurrencies like bitcoin-cash, Ethereum and litecoin will be added to in the second quarter of 2021. </p>
               </Segment>
             </Grid.Column>
           </Grid.Row>
