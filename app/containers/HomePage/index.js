@@ -272,13 +272,8 @@ class HomePage extends Component {
                     <img src={TrustIcon}/> 
                 </figure>
                   <figcaption>
-                    <p className="card-title">Privacy and Security</p>
-                  <p>
-                      BtcWallet is 100% secure. When we say your wallet is secure and your privacy is guaranteed, we really mean it. We’ve built some of the world’s most sophisticated Bitcoin security systems and have never been compromised. 
-                      <br />
-                      Btcwallet takes a comprehensive approach to protecting and securing your wallet. Our team of experts have built in a number of sophisticated measures to prevent the theft of money or information. 
-                     </p>  
-               
+                  <p className="card-title">Trusted and User-friendly</p>
+                    <p>BtcWallet is trusted and People love our easy-to-use platform. Using digital currency may seem confusing sometimes especially to beginners but we are here to help. While we might have built a simple concept, we know that some aspects of cryptocurrency can seem a bit complex. BtcWallet customer support is available to all customers worldwide by phone or email.  We provide customer support in many different languages, we certainly make your Bitcoin experience the best one.</p>  
                   </figcaption>
                 </div>
 
@@ -293,7 +288,6 @@ class HomePage extends Component {
                     <p>BtcWallet is great for recoveries. It speeds up processes, improves efficiency and lowers cost.</p>  
                   </figcaption>
                 </div>
-
               </div>
               <div className="column">
               <div className="card">
@@ -301,8 +295,13 @@ class HomePage extends Component {
                     <img src={VerifiedIcon}/> 
                 </figure>
                   <figcaption>
-                    <p className="card-title">Trusted and User-friendly</p>
-                    <p>BtcWallet is trusted and People love our easy-to-use platform. Using digital currency may seem confusing sometimes especially to beginners but we are here to help. While we might have built a simple concept, we know that some aspects of cryptocurrency can seem a bit complex. BtcWallet customer support is available to all customers worldwide by phone or email.  We provide customer support in many different languages, we certainly make your Bitcoin experience the best one.</p>  
+                  <p className="card-title">Privacy and Security</p>
+                  <p>
+                      BtcWallet is 100% secure. When we say your wallet is secure and your privacy is guaranteed, we really mean it. We’ve built some of the world’s most sophisticated Bitcoin security systems and have never been compromised. 
+                      <br />
+                      Btcwallet takes a comprehensive approach to protecting and securing your wallet. Our team of experts have built in a number of sophisticated measures to prevent the theft of money or information. 
+                     </p>  
+
                   </figcaption>
                 </div>
               </div>
