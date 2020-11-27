@@ -9,4 +9,8 @@ export const generateWalletAddress = action(types.POST_WALLET_ADDRESS_REQUEST, '
 export const generateWalletSuccess = action(types.POST_WALLET_ADDRESS_SUCCESS, 'response');
 export const generateWalletFailure = action(types.POST_WALLET_ADDRESS_FAILURE, 'error');
 
+export const deleteWalletAddress = action(types.DELETE_WALLET_ADDRESS_REQUEST, 'payload');
+export const deleteWalletSuccess = action(types.DELETE_WALLET_ADDRESS_SUCCESS, 'response');
+export const deleteWalletFailure = action(types.DELETE_WALLET_ADDRESS_FAILURE, 'error');
+
 export const clearState = action(types.CLEAR_STATE);

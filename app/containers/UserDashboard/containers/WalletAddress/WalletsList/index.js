@@ -2,41 +2,54 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
-import { clearState, getAddressRequest, generateWalletAddress } from './actions';
+import { clearState,
+         getAddressRequest, 
+         generateWalletAddress,
+         deleteWalletAddress 
+} from './actions';
 import {
   makeSelectWalletAddressesResponse,
   makeSelectPostWalletAddressResponse,
   makeSelectError,
   makeSelectGetWalletAddressRequesting,
   makeSelectPostWalletAddressRequesting,
-  makeSelectSuccess
+  makeSelectSuccess,
+  makeSelectDeleteWalletAddressResponse,
+  makeSelectDeleteWalletAddressRequesting,
+  makeSelectDeleteWalletAddressError
 } from './selectors';
 import saga from './sagas'
 import reducer from './reducer'
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import { compose } from "redux";
-import { Button } from 'semantic-ui-react';
 import WalletListTable from 'components/Table';
 import AddWallet from '../components/AddWallet';
+import DeleteWallet from '../components/DeleteWallet';
 import { toast } from 'react-toastify';
 
 import { text_truncate } from "utils/helperFunctions";
 
-import { Segment, Popup, Grid } from 'semantic-ui-react'
+import { Segment, Popup, Grid, Button } from 'semantic-ui-react'
 
 const mapStateToProps = createStructuredSelector({
   walletAddressesResponse: makeSelectWalletAddressesResponse(),
   postWalletAddressResponse: makeSelectPostWalletAddressResponse(),
   errorResponse: makeSelectError(),
   getWalletAddressesRequesting: makeSelectGetWalletAddressRequesting(),
-  postWalletAddressRequesting:makeSelectPostWalletAddressRequesting(),
+  postWalletAddressRequesting: makeSelectPostWalletAddressRequesting(),
+
+  deleteWalletAddressResponse: makeSelectDeleteWalletAddressResponse(),
+  deleteWalletAddressRequesting: makeSelectDeleteWalletAddressRequesting(),
+  deleteWalletAddressError: makeSelectDeleteWalletAddressError(),
+
   success: makeSelectSuccess()
 });
 
 const mapDispatchToProps = dispatch => ({
   dispatchGetAddressRequest: payload => dispatch(getAddressRequest(payload)),
   dispatchGenerateWalletAddress: payload => dispatch(generateWalletAddress(payload)),
+  dispatchDeleteWalletAddress: payload => dispatch(deleteWalletAddress(payload)),
   clearState: () => dispatch(clearState()),
 });
 
@@ -46,6 +59,8 @@ class WalletsList extends React.Component {
   };
   state = {
     showAddWalletModal: false,
+    showDeleteModal: false,
+    deleteData: {},
     data: {
     },
     walletAddressesList: [],
@@ -73,6 +88,16 @@ class WalletsList extends React.Component {
         this.props.walletAddressesResponse.toJS() &&
         this.props.walletAddressesResponse.toJS().status === 200) {
           this.setState({walletAddressesList: this.props.walletAddressesResponse.toJS().data.address_list});
+        }
+    }
+
+    if (this.props.deleteWalletAddressResponse != prevProps.deleteWalletAddressResponse) {
+      if (this.props.deleteWalletAddressResponse &&
+        this.props.deleteWalletAddressResponse.toJS() &&
+        this.props.deleteWalletAddressResponse.toJS().status === 200) {
+          toast.success("Wallet Deleted Successfully");
+          this.props.dispatchGetAddressRequest();
+          this.setState({showDeleteModal: false});
         }
     }
   }
@@ -131,9 +156,35 @@ class WalletsList extends React.Component {
     }, 1000);
   };
 
+  handleWalletDeleteModal = (data) => {
+    this.setState({showDeleteModal: true, deleteData: data})
+  } 
+
+  hideDeleteModal = () => {
+    this.setState({showDeleteModal: false})
+  }
+
+  handleDeleteSubmit = () => {
+    const { deleteData } = this.state;
+    // console.log(deleteData)
+    // this.props.dispatchDeleteWalletAddress(id)
+  }
+ 
   render() {
-    const { showAddWalletModal, data, errors, walletAddressesList, copiedBit, copiedAddress } = this.state;
-    const { getWalletAddressesRequesting, postWalletAddressRequesting } = this.props;
+    const { 
+         showAddWalletModal, 
+         showDeleteModal, 
+         data, 
+         errors, 
+         walletAddressesList, 
+         copiedBit, 
+         copiedAddress 
+    } = this.state;
+    const { 
+       getWalletAddressesRequesting, 
+       postWalletAddressRequesting,
+       deleteWalletAddressRequesting 
+    } = this.props;
 
     const headers = [
       {
@@ -189,7 +240,34 @@ class WalletsList extends React.Component {
             ? data.balance
             : '---';
         },
+      },
+      {
+        key: 5,
+        name: 'Action',
+        format: (data) => (
+          <div className="action" key={JSON.stringify(data)}>
+            {actions && actions.map((action) => action.format(data))}
+          </div>
+        ),
       }
+    ];
+
+    const  actions = [
+      {
+        key: 1,
+        action_title: 'remove_product',
+        format: (data) => (
+          <Button
+            size="tiny"
+            color="red"
+            onClick={() => this.handleWalletDeleteModal(data)}
+            title="Delete Wallet"
+            key={data.address_index}
+          >
+            Delete
+          </Button>
+        ),
+      },
     ];
 
     return (
@@ -213,6 +291,15 @@ class WalletsList extends React.Component {
             handleSubmit={this.handleSubmit}
             data={data}
             errors={errors}
+          />
+        )}
+          {!!showDeleteModal && (
+          <DeleteWallet
+            title="Delete Address"
+            isRequesting={deleteWalletAddressRequesting}
+            hideModal={this.hideDeleteModal}
+            showModal={showDeleteModal}
+            handleSubmit={this.handleDeleteSubmit}
           />
         )}
         <WalletListTable

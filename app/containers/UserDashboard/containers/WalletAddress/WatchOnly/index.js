@@ -12,7 +12,10 @@ import {
    makeSelectError, 
    makeSelectGetWatchOnlyAddressResponse,
    makeSelectGenerateWatchOnlyAddressResponse,
-   makeSelectPostWatchOnlyError
+   makeSelectPostWatchOnlyError,
+   makeSelectDeleteWatchOnlyWalletAddressRequesting,
+   makeSelectDeleteWatchOnlyWalletAddressResponse,
+   makeSelectDeleteWatchOnlyWalletAddressError
 } from './selectors';
 import saga from './sagas'
 import reducer from './reducer'
@@ -20,6 +23,7 @@ import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import {compose} from "redux";
 import AddWatchOnly from '../components/AddWatchOnly';
+import DeleteWallet from '../components/DeleteWallet';
 import WatchOnlyTable from 'components/Table';
 import { text_truncate } from "utils/helperFunctions";
 
@@ -33,6 +37,9 @@ const mapStateToProps = createStructuredSelector({
   getWatchOnlyAddressResponse: makeSelectGetWatchOnlyAddressResponse(),
   generateWatchOnlyAddressResponse: makeSelectGenerateWatchOnlyAddressResponse(),
   postWatchOnlyError: makeSelectPostWatchOnlyError(),
+  deleteWalletAddressResponse: makeSelectDeleteWatchOnlyWalletAddressResponse(),
+  deleteWalletAddressRequesting: makeSelectDeleteWatchOnlyWalletAddressRequesting(),
+  deleteWalletAddressError: makeSelectDeleteWatchOnlyWalletAddressError(),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -47,6 +54,8 @@ class WatchOnlyAddress extends React.Component {
   };
   state = {
     showAddWalletModal: false,
+    showDeleteModal: false,
+    deleteData: {},
     data: {
     },
     walletAddressesList: [],
@@ -86,6 +95,16 @@ class WatchOnlyAddress extends React.Component {
           this.setState({ showAddWalletModal: false }, () => {
             toast.error("Address Exists");
           })
+        }
+    }
+
+    if (this.props.deleteWalletAddressResponse != prevProps.deleteWalletAddressResponse) {
+      if (this.props.deleteWalletAddressResponse &&
+        this.props.deleteWalletAddressResponse.toJS() &&
+        this.props.deleteWalletAddressResponse.toJS().status === 200) {
+          toast.success("Wallet Deleted Successfully");
+          this.props.dispatchGetAddressRequest();
+          this.setState({showDeleteModal: false});
         }
     }
   }
@@ -145,10 +164,37 @@ class WatchOnlyAddress extends React.Component {
       this.setState({copiedBit: false, copiedAddress: ''});
     }, 1000);
   };
+
+  handleWalletDeleteModal = (data) => {
+    this.setState({showDeleteModal: true, deleteData: data})
+  } 
+
+  hideDeleteModal = () => {
+    this.setState({showDeleteModal: false})
+  }
+
+  handleDeleteSubmit = () => {
+    const { deleteData } = this.state;
+    // console.log(deleteData,'w onl')
+    // this.props.dispatchDeleteWalletAddress(id)
+  }
+ 
  
   render() {
-    const { showAddWalletModal, data, errors, walletAddressesList, copiedBit, copiedAddress  } = this.state;
-    const { getWatchOnlyAddressRequesting, postWatchOnlyAddressRequesting } = this.props;
+    const { 
+       showAddWalletModal,
+       showDeleteModal, 
+       data, 
+       errors, 
+       walletAddressesList, 
+       copiedBit, 
+       copiedAddress 
+   } = this.state;
+    const { 
+       getWatchOnlyAddressRequesting, 
+       postWatchOnlyAddressRequesting,
+       deleteWalletAddressRequesting 
+    } = this.props;
 
     const headers = [
       {
@@ -204,7 +250,34 @@ class WatchOnlyAddress extends React.Component {
             ? data.balance
             : '---';
         },
+      },
+      {
+        key: 5,
+        name: 'Action',
+        format: (data) => (
+          <div className="action" key={JSON.stringify(data)}>
+            {actions && actions.map((action) => action.format(data))}
+          </div>
+        ),
       }
+    ];
+
+    const  actions = [
+      {
+        key: 1,
+        action_title: 'remove_product',
+        format: (data) => (
+          <Button
+            size="tiny"
+            color="red"
+            onClick={() => this.handleWalletDeleteModal(data)}
+            title="Delete Wallet"
+            key={data.address_index}
+          >
+            Delete
+          </Button>
+        ),
+      },
     ];
    
     return (
@@ -228,6 +301,15 @@ class WatchOnlyAddress extends React.Component {
             handleSubmit={this.handleSubmit}
             data={data}
             errors={errors}
+          />
+        )}
+          {!!showDeleteModal && (
+          <DeleteWallet
+            title="Delete Address"
+            isRequesting={deleteWalletAddressRequesting}
+            hideModal={this.hideDeleteModal}
+            showModal={showDeleteModal}
+            handleSubmit={this.handleDeleteSubmit}
           />
         )}
           <WatchOnlyTable
