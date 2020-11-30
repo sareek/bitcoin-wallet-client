@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Button, Segment, Popup, Grid  } from 'semantic-ui-react';
 
-import { clearState, getWatchOnlyAddressRequest, generateWatchOnlyWalletAddress } from './actions';
+import { clearState, getWatchOnlyAddressRequest, deleteWatchOnlyWalletAddress,generateWatchOnlyWalletAddress } from './actions';
 import { 
    makeSelectGetWatchOnlyAddressRequesting, 
    makeSelectPostWatchOnlyAddressRequesting,
@@ -44,6 +44,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   dispatchGetWatchOnlyAddressRequest: payload => dispatch(getWatchOnlyAddressRequest(payload)),
+  dispatchDeleteWalletAddress: payload => dispatch(deleteWatchOnlyWalletAddress(payload)),
   dispatchGenerateWatchOnlyWalletAddress: payload => dispatch(generateWatchOnlyWalletAddress(payload)),
   clearState: () => dispatch(clearState())
 });
@@ -93,7 +94,8 @@ class WatchOnlyAddress extends React.Component {
         this.props.postWatchOnlyError.toJS() &&
         this.props.postWatchOnlyError.toJS().status === 400) {
           this.setState({ showAddWalletModal: false }, () => {
-            toast.error("Address Exists");
+            toast.error(this.props.postWatchOnlyError.toJS().message ? 
+                            this.props.postWatchOnlyError.toJS().message : "Invalid Address");
           })
         }
     }
@@ -103,7 +105,7 @@ class WatchOnlyAddress extends React.Component {
         this.props.deleteWalletAddressResponse.toJS() &&
         this.props.deleteWalletAddressResponse.toJS().status === 200) {
           toast.success("Wallet Deleted Successfully");
-          this.props.dispatchGetAddressRequest();
+          this.props.dispatchGetWatchOnlyAddressRequest();
           this.setState({showDeleteModal: false});
         }
     }
@@ -175,8 +177,7 @@ class WatchOnlyAddress extends React.Component {
 
   handleDeleteSubmit = () => {
     const { deleteData } = this.state;
-    // console.log(deleteData,'w onl')
-    // this.props.dispatchDeleteWalletAddress(id)
+    this.props.dispatchDeleteWalletAddress({address: deleteData.address})
   }
  
  
@@ -269,7 +270,7 @@ class WatchOnlyAddress extends React.Component {
         format: (data) => (
           <Button
             size="tiny"
-            color="red"
+            color="orange"
             onClick={() => this.handleWalletDeleteModal(data)}
             title="Delete Wallet"
             key={data.address_index}
@@ -293,7 +294,7 @@ class WatchOnlyAddress extends React.Component {
         </div>
        {!!showAddWalletModal && (
           <AddWatchOnly
-            title="Add Watch Only Address"
+            title="Add Address"
             isRequesting={postWatchOnlyAddressRequesting}
             hideModal={this.hideModal}
             showModal={showAddWalletModal}
@@ -305,7 +306,7 @@ class WatchOnlyAddress extends React.Component {
         )}
           {!!showDeleteModal && (
           <DeleteWallet
-            title="Delete Address"
+            title="Delete Wallet"
             isRequesting={deleteWalletAddressRequesting}
             hideModal={this.hideDeleteModal}
             showModal={showDeleteModal}

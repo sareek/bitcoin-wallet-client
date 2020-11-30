@@ -11,7 +11,7 @@ const DeleteWallet = ({ hideModal, showModal,isRequesting, handleChange, handleS
     closeIcon
     trigger={<Button>Show Modal</Button>}
   >
-    <Header icon='plus circle' content={title} />
+    <Header icon='delete' content={title} />
     <Modal.Content>
     <Modal.Description>
           <Header style={{color: "rgb(29 28 27)"}}>Are you sure you want to delete the Wallet?</Header>
@@ -22,7 +22,8 @@ const DeleteWallet = ({ hideModal, showModal,isRequesting, handleChange, handleS
         <Form.Field>
           <Button
             onClick={handleSubmit}
-            color="red"
+            color="orange"
+            disabled={ isRequesting ? true : false }
           >
              {isRequesting ? "Loading..." : "Delete Wallet"}
         </Button>

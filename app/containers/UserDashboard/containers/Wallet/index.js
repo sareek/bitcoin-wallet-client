@@ -18,6 +18,7 @@ import {
 } from './selectors';
 import { Button, Grid, Segment } from 'semantic-ui-react';
 import ReceiveCryptoForm from './components/ReceiveCryptoForm';
+import SendCryptoForm from './components/SendCryptoForm';
 import { Redirect } from 'react-router-dom';
 
 import {
@@ -48,6 +49,7 @@ class Wallet extends React.Component {
       this.state = {
         data: {},
         showReceiveModal: false,
+        showSendModal: false,
         walletAddresses: [],
         currentBalance: {},
         walletInfo: {},
@@ -96,13 +98,21 @@ class Wallet extends React.Component {
   }
 
   showReceiveModal = () => {
-    this.props.dispatchGetNewAddressRequest()
-    this.setState({showReceiveModal: true, data: {}})
+    this.props.dispatchGetNewAddressRequest();
+    this.setState({showReceiveModal: true, data: {}});
   }
 
   hideModal = () => {
     this.setState({showReceiveModal: false, data: {}})
     this.props.dispatchGetWalletInfoRequest();
+  }
+
+  showSendModal = () => {
+    this.setState({showSendModal: true, data: {}});
+  }
+
+  hideSendModal = () => {
+    this.setState({showSendModal: false, data: {}});
   }
 
   copyToClipBoard = (address) => {
@@ -129,8 +139,8 @@ class Wallet extends React.Component {
   }
 
   render() {
-   const { showReceiveModal, walletAddresses, currentBalance, walletInfo, copiedBit, data } = this.state;
-   const { loading, getWalletAddressesRequesting } = this.props;
+   const { showReceiveModal, showSendModal, walletAddresses, currentBalance, walletInfo, copiedBit, data } = this.state;
+   const { loading, getWalletAddressesRequesting, sendWalletAddressesRequesting } = this.props;
    return (
       <div>
         <p className="title">  <i className="icon bitcoin"></i> Bitcoin Wallet </p>
@@ -146,6 +156,16 @@ class Wallet extends React.Component {
              getWalletAddressesRequesting={getWalletAddressesRequesting}
            />
          )}
+          {!!showSendModal && (
+           <SendCryptoForm 
+             data={data}
+             hideModal= {this.hideSendModal}
+             showSendModal={showSendModal}
+             handleChange={this.handleChange}
+             submitSendAddress={this.submitSendAddress}
+             getWalletAddressesRequesting={sendWalletAddressesRequesting}
+           />
+         )}
         <Grid>
           <Grid.Row>
             <Grid.Column className="text-center">
@@ -153,8 +173,8 @@ class Wallet extends React.Component {
                content="Receive"
                labelPosition='right'
                icon='download'
-               onClick={this.showReceiveModal}
                color="orange"
+               onClick={this.showReceiveModal}
                className="mr-2"
             />
              <Button 
@@ -162,8 +182,8 @@ class Wallet extends React.Component {
                 labelPosition='right'
                 icon='send'
                 color="orange"
-                disabled
-              
+                onClick={this.showSendModal}
+                className="mr-2"
               />
               </Grid.Column>
               </Grid.Row>

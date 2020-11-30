@@ -8,6 +8,7 @@ const initialState = fromJS({
   getWalletAddressRequesting: false,
   postWalletAddressRequesting: false,
   postAddressResponse: null,
+  postWalletAddressError: {},
   deleteWalletAddressRequesting: false,
   deleteWalletAddressError: null,
   deleteWalletAddressResponse: {},
@@ -41,6 +42,7 @@ function walletsListReducer(state = initialState, action) {
     case types.POST_WALLET_ADDRESS_REQUEST:
       return state.merge({
         postWalletAddressRequesting: true,
+        postWalletAddressError: null,
         error: null,
         postAddressResponse: null,
         success: false
@@ -48,6 +50,7 @@ function walletsListReducer(state = initialState, action) {
     case types.POST_WALLET_ADDRESS_SUCCESS:
       return state.merge({
         postWalletAddressRequesting: false,
+        postWalletAddressError: null,
         error: null,
         postAddressResponse: action.response,
         success: true
@@ -58,6 +61,7 @@ function walletsListReducer(state = initialState, action) {
         postWalletAddressRequesting: false,
         postAddressResponse: null,
         error: action.error.message,
+        postWalletAddressError: action.error,
         success: false
       });  
 
@@ -80,7 +84,7 @@ function walletsListReducer(state = initialState, action) {
       return state.merge({
         deleteWalletAddressRequesting: false,
         deleteAddressResponse: null,
-        deleteAddressError: action.error.message,
+        deleteWalletAddressError: action.error,
         success: false
       });   
     case types.CLEAR_STATE:

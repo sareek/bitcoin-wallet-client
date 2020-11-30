@@ -10,6 +10,7 @@ const makeSelectUser = () => createSelector(selectWalletListInfo, state => state
 
 const makeSelectPostWalletAddressRequesting = () => createSelector(selectWalletListInfo, state => state.get('postWalletAddressRequesting'));
 const makeSelectPostWalletAddressResponse = () => createSelector(selectWalletListInfo, state => state.get('postAddressResponse'));
+const makeSelectPostWalletAddressError = () => createSelector(selectWalletListInfo, state => state.get('postWalletAddressError'));
 
 const makeSelectDeleteWalletAddressRequesting = () => createSelector(selectWalletListInfo, state => state.get('deleteWalletAddressRequesting'));
 const makeSelectDeleteWalletAddressResponse = () => createSelector(selectWalletListInfo, state => state.get('deleteWalletAddressResponse'));
@@ -21,9 +22,10 @@ export {
   makeSelectError,
   makeSelectUser,
   makeSelectPostWalletAddressResponse,
+  makeSelectPostWalletAddressError,
   makeSelectGetWalletAddressRequesting,
   makeSelectPostWalletAddressRequesting,
   makeSelectDeleteWalletAddressResponse,
   makeSelectDeleteWalletAddressRequesting,
-  makeSelectDeleteWalletAddressError
+  makeSelectDeleteWalletAddressError,
 };

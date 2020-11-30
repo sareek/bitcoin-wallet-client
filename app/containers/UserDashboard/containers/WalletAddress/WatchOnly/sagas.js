@@ -54,7 +54,7 @@ function* generateWatchOnlyWalletAddressService(action) {
 }
 
 function* deleteWatchOnlyWalletAddressService(action) {
-  const {  } = action.payload;
+  const { address } = action.payload;
   const token = getToken();
   try {
     const decoded = jwtDecode(token);
@@ -62,15 +62,15 @@ function* deleteWatchOnlyWalletAddressService(action) {
       typeof decoded === 'object' &&
       decoded.hasOwnProperty('email') 
     ) {
-      // yield call(
-      //   API.post(
-      //     `btc/import_watch_only_address/`,
-      //     actions.deleteWatchOnlyWalletSuccess,
-      //     actions.deleteWatchOnlyWalletFailure,
-      //     {label: label, address: address, email: decoded.email},
-      //     token,
-      //   ),
-      // );
+      yield call(
+        API.post(
+          `btc/archive_address/`,
+          actions.deleteWatchOnlyWalletSuccess,
+          actions.deleteWatchOnlyWalletFailure,
+          {address: address, email: decoded.email},
+          token,
+        ),
+      );
     }
   } catch(error) {
     throw(error);

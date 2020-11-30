@@ -9,10 +9,11 @@ import { clearState,
 } from './actions';
 import {
   makeSelectWalletAddressesResponse,
-  makeSelectPostWalletAddressResponse,
   makeSelectError,
   makeSelectGetWalletAddressRequesting,
   makeSelectPostWalletAddressRequesting,
+  makeSelectPostWalletAddressResponse,
+  makeSelectPostWalletAddressError,
   makeSelectSuccess,
   makeSelectDeleteWalletAddressResponse,
   makeSelectDeleteWalletAddressRequesting,
@@ -36,8 +37,10 @@ const mapStateToProps = createStructuredSelector({
   walletAddressesResponse: makeSelectWalletAddressesResponse(),
   postWalletAddressResponse: makeSelectPostWalletAddressResponse(),
   errorResponse: makeSelectError(),
+
   getWalletAddressesRequesting: makeSelectGetWalletAddressRequesting(),
   postWalletAddressRequesting: makeSelectPostWalletAddressRequesting(),
+  postWalletAddressError: makeSelectPostWalletAddressError(),
 
   deleteWalletAddressResponse: makeSelectDeleteWalletAddressResponse(),
   deleteWalletAddressRequesting: makeSelectDeleteWalletAddressRequesting(),
@@ -83,6 +86,17 @@ class WalletsList extends React.Component {
       }
     }
 
+    if (this.props.postWalletAddressError != prevProps.postWalletAddressError) {
+      if (this.props.postWalletAddressError &&
+        this.props.postWalletAddressError.toJS() &&
+        this.props.postWalletAddressError.toJS().status === 400) {
+          this.setState({ showAddWalletModal: false }, () => {
+            toast.error(this.props.postWalletAddressError.toJS().message ? 
+                           this.props.postWalletAddressError.toJS().message : "Address Exists");
+          })
+        }
+    }
+
     if (this.props.walletAddressesResponse != prevProps.walletAddressesResponse) {
       if (this.props.walletAddressesResponse &&
         this.props.walletAddressesResponse.toJS() &&
@@ -98,6 +112,17 @@ class WalletsList extends React.Component {
           toast.success("Wallet Deleted Successfully");
           this.props.dispatchGetAddressRequest();
           this.setState({showDeleteModal: false});
+        }
+    }
+
+    if (this.props.deleteWalletAddressError != prevProps.deleteWalletAddressError) {
+      if (this.props.deleteWalletAddressError &&
+        this.props.deleteWalletAddressError.toJS() &&
+        this.props.deleteWalletAddressError.toJS().status === 400) {
+          this.setState({ showAddWalletModal: false }, () => {
+            toast.error(this.props.deleteWalletAddressError.toJS().message ? 
+                           this.props.deleteWalletAddressError.toJS().message : "Error while deleting");
+          })
         }
     }
   }
@@ -166,8 +191,7 @@ class WalletsList extends React.Component {
 
   handleDeleteSubmit = () => {
     const { deleteData } = this.state;
-    // console.log(deleteData)
-    // this.props.dispatchDeleteWalletAddress(id)
+    this.props.dispatchDeleteWalletAddress({address: deleteData.address})
   }
  
   render() {
@@ -259,7 +283,7 @@ class WalletsList extends React.Component {
         format: (data) => (
           <Button
             size="tiny"
-            color="red"
+            color="orange"
             onClick={() => this.handleWalletDeleteModal(data)}
             title="Delete Wallet"
             key={data.address_index}
@@ -295,7 +319,7 @@ class WalletsList extends React.Component {
         )}
           {!!showDeleteModal && (
           <DeleteWallet
-            title="Delete Address"
+            title="Delete Wallet"
             isRequesting={deleteWalletAddressRequesting}
             hideModal={this.hideDeleteModal}
             showModal={showDeleteModal}

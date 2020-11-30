@@ -54,7 +54,7 @@ function* getAddressRequest(action) {
   }
 
   function* deleteWalletAddressService(action) {
-    const {  } = action.payload;
+    const { address } = action.payload;
     const token = getToken();
     try {
       const decoded = jwtDecode(token);
@@ -62,15 +62,15 @@ function* getAddressRequest(action) {
         typeof decoded === 'object' &&
         decoded.hasOwnProperty('email') 
       ) {
-        // yield call(
-        //   API.post(
-        //     `btc/delete_wallet_address/`,
-        //     actions.deleteWalletSuccess,
-        //     actions.deleteWalletFailure,
-        //     {label: label, email: decoded.email},
-        //     token,
-        //   ),
-        // );
+        yield call(
+          API.post(
+            `btc/archive_address/`,
+            actions.deleteWalletSuccess,
+            actions.deleteWalletFailure,
+            {address: address, email: decoded.email},
+            token,
+          ),
+        );
       }
     } catch(error) {
       throw(error);
