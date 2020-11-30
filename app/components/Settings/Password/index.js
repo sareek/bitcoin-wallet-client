@@ -42,6 +42,15 @@ class Password extends React.Component {
   componentWillUnmount() {
     this.props.clearState();
   }
+  componentDidUpdate(prevProps) {
+    if (this.props.successResponse != prevProps.successResponse) {
+      if (this.props.successResponse &&
+        this.props.successResponse.toJS() &&
+        this.props.successResponse.toJS().status === 200) {
+          toast.success("Password Changed Successfully");
+      }
+    }
+  }
   handleChange = e => {
     e.persist();
     let { errors } = this.state;
@@ -63,10 +72,10 @@ class Password extends React.Component {
   validate = () => {
     const { data } = this.state;
     const errors = {};
-    if (!data.password) errors.password = "Please enter a password";
+    if (!data.new_password) errors.new_password = "Please enter a password";
     if (!data.old_password) errors.old_password = "Enter old password";
     if (!data.retyped_password) errors.retyped_password = "Retype new password";
-    if (data.password !== data.retyped_password) errors.retyped_password = "New password and retyped password must be same.";
+    if (data.new_password !== data.retyped_password) errors.retyped_password = "New password and retyped password must be same.";
     return errors;
   };
   handleSubmit = e => {
@@ -80,13 +89,7 @@ class Password extends React.Component {
   render() {
     const { data, errors } = this.state;
     const { successResponse, errorResponse, requesting, success } = this.props;
-    let message;
-    if (successResponse && typeof successResponse === "string") {
-      message = <Toaster message={successResponse} timeout={3000} success />;
-    }
-    if (errorResponse && typeof errorResponse === "string") {
-      message = <Toaster message={errorResponse} timeout={3000} error />;
-    }
+ 
     return (
       <Segment>
         { message && message }
@@ -98,17 +101,17 @@ class Password extends React.Component {
             />
           </div>
           <div className="pos-rel field">
-            <PasswordInputField password={data.password || ''} placeholder="New Password"
-                                onChange={this.handleChange} error={errors.password} name="password"
+            <PasswordInputField password={data.new_password || ''} placeholder="New Password"
+                                onChange={this.handleChange} error={errors.new_password} name="new_password"
             />
           </div>
-          <PasswordIndicator password={data.password || ''} />
+          {/* <PasswordIndicator password={data.password || ''} /> */}
           <div className="pos-rel field">
             <PasswordInputField password={data.retyped_password || ''} label="Retype Password" placeholder="Retype Password"
                                 onChange={this.handleChange} error={errors.retyped_password} name="retyped_password"
             />
           </div>
-          <div className="field">
+          {/* <div className="field">
             <label className="custom-control custom-checkbox">
               <input
                 className="custom-control-input"
@@ -120,7 +123,7 @@ class Password extends React.Component {
               <span className="custom-control-indicator" />{' '}
               <span className="custom-control-description">Also Logout from other devices</span>{' '}
             </label>
-          </div>
+          </div> */}
           <Button
             style={{borderRadius: "20px"}}
             type="submit"

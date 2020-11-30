@@ -10,7 +10,10 @@ const initialState = fromJS({
   watchOnlyAddressResponse: null,
   generateWatchOnlyAddressResponse: null,
   error: null,
-  postWatchOnlyError: null
+  postWatchOnlyError: null,
+  deleteWatchOnlyWalletAddressRequesting: false,
+  deleteWatchOnlyAddressError: null,
+  deleteWatchOnlyAddressResponse: {}
 });
 
 function passwordReducer(state = initialState, action) {
@@ -59,6 +62,29 @@ function passwordReducer(state = initialState, action) {
         postWatchOnlyError: action.error,
         success: false
       });
+
+    case type.DELETE_WATCHONLY_WALLET_ADDRESS_REQUEST:
+      return state.merge({
+        deleteWatchOnlyWalletAddressRequesting: true,
+        deleteWatchOnlyAddressError: null,
+        deleteWatchOnlyAddressResponse: null,
+        success: false
+      });
+    case type.DELETE_WATCHONLY_WALLET_ADDRESS_SUCCESS:
+      return state.merge({
+        deleteWatchOnlyWalletAddressRequesting: false,
+        deleteWatchOnlyAddressError: null,
+        deleteWatchOnlyAddressResponse: action.response,
+        success: true
+      });
+      
+    case type.DELETE_WATCHONLY_WALLET_ADDRESS_FAILURE:
+      return state.merge({
+        deleteWatchOnlyWalletAddressRequesting: false,
+        deleteWatchOnlyAddressResponse: null,
+        deleteWatchOnlyAddressError: action.error.message,
+        success: false
+      }); 
     case type.CLEAR_STATE:
     case LOGOUT_SUCCESS:
       return initialState;

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {createStructuredSelector} from 'reselect';
 import { connect } from 'react-redux';
-import moment from 'moment';
 import { updateBasicInfoRequest, basicInfoClearState } from './actions';
 import { makeSelectResponse, makeSelectError, makeSelectRequesting, makeSelectSuccess } from './selectors';
 import { DOCUMENT_URL_UPDATE } from 'containers/App/constants';
@@ -39,29 +38,25 @@ class BasicInfo extends React.Component {
     files: {},
     avatarImage: this.props.user.get('image_name') ? `${DOCUMENT_URL_UPDATE}${this.props.user.get('image_name')}` : null,
     imageFile: null,
-    date: null,
-    focused: false,
     errors: {}
   };
   componentDidMount() {
     if (this.props.user.size > 0) {
       const userObj = this.props.user.toJS();
-      if (!!userObj.birth_date) this.setState(state => ({ date: moment(userObj.birth_date, "MM-DD-YYYY") }));
-      if (!!userObj.image_name) this.setState(state => ({ avatarImage: `${DOCUMENT_URL_UPDATE}${userObj.image_name}` }));
       this.setState(state => ({ data: { ...userObj } }));
     }
   }
   componentDidUpdate(prevProps) {
     if (prevProps.user !== this.props.user) {
       const userObj = this.props.user && this.props.user.toJS();
-      if (!!userObj.birth_date) this.setState(state => ({ date: moment(userObj.birth_date, "MM-DD-YYYY")}));
-      if (!!userObj.image_name) this.setState(state => ({ avatarImage: `${DOCUMENT_URL_UPDATE}${userObj.image_name}` }));
       this.setState(state => ({ data: { ...userObj } }));
     }
   }
+
   componentWillUnmount() {
     this.props.clearState();
   }
+
   handleCheckBox = e => {
     e.persist();
     this.setState(state => ({
@@ -71,14 +66,7 @@ class BasicInfo extends React.Component {
       }
     }));
   };
-  handleDateChange = (date) => {
-    this.setState(state => ({
-      data: {
-        ...state.data,
-        birth_date: date
-      }
-    }));
-  };
+
   handleChange = e => {
     e.persist();
     this.setState(state => ({
@@ -88,12 +76,6 @@ class BasicInfo extends React.Component {
       }
     }));
   };
-
-  onDrop = (imgFile) => {
-    imgFile[0].preview = URL.createObjectURL(imgFile[0]);
-    this.setState({imageFile: imgFile[0],avatarImage: imgFile[0].preview, newImage:true});
-  }
-
 
   handleFileRemove = (imageName, errorName) => {
     delete this.state.files[imageName];
@@ -139,73 +121,60 @@ class BasicInfo extends React.Component {
     }
   };
 
-  setEditorRef = (editor) => this.editor = editor;
-
-  onCrop = (e) => {
-    e.preventDefault();
-    if (this.editor) {
-      const canvas = this.editor.getImage().toDataURL();
-      fetch(canvas)
-      .then(res => res.blob())
-      .then(blob => {
-        const file = new File([blob], "profilepic.jpg");
-        this.setState({
-          imageFile: file,
-          avatarImage: canvas
-        })
-      })
-      
-    }
-  }
-
-  handleNewImage = (e) => {
-    e.preventDefault();
-
+  handleDropDown = (e, se) => {
     this.setState({
-      avatarImage:e.target.files[0]
+      data: {
+        ...this.state.data,
+        [se.name]: se.value
+      }
     })
   }
 
-  handleRadioChange = (e, { name, value }) => this.setState({ data: { ...this.state.data, [name]: value } });
+  handleRadioChange = (e, { name, value }) => {
+    this.setState({ data: { ...this.state.data, [name]: value } });
+  }
+  
   handleSubmit = e => {
     e.preventDefault();
     const { data, imageFile, files } = this.state;
     console.log({data}, {files})
+    const errors = this.validateForm();
     debugger;
-    if (!!imageFile) {
-      this.props.updateBasicInfoRequest(data, imageFile);
+    if (!!files) {
+      this.props.updateBasicInfoRequest(data, files);
     } else {
       this.props.updateBasicInfoRequest(data);
     }
   };
-  onDateChange = date => this.setState({date});
-  onFocusChange = ({focused}) => this.setState({focused});
-  isOutsideRange = day => !(day.isBefore(moment()));
+
+  validateForm = () => {
+     const { data } = this.state;
+     const errors = {};
+     if (!data.first_name) errors.first_name = 'Please enter your first name';
+     if (!data.last_name) errors.last_name = 'Please enter your last name';
+
+     this.setState({ errors });
+     return errors;
+  }
 
   render() {
-    const { data, avatarImage, date, focused, newImage, files, errors } = this.state;
+    const { data, avatarImage, files, errors } = this.state;
     const { successResponse, errorResponse, requesting } = this.props;
-    let message;
-    if (successResponse && typeof successResponse === "string") {
-      message = <Toaster message={successResponse} timeout={1000} success/>;
-    }
-    if (errorResponse && typeof errorResponse === "string") {
-      message = <Toaster message={errorResponse} timeout={1000} error/>;
-    }
-    // todo: clean too many parameters in BasicInfoForm
+
     return (
       <div className="segment">
-        {message && message}
         <BasicInfoForm
-          date={date} focused={focused} onDateChange={this.onDateChange} onFocusChange={this.onFocusChange}
-          isOutsideRange={this.isOutsideRange} user={data} avatarImage={avatarImage} onDrop={this.onDrop}
-          handleChange={this.handleChange} handleSubmit={this.handleSubmit} isLoading={requesting}
-          datechange={this.handleDateChange} handleCheckBox={this.handleCheckBox}
+          user={data} 
+          avatarImage={avatarImage} 
+          handleChange={this.handleChange} 
+          handleSubmit={this.handleSubmit} 
+          isLoading={requesting}
+          handleCheckBox={this.handleCheckBox}
           handleGenderChange={this.handleRadioChange}
-          setEditorRef={this.setEditorRef} onCrop={this.onCrop} newImage={newImage}
           handleFileRemove={this.handleFileRemove}
           handleOnDropRejected={this.handleOnDropRejected}
           handleOnDrop={this.handleOnDrop}
+          handleDropDown={this.handleDropDown}
           files={files}
           errors={errors}
         />

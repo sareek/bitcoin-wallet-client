@@ -19,6 +19,7 @@ function passwordReducer(state = initialState, action) {
         success: false
       });
     case type.UPDATE_PASSWORD_SUCCESS:
+      console.log(action,';;;;')
       return state.merge({
         requesting: false,
         response: action.response.message,

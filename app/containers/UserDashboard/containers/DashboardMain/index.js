@@ -67,7 +67,7 @@ class DashboardMain extends React.Component {
     chart.data = values;
 
     let title = chart.titles.create();
-    title.text = "Average USD market price across major bitcoin exchanges.";
+    title.text = "Bitcoin Chart";
     title.fontSize = 25;
     title.marginBottom = 30;
 
@@ -170,7 +170,7 @@ class DashboardMain extends React.Component {
             <Grid.Column width={5}>
               <Segment className="announcements">
                 <div className="sm-heading"><p className="title"><span><i className="icon bullhorn"></i></span> Announcements </p></div>
-                <p>As it is known that Btcwallet tries to update and upgrade its platform at all time. We are pleased to inform you that more cryptocurrencies like bitcoin-cash, Ethereum and litecoin will be added to in the second quarter of 2021. </p>
+                <p>With growing popularity for the use and storage of different cryptocurrencies in recent times,  Btcwallet is subject to update and upgrade its platform periodically. We are pleased to inform you that more cryptocurrencies like Bitcoin-cash, Ethereum, Litecoin and Tether will be added in the second quarter of 2021.</p>
               </Segment>
             </Grid.Column>
           </Grid.Row>

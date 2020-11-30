@@ -53,8 +53,33 @@ function* getAddressRequest(action) {
     }
   }
 
+  function* deleteWalletAddressService(action) {
+    const { address } = action.payload;
+    const token = getToken();
+    try {
+      const decoded = jwtDecode(token);
+      if (
+        typeof decoded === 'object' &&
+        decoded.hasOwnProperty('email') 
+      ) {
+        yield call(
+          API.post(
+            `btc/archive_address/`,
+            actions.deleteWalletSuccess,
+            actions.deleteWalletFailure,
+            {address: address, email: decoded.email},
+            token,
+          ),
+        );
+      }
+    } catch(error) {
+      throw(error);
+    }
+  }
+
 
 export default function* walletsListWatcher() {
   yield takeLatest(types.GET_ADDRESS_REQUEST, getAddressRequest);
+  yield takeLatest(types.DELETE_WALLET_ADDRESS_REQUEST, deleteWalletAddressService);
   yield takeLatest(types.POST_WALLET_ADDRESS_REQUEST, generateWalletAddressService);
 }

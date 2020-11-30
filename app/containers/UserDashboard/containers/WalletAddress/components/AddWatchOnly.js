@@ -41,8 +41,9 @@ const AddWatchOnly = ({ hideModal, isRequesting, showModal, handleChange, handle
         <Form.Field>
           <Button
             onClick={handleSubmit}
-            color="blue"
+            color="orange"
             fluid
+            disabled={isRequesting ? true : false }
           >
             {isRequesting ? "Loading..." : "Create New Wallet"}
         </Button>

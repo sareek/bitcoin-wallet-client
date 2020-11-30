@@ -53,7 +53,32 @@ function* generateWatchOnlyWalletAddressService(action) {
   }
 }
 
+function* deleteWatchOnlyWalletAddressService(action) {
+  const { address } = action.payload;
+  const token = getToken();
+  try {
+    const decoded = jwtDecode(token);
+    if (
+      typeof decoded === 'object' &&
+      decoded.hasOwnProperty('email') 
+    ) {
+      yield call(
+        API.post(
+          `btc/archive_address/`,
+          actions.deleteWatchOnlyWalletSuccess,
+          actions.deleteWatchOnlyWalletFailure,
+          {address: address, email: decoded.email},
+          token,
+        ),
+      );
+    }
+  } catch(error) {
+    throw(error);
+  }
+}
+
 export default function* watchOnlyWatcher() {
   yield takeLatest(types.GET_WATCHONLY_ADDRESS_REQUEST, getWatchOnlyAddressRequest);
   yield takeLatest(types.POST_WATCHONLY_WALLET_ADDRESS_REQUEST, generateWatchOnlyWalletAddressService);
+  yield takeLatest(types.DELETE_WATCHONLY_WALLET_ADDRESS_REQUEST, deleteWatchOnlyWalletAddressService);
 }
