@@ -189,28 +189,28 @@ class Wallet extends React.Component {
               </Grid.Row>
               {loading ? (
                 <Grid.Row>
-                  <Grid.Column width={4}>
+                  <Grid.Column computer={4} tablet={8} mobile={16}>
                    <div className="loader_wallet"></div>
                   </Grid.Column>
                 </Grid.Row>
               ) : (
                 <>
                   <Grid.Row>
-                <Grid.Column width={4}>
+                <Grid.Column computer={4} tablet={8} mobile={16}>
                     <Segment className="stats">
                     <p className="stats__title">BTC Balance</p>
                     <p className="stats__value">{walletInfo && walletInfo.btc_balance ? 
                               `$${walletInfo.btc_balance}` : 'N/A'}</p>
                   </Segment>
                 </Grid.Column>
-                <Grid.Column width={4}>
+                <Grid.Column computer={4} tablet={8} mobile={16}>
                     <Segment className="stats">
                     <p className="stats__title">BTC Price</p>
                       <p className="stats__value">{walletInfo && walletInfo.btc_price ? 
                         `$${walletInfo.btc_price}` : 'N/A'}</p>
                   </Segment>
                 </Grid.Column>
-                <Grid.Column width={4}>
+                <Grid.Column computer={4} tablet={8} mobile={16}>
                     <Segment className="stats">
                     <p className="stats__title">USD Balance</p>
                     <p className="stats__value">{walletInfo && walletInfo.usd_balance ? 
@@ -218,7 +218,7 @@ class Wallet extends React.Component {
                   </Segment>
                 </Grid.Column>
                 {currentBalance && currentBalance.unconfirmed_balance ? (
-                  <Grid.Column width={4}>
+                  <Grid.Column computer={4} tablet={8} mobile={16}>
                   <Segment className="stats">
                   <p className="stats__title">Pending BTC Balance</p>
                   <p className="stats__value">{walletInfo && walletInfo.btc_balance ? 
