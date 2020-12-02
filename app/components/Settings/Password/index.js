@@ -14,6 +14,8 @@ import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import {compose} from "redux";
 
+import { toast } from 'react-toastify';
+
 import {  Segment } from 'semantic-ui-react';
 
 const mapStateToProps = createStructuredSelector({
@@ -47,7 +49,17 @@ class Password extends React.Component {
       if (this.props.successResponse &&
         this.props.successResponse.toJS() &&
         this.props.successResponse.toJS().status === 200) {
-          toast.success("Password Changed Successfully");
+          toast.success(this.props.successResponse.toJS().message ?
+                           this.props.successResponse.toJS().message : "Password Changed Successfully");
+      }
+    }
+
+    if (this.props.errorResponse != prevProps.errorResponse) {
+      if (this.props.errorResponse &&
+        this.props.errorResponse.toJS() &&
+        this.props.errorResponse.toJS().status === 400) {
+          toast.error(this.props.errorResponse.toJS().message ?
+                           this.props.errorResponse.toJS().message : "Password Change error");
       }
     }
   }
@@ -92,7 +104,6 @@ class Password extends React.Component {
  
     return (
       <Segment>
-        { message && message }
         <Form className="form" onSubmit={this.handleSubmit}>
           <h2>Change Password</h2>
           <div className="pos-rel field">

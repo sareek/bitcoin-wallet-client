@@ -19,10 +19,9 @@ function passwordReducer(state = initialState, action) {
         success: false
       });
     case type.UPDATE_PASSWORD_SUCCESS:
-      console.log(action,';;;;')
       return state.merge({
         requesting: false,
-        response: action.response.message,
+        response: action.response,
         error: null,
         success: true
       });
@@ -30,7 +29,7 @@ function passwordReducer(state = initialState, action) {
       return state.merge({
         requesting: false,
         response: null,
-        error: action.error.message,
+        error: action.error,
         success: false
       });
     case type.CLEAR_STATE:

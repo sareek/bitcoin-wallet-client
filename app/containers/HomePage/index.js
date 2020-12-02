@@ -251,7 +251,9 @@ class HomePage extends Component {
               </div>
             </div>
             <div className="text-center">
+            <Link to={"/register"}>
               <button className="ui button orange" type="submit">BUY BITCOIN</button>
+            </Link>
             </div>
           </div>
         </section>
