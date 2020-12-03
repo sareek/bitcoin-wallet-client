@@ -11,6 +11,7 @@ const AdminDashboard = lazy(() => import('containers/AdminDashboard/Loadable'));
 const UserDashboard = lazy(() => import('containers/UserDashboard/Loadable'));
 const HomeLayout = lazy(() => import('containers/HomeLayout'));
 const HomePage = lazy(() => import('containers/HomePage/Loadable'));
+const AboutPage = lazy(() => import('containers/About/Loadable'));
 
 // import Login from 'containers/Login';
 import NotFoundPage from 'containers/NotFoundPage';
@@ -48,6 +49,15 @@ class Routes extends React.PureComponent {
 					render={props => (
 						<HomeLayout>
 						<HomePage {...props} />
+						</HomeLayout>
+					)}
+				/>
+           <Route
+					exact
+					path="/about"
+					render={props => (
+						<HomeLayout>
+						<AboutPage {...props} />
 						</HomeLayout>
 					)}
 				/>
