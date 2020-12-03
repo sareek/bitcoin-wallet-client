@@ -160,8 +160,8 @@ class SignupForm extends React.Component {
     if (!data.username) errors.username = "Can't be blank";
     if (data.username && data.username.length > 26)
       errors.username = "Can't be more than 26 characters";
-    if (data.username && !/^[a-zA-Z]+$/.test(data.username))
-      errors.username = 'Can only contain letters';
+    // if (data.username && !/^[a-zA-Z]+$/.test(data.username))
+    //   errors.username = 'Can only contain letters';
     if (!data.email) errors.email = "Can't be blank";
     if (!data.password) errors.password = 'password_error';
     return errors;
