@@ -108,6 +108,7 @@ class Wallet extends React.Component {
   }
 
   showSendModal = () => {
+    this.props.dispatchGetNewAddressRequest();
     this.setState({showSendModal: true, data: {}});
   }
 
@@ -138,6 +139,42 @@ class Wallet extends React.Component {
     })
   }
 
+  handleChange = e => {
+    const { walletInfo } = this.state;
+
+    const btcPresent = walletInfo && walletInfo.btc_price ? walletInfo.btc_price : 'N/A';
+
+    e.persist();
+    if(e.target.name === "amount") {
+      this.setState(state => ({
+        data: {
+          ...state.data,
+          [e.target.name]: e.target.value,
+          btc_amount: btcPresent !== 'N/A' ? (e.target.value / btcPresent).toFixed(6) : 'N/A'
+        }
+      }));
+    } else if(e.target.name === "btc_amount") {
+      this.setState(state => ({
+        data: {
+          ...state.data,
+          [e.target.name]: e.target.value,
+          amount:  btcPresent !== 'N/A' ? (e.target.value * btcPresent) : 'N/A'
+        }
+      }));
+    } else {
+      this.setState(state => ({
+        data: {
+          ...state.data,
+          [e.target.name]: e.target.value,
+        }
+      }));
+    }
+  };
+
+  submitSendAddress = () => {
+    console.log(this.state.data)
+  }
+
   render() {
    const { showReceiveModal, showSendModal, walletAddresses, currentBalance, walletInfo, copiedBit, data } = this.state;
    const { loading, getWalletAddressesRequesting, sendWalletAddressesRequesting } = this.props;
@@ -164,6 +201,10 @@ class Wallet extends React.Component {
              handleChange={this.handleChange}
              submitSendAddress={this.submitSendAddress}
              getWalletAddressesRequesting={sendWalletAddressesRequesting}
+             getWalletAddressesRequesting={getWalletAddressesRequesting}
+             handleDropDown={this.handleDropDown}
+             walletOptions={walletAddresses}
+             btcPrice={walletInfo && walletInfo.btc_price}
            />
          )}
         <Grid>

@@ -312,7 +312,7 @@ class MultiFactorAuth extends React.Component {
                       placeholder="Enter the token from authenticator app" error={errors.totp_token && errors.totp_token}
                     />
                     <Button
-                     color="purple"
+                     color="orange"
                       type="submit"
                       loading={isRequesting}
                       disabled={isRequesting}

@@ -24,6 +24,7 @@ const ReceiveCryptoForm = ({
       trigger={<Button>Show Modal</Button>}
     >
       <Header icon='download' content='Request Bitcoin' />
+      {console.log(walletOptions,'<rece')}
       <Modal.Content>
         <Form size="large">
           <Form.Field>

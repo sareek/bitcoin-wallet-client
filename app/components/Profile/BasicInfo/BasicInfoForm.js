@@ -38,6 +38,7 @@ const BasicInfoForm = (
             <label>First Name</label>
             <input
               name="first_name"
+              placeholder="First Name"
               value={user.first_name || ''}
               onChange={handleChange}
             />
@@ -49,6 +50,7 @@ const BasicInfoForm = (
             <label>Last Name</label>
             <input
               name="last_name"
+              placeholder="Last Name"
               value={user.last_name || ''}
               onChange={handleChange}
             />
@@ -124,6 +126,7 @@ const BasicInfoForm = (
             <label>User Name</label>
             <input
               name="username"
+              placeholder="User Name"
               value={user.username || ''}
               onChange={handleChange}
             />
@@ -132,6 +135,7 @@ const BasicInfoForm = (
             <label>Email</label>
             <input
               name="email"
+              placeholder="Email"
               value={user.email || ''}
               onChange={handleChange}
             />
@@ -144,6 +148,7 @@ const BasicInfoForm = (
           <InputField
             type="text"
             label="Address Line 1"
+            placeholder="Address Line 1"
             name="address_address_line_1"
             value={user.address_address_line_1 || ''}
             onChange={handleChange}
@@ -151,6 +156,7 @@ const BasicInfoForm = (
           <InputField
             type="text"
             label="Address Line 2"
+            placeholder="Address Line 2"
             name="address_address_line_2"
             value={user.address_address_line_2 || ''}
             onChange={handleChange}
@@ -160,6 +166,7 @@ const BasicInfoForm = (
           <InputField
             type="text"
             label="City"
+            placeholder="City"
             name="address_city"
             value={user.address_city || ''}
             onChange={handleChange}
@@ -167,6 +174,7 @@ const BasicInfoForm = (
           <InputField
             type="text"
             label="State/Province/Region"
+            placeholder="State/Province/Region"
             name="address_state_region_province"
             value={user.address_state_region_province || ''}
             onChange={handleChange}
@@ -186,6 +194,7 @@ const BasicInfoForm = (
           <InputField
             type="text"
             label="ZIP/Postal Code"
+            placeholder='ZIP/Postal Code'
             name="address_zip_postal_code"
             value={user.address_zip_postal_code || ''}
             onChange={handleChange}
