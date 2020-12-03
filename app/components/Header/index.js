@@ -15,7 +15,7 @@ class Header extends React.PureComponent {
             <img src={Logo}/>
            </Link>
           <div className="right menu">
-            <Link to={'/'} className="active item">
+            <Link to={'/about'} className="active item">
               About
              </Link>
 

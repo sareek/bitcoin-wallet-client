@@ -14,7 +14,7 @@ const DeleteWallet = ({ hideModal, showModal,isRequesting, handleChange, handleS
     <Header icon='delete' content={title} />
     <Modal.Content>
     <Modal.Description>
-          <Header style={{color: "rgb(29 28 27)"}}>Are you sure you want to delete the Wallet?</Header>
+          <Header style={{color: "rgb(29 28 27)"}}>Warning!!! Do Not Archive Wallet.</Header>
       </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
@@ -25,7 +25,7 @@ const DeleteWallet = ({ hideModal, showModal,isRequesting, handleChange, handleS
             color="orange"
             disabled={ isRequesting ? true : false }
           >
-             {isRequesting ? "Loading..." : "Delete Wallet"}
+             {isRequesting ? "Loading..." : "Archive Wallet"}
         </Button>
         </Form.Field>
       </Form>
