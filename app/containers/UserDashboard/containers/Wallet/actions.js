@@ -1,6 +1,20 @@
 import action from 'utils/action';
 import * as types from './constants';
 
+
+export const sendWalletAddressRequest = action(
+  types.SEND_WALLET_ADDRESS_REQUEST,
+  'payload'
+);
+export const sendWalletAddressSuccess = action(
+  types.SEND_WALLET_ADDRESS_SUCCESS,
+  'response',
+);
+export const sendWalletAddressFailure = action(
+  types.SEND_WALLET_ADDRESS_FAILURE,
+  'error',
+);
+
 export const getNewAddressRequest = action(
   types.GET_NEW_ADDRESS_REQUEST,
 );

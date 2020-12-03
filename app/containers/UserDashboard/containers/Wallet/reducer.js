@@ -6,6 +6,9 @@ const initialState = fromJS({
   loading: '',
   requesting: false,
   getWalletAddressesRequesting: false,
+  sendWalletAddressRequesting: false,
+  sendWalletAddressResponse: {},
+  sendWalletAddressError: {},
   response: '',
   walletAddresses: {},
   currentBalance: {},
@@ -24,6 +27,27 @@ function walletSettings(state = initialState, action) {
         walletAddresses: '',
         error: '',
       });
+
+    case types.SEND_WALLET_ADDRESS_REQUEST:
+      return state.merge({
+        sendWalletAddressRequesting: true,
+        sendWalletAddressResponse: {},
+        sendWalletAddressError: {},
+      });
+
+    case types.SEND_WALLET_ADDRESS_SUCCESS:
+      return state.merge({
+        sendWalletAddressRequesting: false,
+        sendWalletAddressResponse: fromJS(action.response.data),
+        sendWalletAddressError: {}
+      }); 
+      
+    case types.SEND_WALLET_ADDRESS_FAILURE:
+        return state.merge({
+          sendWalletAddressRequesting: false,
+          sendWalletAddressResponse: {},
+          sendWalletAddressError: action.error,
+      });  
     
     case types.GET_NEW_ADDRESS_REQUEST:
         return state.merge({

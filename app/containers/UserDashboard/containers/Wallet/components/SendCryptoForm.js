@@ -1,13 +1,11 @@
 import React from 'react';
-import { Button, Header, Form, Modal, Dropdown, Popup, Message, TextArea } from 'semantic-ui-react';
-import QRCode from 'qrcode.react';
-import { crytoCoinsOptions } from 'utils/constants';
-import copy from 'assets/images/exchange/additional/copy.svg'
+import { Button, Header, Form, Modal, Dropdown, TextArea } from 'semantic-ui-react';
 
 const SendCryptoForm = ({
     hideModal,
     showSendModal,
     data,
+    errors,
     handleChange,
     submitSendAddress,
     handleDropDown,
@@ -34,7 +32,7 @@ const SendCryptoForm = ({
                                 <Dropdown
                                     width={6}
                                     search
-                                    name="selectedAddress"
+                                    name="from_address"
                                     placeholder='Select address'
                                     fluid
                                     selection
@@ -42,56 +40,71 @@ const SendCryptoForm = ({
                                     onChange={handleDropDown}
                                 />
                             </div>
+                            {errors.from_address && (
+                                <span style={{ color: 'red' }}>{errors.from_address}</span>
+                                )}
                         </Form.Field>
                     </Form.Group>
                     <Form.Group widths="equal">
                         <Form.Field>
-                            <label>Address</label>
+                            <label>To Address</label>
                             <input
-                                name="sendAddress"
+                                name="to_address"
                                 placeholder="Address"
-                                value={data.sendAddress || ''}
+                                value={data.to_address || ''}
                                 onChange={handleChange}
                             />
+                            {errors.to_address && (
+                            <span style={{ color: 'red' }}>{errors.to_address}</span>
+                            )}
                         </Form.Field>
                     </Form.Group>
-
                     <Form.Group widths="equal">
                         {btcPrice && (
-                               <Form.Field>
-                               <label>Amount</label>
-                               <input
-                                   name="amount"
-                                   placeholder="Amount"
-                                   value={data.amount || ''}
-                                   onChange={handleChange}
-                               />
-                           </Form.Field>
+                            <Form.Field>
+                                <label>Amount ($)</label>
+                                <input
+                                    type="number"
+                                    name="usd_amount"
+                                    placeholder="Amount in USD"
+                                    value={data.usd_amount || ''}
+                                    onChange={handleChange}
+                                />
+                            </Form.Field>
                         )}
-                     
                         <Form.Field>
                             <label>BTC</label>
                             <input
+                                type="number"
                                 name="btc_amount"
                                 placeholder="Amount in BTC"
                                 value={data.btc_amount || ''}
                                 onChange={handleChange}
                             />
+                             {errors.btc_amount && (
+                                <span style={{ color: 'red' }}>{errors.btc_amount}</span>
+                                )}
                         </Form.Field>
                     </Form.Group>
                     <Form.Group widths="equal">
                         <Form.Field>
-                          <TextArea className="textarea-description" placeholder='Description (Optional)' />
+                            <TextArea
+                                className="textarea-description"
+                                placeholder='Description (Optional)'
+                                name="description"
+                                value={data.description || ''}
+                                onChange={handleChange}
+                            />
                         </Form.Field>
                     </Form.Group>
                     <Form.Group>
-                    <Form.Field>
-                       <span className="text-muted">Estimated confirmation time 1+ hour</span>
-                    </Form.Field>
+                        <Form.Field>
+                            <span className="text-muted">Estimated confirmation time 1+ hour</span>
+                        </Form.Field>
                     </Form.Group>
                     <Form.Field>
                         <Button
-                            content="Done"
+                            content="Send"
                             fluid
                             onClick={() => submitSendAddress()}
                             color="orange"

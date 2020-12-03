@@ -77,7 +77,34 @@ function* getWallentInfoRequest(action) {
   }
 }
 
+function* sendWalletAddressService(action) {
+  const { btc_amount, from_address, to_address, usd_amount, description  } = action.payload;
+  const token = getToken();
+  try {
+    const decoded = jwtDecode(token);
+    if (
+      typeof decoded === 'object' &&
+      decoded.hasOwnProperty('email') 
+    ) {
+      yield call(
+        API.post(
+          `btc/forward_balance/`,
+          actions.sendWalletAddressSuccess,
+          actions.sendWalletAddressFailure,
+          {email: decoded.email, from_address, to_address, usd_amount, btc_amount, description},
+          token,
+        ),
+      );
+    }
+  } catch(error) {
+    throw(error);
+  }
+}
+
+
+
 export default function* walletWatcher() {
+  yield takeLatest(types.SEND_WALLET_ADDRESS_REQUEST, sendWalletAddressService);
   yield takeLatest(types.GET_NEW_ADDRESS_REQUEST, getNewAddressRequest);
   yield takeLatest(types.GET_BALANCE_REQUEST, getBalanceRequest);
   yield takeLatest(types.GET_WALLENT_INFO_REQUEST, getWallentInfoRequest);

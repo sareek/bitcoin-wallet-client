@@ -139,7 +139,6 @@ class BasicInfo extends React.Component {
     const { data, imageFile, files } = this.state;
     console.log({data}, {files})
     const errors = this.validateForm();
-    debugger;
     if (!!files) {
       this.props.updateBasicInfoRequest(data, files);
     } else {

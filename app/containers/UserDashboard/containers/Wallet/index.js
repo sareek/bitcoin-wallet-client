@@ -7,7 +7,6 @@ import injectReducer from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './sagas';
 import { compose } from 'redux';
-import bitcoinLogo from 'assets/images/exchange/additional/bitcoin.svg'
 import {
   makeSelectLoading,
   makeSelectGetWalletAddresses,
@@ -25,6 +24,7 @@ import {
   getNewAddressRequest,
   getBalanceRequest,
   getWalletInfoRequest,
+  sendWalletAddressRequest
 } from './actions'
 
 const mapStateToProps = createStructuredSelector({
@@ -38,6 +38,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   showDialog: dialog => dispatch(showDialog(dialog)),
+  dispatchSendWalletAddressRequest: (data) => dispatch(sendWalletAddressRequest(data)),
   dispatchGetNewAddressRequest: () => dispatch(getNewAddressRequest()),
   dispatchGetWalletInfoRequest: () => dispatch(getWalletInfoRequest()),
   dispatchGetBalanceRequest: (walletInfo) => dispatch(getBalanceRequest(walletInfo))
@@ -48,6 +49,7 @@ class Wallet extends React.Component {
     super(props);
       this.state = {
         data: {},
+        errors: {},
         showReceiveModal: false,
         showSendModal: false,
         walletAddresses: [],
@@ -131,6 +133,8 @@ class Wallet extends React.Component {
   };
 
   handleDropDown = (e, se) => {
+    let { errors } = this.state;
+    if (!!errors[se.name] && !!se.value) delete errors[se.name];
     this.setState({
       data: {
         ...this.state.data,
@@ -141,11 +145,12 @@ class Wallet extends React.Component {
 
   handleChange = e => {
     const { walletInfo } = this.state;
-
+    let { errors } = this.state;
+    if (!!errors[e.target.name] && !!e.target.value) delete errors[e.target.name];
     const btcPresent = walletInfo && walletInfo.btc_price ? walletInfo.btc_price : 'N/A';
 
     e.persist();
-    if(e.target.name === "amount") {
+    if(e.target.name === "usd_amount") {
       this.setState(state => ({
         data: {
           ...state.data,
@@ -158,7 +163,7 @@ class Wallet extends React.Component {
         data: {
           ...state.data,
           [e.target.name]: e.target.value,
-          amount:  btcPresent !== 'N/A' ? (e.target.value * btcPresent) : 'N/A'
+          usd_amount:  btcPresent !== 'N/A' ? (e.target.value * btcPresent) : 'N/A'
         }
       }));
     } else {
@@ -172,11 +177,35 @@ class Wallet extends React.Component {
   };
 
   submitSendAddress = () => {
-    console.log(this.state.data)
+    const { data } = this.state;
+    console.log(data)
+    const errors = this.validateForm();
+    this.setState({ errors });
+    if (Object.keys(errors).length === 0) {
+      this.props.dispatchSendWalletAddressRequest(data);
+    }
   }
 
+  validateForm = () => {
+    const { data } = this.state;
+    const errors = {};
+    if (!data.btc_amount) errors.btc_amount = "Please enter a btc value";
+    if (!data.from_address) errors.from_address = "Please enter a btc value";
+    if (!data.to_address) errors.to_address = "Please enter a btc value";
+    return errors;
+  };
+
   render() {
-   const { showReceiveModal, showSendModal, walletAddresses, currentBalance, walletInfo, copiedBit, data } = this.state;
+   const { 
+       showReceiveModal, 
+       showSendModal, 
+       walletAddresses, 
+       currentBalance, 
+       walletInfo, 
+       copiedBit, 
+       data,
+       errors 
+    } = this.state;
    const { loading, getWalletAddressesRequesting, sendWalletAddressesRequesting } = this.props;
    return (
       <div>
@@ -196,6 +225,7 @@ class Wallet extends React.Component {
           {!!showSendModal && (
            <SendCryptoForm 
              data={data}
+             errors={errors}
              hideModal= {this.hideSendModal}
              showSendModal={showSendModal}
              handleChange={this.handleChange}
