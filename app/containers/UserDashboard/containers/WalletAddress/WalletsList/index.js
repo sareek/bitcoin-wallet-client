@@ -285,10 +285,10 @@ class WalletsList extends React.Component {
             size="tiny"
             color="orange"
             onClick={() => this.handleWalletDeleteModal(data)}
-            title="Delete Wallet"
+            title="Archive Wallet"
             key={data.address_index}
           >
-            Delete
+            Archive
           </Button>
         ),
       },
@@ -319,7 +319,7 @@ class WalletsList extends React.Component {
         )}
           {!!showDeleteModal && (
           <DeleteWallet
-            title="Delete Wallet"
+            title="Archive Wallet"
             isRequesting={deleteWalletAddressRequesting}
             hideModal={this.hideDeleteModal}
             showModal={showDeleteModal}
