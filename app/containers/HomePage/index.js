@@ -230,7 +230,7 @@ class HomePage extends Component {
 
               </div>
               <div className="column">
-                <div>
+                <div className="card">
                   <figure>
                     <img src={WalletIcon} alt="Wallet icon" />
                   </figure>
@@ -240,7 +240,7 @@ class HomePage extends Component {
 
               </div>
               <div className="column">
-                <div>
+                <div className="card">
                   <figure>
                     <img src={EarthIcon} alt="Earth icon" />
                   </figure>
@@ -251,9 +251,9 @@ class HomePage extends Component {
               </div>
             </div>
             <div className="text-center">
-            <Link to={"/register"}>
-              <button className="ui button orange" type="submit">BUY BITCOIN</button>
-            </Link>
+              <Link to={"/register"} className="ui button orange buy-btn">
+              BUY BITCOIN
+              </Link>
             </div>
           </div>
         </section>
