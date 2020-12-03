@@ -120,9 +120,9 @@ class DashboardMain extends React.Component {
     const { bitcoinExchangeRequesting } = this.props;
     return (
       <div>
-        <Grid divided='vertically'>
+        <Grid divided='vertically' doubling stackable>
           <Grid.Row >
-            <Grid.Column width={11}>
+            <Grid.Column computer={11} tablet={16}>
               <div className="main-heading">
                 <p className="title">  <i className="icon tv"></i> Welcome, <span className="text-muted">
                   {userDetails && userDetails.username ? ` ${userDetails.username}` : ''}
@@ -167,7 +167,7 @@ class DashboardMain extends React.Component {
                 </div>
               </Segment> */}
             </Grid.Column>
-            <Grid.Column width={5}>
+            <Grid.Column computer={5} tablet={16}>
               <Segment className="announcements">
                 <div className="sm-heading"><p className="title"><span><i className="icon bullhorn"></i></span> Announcements </p></div>
                 <p>With growing popularity for the use and storage of different cryptocurrencies in recent times,  Btcwallet is subject to update and upgrade its platform periodically. We are pleased to inform you that more cryptocurrencies like Bitcoin-cash, Ethereum, Litecoin and Tether will be added in the second quarter of 2021.</p>

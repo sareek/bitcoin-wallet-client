@@ -223,7 +223,7 @@ class WalletsList extends React.Component {
           return (
             <>
              <Grid columns='equal'>
-              <Grid.Column width={14}>
+              <Grid.Column computer={14} tablet={12} mobile={13}>
                 <Popup
                     trigger={  
                     <div className="wallet-address-table">
@@ -235,7 +235,7 @@ class WalletsList extends React.Component {
                     basic
                   /> 
               </Grid.Column>
-              <Grid.Column width={2}>
+              <Grid.Column computer={2} tablet={4} mobile={3}>
               <Popup
                 content={copiedBit ? 'copied' : 'copy'}
                 on='click'
