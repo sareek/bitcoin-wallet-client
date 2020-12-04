@@ -31,7 +31,11 @@ class AboutPage extends Component {
   render() {
     return (
       <React.Fragment>
-        ABOUT SECTION
+       <section className="inner-banner">
+        
+
+
+       </section>
       </React.Fragment>
     );
   }
