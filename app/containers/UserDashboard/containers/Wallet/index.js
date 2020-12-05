@@ -289,9 +289,13 @@ class Wallet extends React.Component {
                 <Popup
                     trigger={  
                     <div className="wallet-address-table">
+                      <a href={`https://www.blockchain.com/btc-testnet/tx/${data.txid}`}
+                         target="_blank"
+                      >
                       {data
                         ? text_truncate(data.txid ?  data.txid : "---", 33) 
                         : '---'}
+                      </a>
                       </div>}
                     content={data.txid}
                     basic
@@ -325,7 +329,7 @@ class Wallet extends React.Component {
           return data
             ?
              <>
-              <Label color={data.status === 'received' ? 'green' : ''} horizontal>
+              <Label color={data.status === 'Received' ? 'green' : ''} horizontal>
                 {data.status}
              </Label>
             </> 
