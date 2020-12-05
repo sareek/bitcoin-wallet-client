@@ -29,7 +29,7 @@ const BasicInfoForm = (
   }
 ) =>
   (<Form onSubmit={handleSubmit} className="py-2 form">
-    <h2>KYC</h2>
+ 
     <div className="form__elements">
       <Segment>
         <h3>Personal Info</h3>

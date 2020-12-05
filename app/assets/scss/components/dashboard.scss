@@ -26,6 +26,7 @@
   margin-left: 220px;
   @media screen and (max-width:768px){
     margin-left:50px;
+    padding:30px 10px;
   }
 }
 .message.toaster {
@@ -81,6 +82,12 @@
     &.bitcoin{
       color: #ff7b00;
     }
+    @media screen and (max-width:768px){
+      font-size: 22px;
+    }
+  }
+  @media screen and (max-width:768px){
+    font-size: 22px;
   }
 }
 
