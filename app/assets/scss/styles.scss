@@ -22,6 +22,8 @@
   overflow: hidden;
   min-height: 100vh;
   background: #f9f9f9;
+  min-width: 375px;
+ 
 }
 @import 'base/mixins.scss';
 @import 'base/variables.scss';
