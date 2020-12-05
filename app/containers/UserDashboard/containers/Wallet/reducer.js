@@ -14,6 +14,9 @@ const initialState = fromJS({
   currentBalance: {},
   walletInfo: {},
   error: '',
+  getTransactionInfoRequesting: false,
+  getTransactionInfoResponse: {},
+  getTransactionInfoError: {},
 });
 
 function walletSettings(state = initialState, action) {
@@ -48,6 +51,27 @@ function walletSettings(state = initialState, action) {
           sendWalletAddressResponse: {},
           sendWalletAddressError: action.error,
       });  
+
+    case types.GET_TRANSACTION_INFO_REQUEST:
+      return state.merge({
+        getTransactionInfoRequesting: true,
+        getTransactionInfoResponse: {},
+        getTransactionInfoError: {},
+      });
+
+    case types.GET_TRANSACTION_INFO_SUCCESS:
+      return state.merge({
+        getTransactionInfoRequesting: false,
+        getTransactionInfoResponse: fromJS(action.response),
+        getTransactionInfoError: {}
+      }); 
+      
+    case types.GET_TRANSACTION_INFO_FAILURE:
+        return state.merge({
+          getTransactionInfoRequesting: false,
+          getTransactionInfoResponse: {},
+          getTransactionInfoError: action.error,
+      });    
     
     case types.GET_NEW_ADDRESS_REQUEST:
         return state.merge({

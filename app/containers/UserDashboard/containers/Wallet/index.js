@@ -13,18 +13,29 @@ import {
   makeSelectCurrentBalance,
   makeSelectGetWalletInfo,
   makeSelectError,
-  makeSelectGetWalletAddressesRequesting
+  makeSelectGetWalletAddressesRequesting,
+  makeSelectSendWalletAddressesRequesting,
+  makeSelectSendWalletAddressesResponse,
+  makeSelectSendWalletAddressesError,
+  makeSelectGetTransactionInfoRequesting,
+  makeSelectGetTransactionInfoResponse,
+  makeSelectGetTransactionInfoError
 } from './selectors';
-import { Button, Grid, Segment } from 'semantic-ui-react';
+import { Button, Grid, Segment, Popup, Label, Divider } from 'semantic-ui-react';
+import { text_truncate } from "utils/helperFunctions";
 import ReceiveCryptoForm from './components/ReceiveCryptoForm';
 import SendCryptoForm from './components/SendCryptoForm';
 import { Redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import TransactionsTable from 'components/Table';
+import moment from 'moment';
 
 import {
   getNewAddressRequest,
   getBalanceRequest,
   getWalletInfoRequest,
-  sendWalletAddressRequest
+  sendWalletAddressRequest,
+  getTransactionInfoRequest
 } from './actions'
 
 const mapStateToProps = createStructuredSelector({
@@ -33,12 +44,19 @@ const mapStateToProps = createStructuredSelector({
   walletInfo: makeSelectGetWalletInfo(),
   loading: makeSelectLoading(),
   error: makeSelectError(),
-  getWalletAddressesRequesting: makeSelectGetWalletAddressesRequesting() 
+  getWalletAddressesRequesting: makeSelectGetWalletAddressesRequesting(),
+  sendWalletAddressesRequesting: makeSelectSendWalletAddressesRequesting(),
+  sendWalletAddressesResponse: makeSelectSendWalletAddressesResponse(),
+  sendWalletAddressesError: makeSelectSendWalletAddressesError(),
+  getTransactionInfoRequesting: makeSelectGetTransactionInfoRequesting(),
+  getTransactionInfoResponse: makeSelectGetTransactionInfoResponse(),
+  getTransactionInfoError: makeSelectGetTransactionInfoError() 
 });
 
 const mapDispatchToProps = dispatch => ({
   showDialog: dialog => dispatch(showDialog(dialog)),
   dispatchSendWalletAddressRequest: (data) => dispatch(sendWalletAddressRequest(data)),
+  dispatchGetTransactionInfoRequest: (data) => dispatch(getTransactionInfoRequest(data)),
   dispatchGetNewAddressRequest: () => dispatch(getNewAddressRequest()),
   dispatchGetWalletInfoRequest: () => dispatch(getWalletInfoRequest()),
   dispatchGetBalanceRequest: (walletInfo) => dispatch(getBalanceRequest(walletInfo))
@@ -50,16 +68,19 @@ class Wallet extends React.Component {
       this.state = {
         data: {},
         errors: {},
+        transactionsList: [],
         showReceiveModal: false,
         showSendModal: false,
         walletAddresses: [],
         currentBalance: {},
         walletInfo: {},
-        copiedBit: false
+        copiedBit: false,
+        copiedAddress: ''
        };
   }
   componentDidMount() {
     this.props.dispatchGetWalletInfoRequest();
+    this.props.dispatchGetTransactionInfoRequest();
   }
 
   componentDidUpdate(prevProps) {
@@ -97,6 +118,43 @@ class Wallet extends React.Component {
         // if(this.state.walletInfo && this.state.walletInfo.btc_address && this.state.walletInfo.btc_address !== 'NA') this.props.dispatchGetBalanceRequest(this.state.walletInfo);
       });
     }  
+
+    if (this.props.sendWalletAddressesResponse != prevProps.sendWalletAddressesResponse) {
+      if (this.props.sendWalletAddressesResponse &&
+        this.props.sendWalletAddressesResponse.toJS() &&
+        this.props.sendWalletAddressesResponse.toJS().status === 200) {
+          toast.success(this.props.sendWalletAddressesResponse.toJS().message ?
+          this.props.sendWalletAddressesResponse.toJS().message : "Sent Successfuly" );
+          this.setState({showSendModal: false});
+        }
+    }
+
+    if (this.props.sendWalletAddressesError != prevProps.sendWalletAddressesError) {
+      if (this.props.sendWalletAddressesError &&
+        this.props.sendWalletAddressesError.toJS() &&
+        this.props.sendWalletAddressesError.toJS().status === 400) {
+            toast.error(this.props.sendWalletAddressesError.toJS().message ? 
+                           this.props.sendWalletAddressesError.toJS().message : "Error while sending");
+          this.setState({showSendModal: false});
+        }
+    }
+    if (this.props.getTransactionInfoResponse != prevProps.getTransactionInfoResponse) {
+      if (this.props.getTransactionInfoResponse &&
+        this.props.getTransactionInfoResponse.toJS() &&
+        this.props.getTransactionInfoResponse.toJS().status === 200) {
+          this.setState({transactionsList: this.props.getTransactionInfoResponse.toJS().data.transaction_data});
+        }
+    }
+
+    if (this.props.getTransactionInfoError != prevProps.getTransactionInfoError) {
+      if (this.props.getTransactionInfoError &&
+        this.props.getTransactionInfoError.toJS() &&
+        this.props.getTransactionInfoError.toJS().status === 400) {
+            toast.error(this.props.getTransactionInfoError.toJS().message ? 
+                           this.props.getTransactionInfoError.toJS().message : "Error while getting trasaction info");
+          this.setState({showSendModal: false});
+        }
+    }
   }
 
   showReceiveModal = () => {
@@ -126,9 +184,9 @@ class Wallet extends React.Component {
     dummyElement.select();
     document.execCommand('copy');
     document.body.removeChild(dummyElement);
-    this.setState({copiedBit: true});
+    this.setState({copiedBit: true, copiedAddress: address});
     setTimeout(() => {
-      this.setState({copiedBit: false});
+      this.setState({copiedBit: false, copiedAddress: ''});
     }, 1000);
   };
 
@@ -178,7 +236,6 @@ class Wallet extends React.Component {
 
   submitSendAddress = () => {
     const { data } = this.state;
-    console.log(data)
     const errors = this.validateForm();
     this.setState({ errors });
     if (Object.keys(errors).length === 0) {
@@ -203,10 +260,87 @@ class Wallet extends React.Component {
        currentBalance, 
        walletInfo, 
        copiedBit, 
+       copiedAddress, 
        data,
-       errors 
+       errors,
+       transactionsList 
     } = this.state;
-   const { loading, getWalletAddressesRequesting, sendWalletAddressesRequesting } = this.props;
+   const { 
+         loading, 
+         getWalletAddressesRequesting,
+         sendWalletAddressesRequesting,
+         getTransactionInfoRequesting
+      } = this.props;
+
+   const headers = [
+      {
+        key: 1,
+        name: 'Balance',
+        field: 'balance',
+      },
+      {
+        name: 'Transaction Id',
+        key: 2,
+        format: data => {
+          return (
+            <>
+              <Grid columns='equal'>
+              <Grid.Column computer={14} tablet={12} mobile={13}>
+                <Popup
+                    trigger={  
+                    <div className="wallet-address-table">
+                      {data
+                        ? text_truncate(data.txid ?  data.txid : "---", 33) 
+                        : '---'}
+                      </div>}
+                    content={data.txid}
+                    basic
+                  /> 
+              </Grid.Column>
+              <Grid.Column computer={2} tablet={4} mobile={3}>
+              <Popup
+                content={copiedBit ? 'copied' : 'copy'}
+                on='click'
+                open={copiedAddress === data.txid}
+                trigger={<button
+                  type="button"
+                  name="copyToken"
+                  value="copy"
+                  className="copyToken ui right icon button"
+                  onClick={() => this.copyToClipBoard(data.txid)}
+                >
+                  <i className="copy icon"></i>
+                </button>}
+              />
+              </Grid.Column>
+            </Grid>
+          </>
+        )
+        },
+      },
+      {
+        name: 'Status',
+        key: 3,
+        format: data => {
+          return data
+            ?
+             <>
+              <Label color={data.status === 'received' ? 'green' : ''} horizontal>
+                {data.status}
+             </Label>
+            </> 
+            : '---';
+        },
+      },
+      {
+        name: 'Created At',
+        key: 3,
+        format: data => {
+          return data.timestamp ? moment(data.timestamp).format('YYYY-MM-DD HH:mm:ss') : '--'
+        },
+      },      
+    ];
+
    return (
       <div>
         <p className="title">  <i className="icon bitcoin"></i> Bitcoin Wallet </p>
@@ -298,10 +432,15 @@ class Wallet extends React.Component {
                 </Grid.Column>
                 ) : null }
               </Grid.Row>
+              <Divider className="homepage-divider" />
               <Grid.Row>
                 <Grid.Column>
-                  <p><b>Transactions</b></p>
-                  <p>All your Bitcoin transactions will show up here.</p>
+                  <h3><b>Transactions</b></h3>
+                  <TransactionsTable
+                    headers={headers}
+                    tableData={transactionsList}
+                    requesting={getTransactionInfoRequesting}
+                  />
                 </Grid.Column>
               </Grid.Row>
                 </>

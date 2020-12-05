@@ -1,6 +1,18 @@
 import action from 'utils/action';
 import * as types from './constants';
 
+export const getTransactionInfoRequest = action(
+  types.GET_TRANSACTION_INFO_REQUEST,
+  'payload'
+);
+export const getTransactionInfoSuccess = action(
+  types.GET_TRANSACTION_INFO_SUCCESS,
+  'response',
+);
+export const getTransactionInfoFailure = action(
+  types.GET_TRANSACTION_INFO_FAILURE,
+  'error',
+);
 
 export const sendWalletAddressRequest = action(
   types.SEND_WALLET_ADDRESS_REQUEST,

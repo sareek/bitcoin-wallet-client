@@ -101,9 +101,32 @@ function* sendWalletAddressService(action) {
   }
 }
 
+function* getTransactionInfoRequest() {
+  const token = getToken();
+  try {
+    const decoded = jwtDecode(token);
+    if (
+      typeof decoded === 'object' &&
+      decoded.hasOwnProperty('email') 
+    ) {
+      yield call(
+        API.post(
+          `btc/get_transaction/`,
+          actions.getTransactionInfoSuccess,
+          actions.getTransactionInfoFailure,
+          {email: decoded.email, currency: 'bitcoin'},
+          token,
+        ),
+      );
+    }
+  } catch(error) {
+    throw(error);
+  }
+}
 
 
 export default function* walletWatcher() {
+  yield takeLatest(types.GET_TRANSACTION_INFO_REQUEST, getTransactionInfoRequest);
   yield takeLatest(types.SEND_WALLET_ADDRESS_REQUEST, sendWalletAddressService);
   yield takeLatest(types.GET_NEW_ADDRESS_REQUEST, getNewAddressRequest);
   yield takeLatest(types.GET_BALANCE_REQUEST, getBalanceRequest);

@@ -21,7 +21,6 @@ const SendCryptoForm = ({
             closeIcon
             trigger={<Button>Show Modal</Button>}
         >
-            {console.log(walletOptions)}
             <Header icon='send' content='Send Wallet Address' />
             <Modal.Content>
                 <Form size="large">
@@ -36,7 +35,7 @@ const SendCryptoForm = ({
                                     placeholder='Select address'
                                     fluid
                                     selection
-                                    options={walletOptions}
+                                    options={typeof walletOptions !== 'string' ? walletOptions : []}
                                     onChange={handleDropDown}
                                 />
                             </div>
