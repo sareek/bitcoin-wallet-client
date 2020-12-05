@@ -39,6 +39,38 @@ const makeSelectGetWalletAddressesRequesting = () =>
     selectWallet,
     state => state.get('getWalletAddressesRequesting'),
   ); 
+
+const makeSelectSendWalletAddressesRequesting = () =>
+  createSelector(
+    selectWallet,
+    state => state.get('sendWalletAddressRequesting'),
+  ); 
+const makeSelectSendWalletAddressesResponse = () =>
+  createSelector(
+    selectWallet,
+    state => state.get('sendWalletAddressResponse'),
+  ); 
+const makeSelectSendWalletAddressesError = () =>
+  createSelector(
+    selectWallet,
+    state => state.get('sendWalletAddressError'),
+  );   
+
+const makeSelectGetTransactionInfoRequesting = () =>
+  createSelector(
+    selectWallet,
+    state => state.get('getTransactionInfoRequesting'),
+  ); 
+const makeSelectGetTransactionInfoResponse = () =>
+  createSelector(
+    selectWallet,
+    state => state.get('getTransactionInfoResponse'),
+  ); 
+const makeSelectGetTransactionInfoError = () =>
+  createSelector(
+    selectWallet,
+    state => state.get('getTransactionInfoError'),
+  );   
   
 export {
   makeSelectResponse,
@@ -47,5 +79,11 @@ export {
   makeSelectGetWalletAddresses,
   makeSelectCurrentBalance,
   makeSelectGetWalletInfo,
-  makeSelectGetWalletAddressesRequesting
+  makeSelectGetWalletAddressesRequesting,
+  makeSelectSendWalletAddressesRequesting,
+  makeSelectSendWalletAddressesResponse,
+  makeSelectSendWalletAddressesError,
+  makeSelectGetTransactionInfoRequesting,
+  makeSelectGetTransactionInfoResponse,
+  makeSelectGetTransactionInfoError
 };
