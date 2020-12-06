@@ -44,7 +44,7 @@ class AboutPage extends Component {
           <Breadcrumb>
             <Header>About Us</Header>
              <Link to= "/">
-            <Breadcrumb.Section link>Home</Breadcrumb.Section>
+            <Breadcrumb.Section>Home</Breadcrumb.Section>
             </Link>
             <Breadcrumb.Divider />
             <Breadcrumb.Section active>About</Breadcrumb.Section>
