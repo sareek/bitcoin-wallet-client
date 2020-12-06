@@ -32,7 +32,7 @@ class Header extends React.PureComponent {
             <div>
               <Button className="hamburger-menu"><Icon name="bars" /></Button>
             </div>
-            <div className="mobile-navigation show">
+            <div className="mobile-navigation  ">
               <Link to={'/about'} className="active item">
                 About
               </Link>
