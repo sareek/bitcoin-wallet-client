@@ -14,6 +14,7 @@
     top: 0;
     width: 100%;
     z-index: 999;
+    transition: 0.2s all ease-in-out;
 
     &.bg-black{
         background: rgba(0,0,0,0.5);
