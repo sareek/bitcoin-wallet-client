@@ -123,6 +123,7 @@ class HomePage extends Component {
             <img src={Img} alt="bitcoin tech background image" />
           </div>
           <div className="container ui two column stackable grid content">
+         
             <div className="column">
               <h1>What is Bitcoin?</h1>
               <p>Bitcoin is a decentralized, peer-to-peer cryptocurrency system designed to allow online users to process transactions through digital units of exchange called bitcoins (BTC). It is know as the world’s first widely-adopted cryptocurrency.</p>
@@ -132,6 +133,7 @@ class HomePage extends Component {
                 Get Started
               </Link>
             </div>
+ 
           </div>
         </section>
 
