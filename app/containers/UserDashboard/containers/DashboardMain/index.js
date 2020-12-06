@@ -65,6 +65,7 @@ class DashboardMain extends React.Component {
 
     chart.paddingRight = 20;
     chart.data = values;
+    chart.responsive.enabled = true;
 
     let title = chart.titles.create();
     title.text = "Bitcoin Chart";

@@ -1,5 +1,5 @@
 import React from 'react';
-import { } from 'semantic-ui-react';
+import { Icon, Button} from 'semantic-ui-react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ class Header extends React.PureComponent {
           <Link to={'/'} className="brand">
             <img src={Logo}/>
            </Link>
-          <div className="right menu">
+          <div className="right menu main-menu">
             <Link to={'/about'} className="active item">
               About
              </Link>
@@ -27,6 +27,25 @@ class Header extends React.PureComponent {
             </Link>
             
             <Link className="ui button orange item login" to='/login'>Sign In</Link>
+          </div>
+          <div className="right menu mobile-view">
+            <div>
+              <Button className="hamburger-menu"><Icon name="bars" /></Button>
+            </div>
+            <div className="mobile-navigation show">
+              <Link to={'/about'} className="active item">
+                About
+              </Link>
+
+              <Link to={'/'} className="item">
+                Exchange
+              </Link>
+              <Link to={'/'} className="item">
+                Btc Price
+              </Link>
+              
+              <Link className="ui button orange item login" to='/login'>Sign In</Link>
+            </div>
           </div>
         </div>
       </header>
