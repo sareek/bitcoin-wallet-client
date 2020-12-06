@@ -11,9 +11,22 @@ class Header extends React.PureComponent {
     super(props);
 
     this.state = {
-      show: false
+      show: false,
+      sticky: false,
     }
   }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    if (window.scrollY > 0) {
+        this.setState({ sticky: true })
+    } else {
+        this.setState({ sticky: false })
+    }
+}
 
   handleToggle = () => {
     const { show } = this.state;
@@ -23,9 +36,9 @@ class Header extends React.PureComponent {
   }
 
   render() {
-    const { show } = this.state;
+    const { show, sticky } = this.state;
     return (
-      <header id="header" className="home">
+      <header id="header" className={sticky ? "home bg-black" : "home"}>
         <div className="ui secondary  menu">
           <Link to={'/'} className="brand">
             <img src={Logo}/>
