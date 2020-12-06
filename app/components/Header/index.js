@@ -6,8 +6,24 @@ import { Link } from 'react-router-dom';
 import Logo from  '../../assets/Btcwallet_logo/Version 1/Btcwallet_logo-01.png'
 
 class Header extends React.PureComponent {
-  render() {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      show: false
+    }
+  }
+
+  handleToggle = () => {
+    const { show } = this.state;
+     this.setState({
+      show: show ? false : true 
+     })
+  }
+
+  render() {
+    const { show } = this.state;
     return (
       <header id="header" className="home">
         <div className="ui secondary  menu">
@@ -30,9 +46,14 @@ class Header extends React.PureComponent {
           </div>
           <div className="right menu mobile-view">
             <div>
-              <Button className="hamburger-menu"><Icon name="bars" /></Button>
+              <Button 
+                onClick={this.handleToggle}
+                className="hamburger-menu"
+              >
+                   <Icon name="bars" />
+              </Button>
             </div>
-            <div className="mobile-navigation  ">
+            <div className={show ? "mobile-navigation show" : "mobile-navigation "}>
               <Link to={'/about'} className="active item">
                 About
               </Link>
