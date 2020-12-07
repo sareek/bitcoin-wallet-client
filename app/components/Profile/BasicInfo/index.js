@@ -13,6 +13,8 @@ import reducer from './reducer'
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import {compose} from "redux";
+import * as action from "../../../utils/api";
+import getToken from 'utils/getToken';
 
 const mapStateToProps = createStructuredSelector({
   user: makeSelectUser(),
@@ -138,11 +140,28 @@ class BasicInfo extends React.Component {
     e.preventDefault();
     const { data, imageFile, files } = this.state;
     console.log({data}, {files})
+    const token = getToken();
     const errors = this.validateForm();
-    if (!!files) {
-      this.props.updateBasicInfoRequest(data, files);
+    let multipartData;
+    multipartData = new FormData();
+    Object.keys(data).forEach(key => {
+      multipartData.append(key, data[key]);
+    });
+    if (!!files && files.kycFile) {
+      // this.props.updateBasicInfoRequest(data, files);
+      multipartData.append('file', files.kycFile[0]);
+      action.multiPartPostData(`http://3.137.188.44/api/kyc/`, multipartData, token)
+      .then(res => {
+          console.log(res)
+          ////handle state here
+      });
     } else {
-      this.props.updateBasicInfoRequest(data);
+      // this.props.updateBasicInfoRequest(data);
+      action.multiPartPostData(`http://3.137.188.44/api/kyc/`, multipartData, token)
+      .then(res => {
+          console.log(res)
+          ////handle state here
+      });
     }
   };
 

@@ -117,11 +117,12 @@ class API {
           headers: {
             processData: false,
             // 'Content-Type': 'multipart/form-data',
-            contentType: false,
-            'X-Requested-With': 'XMLHttpRequest',
+            // contentType: false,
+            // 'X-Requested-With': 'XMLHttpRequest',
             Authorization: token,
           },
         };
+
         const response = yield call(request, requestURL, options);
         yield put(onSuccess(response, actionArguments));
       } catch (e) {
@@ -182,7 +183,7 @@ class API {
           headers: {
             processData: false,
             // 'Content-Type': 'multipart/form-data',
-            contentType: false,
+            // contentType: false,
             'X-Requested-With': 'XMLHttpRequest',
             Authorization: token,
           },
@@ -261,7 +262,7 @@ class API {
           headers: {
             processData: false,
             // 'Content-Type': 'multipart/form-data',
-            contentType: false,
+            // contentType: false,
             'X-Requested-With': 'XMLHttpRequest',
             Authorization: token,
           },
@@ -319,7 +320,7 @@ class API {
         body: multipartData,
         headers: {
           processData: false,
-          contentType: false,
+          // contentType: false,
           'X-Requested-With': 'XMLHttpRequest',
           Authorization: token,
         },

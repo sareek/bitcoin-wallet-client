@@ -41,7 +41,7 @@ function walletSettings(state = initialState, action) {
     case types.SEND_WALLET_ADDRESS_SUCCESS:
       return state.merge({
         sendWalletAddressRequesting: false,
-        sendWalletAddressResponse: fromJS(action.response.data),
+        sendWalletAddressResponse: fromJS(action.response),
         sendWalletAddressError: {}
       }); 
       

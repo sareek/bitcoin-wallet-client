@@ -138,6 +138,7 @@ class Wallet extends React.Component {
           this.setState({showSendModal: false});
         }
     }
+
     if (this.props.getTransactionInfoResponse != prevProps.getTransactionInfoResponse) {
       if (this.props.getTransactionInfoResponse &&
         this.props.getTransactionInfoResponse.toJS() &&
@@ -151,8 +152,7 @@ class Wallet extends React.Component {
         this.props.getTransactionInfoError.toJS() &&
         this.props.getTransactionInfoError.toJS().status === 400) {
             toast.error(this.props.getTransactionInfoError.toJS().message ? 
-                           this.props.getTransactionInfoError.toJS().message : "Error while getting trasaction info");
-          this.setState({showSendModal: false});
+                          this.props.getTransactionInfoError.toJS().message : "Error while getting trasaction info");
         }
     }
   }
@@ -338,7 +338,7 @@ class Wallet extends React.Component {
       },
       {
         name: 'Created At',
-        key: 3,
+        key: 4,
         format: data => {
           return data.timestamp ? moment(data.timestamp).format('YYYY-MM-DD HH:mm:ss') : '--'
         },
@@ -368,7 +368,7 @@ class Wallet extends React.Component {
              showSendModal={showSendModal}
              handleChange={this.handleChange}
              submitSendAddress={this.submitSendAddress}
-             getWalletAddressesRequesting={sendWalletAddressesRequesting}
+             sendRequesting={sendWalletAddressesRequesting}
              getWalletAddressesRequesting={getWalletAddressesRequesting}
              handleDropDown={this.handleDropDown}
              walletOptions={walletAddresses}

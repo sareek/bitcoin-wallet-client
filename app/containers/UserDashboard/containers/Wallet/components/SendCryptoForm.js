@@ -11,7 +11,7 @@ const SendCryptoForm = ({
     handleDropDown,
     walletOptions,
     btcPrice,
-    sendWalletAddressesRequesting
+    sendRequesting
 }) => (
         <Modal
             size="tiny"
@@ -103,11 +103,12 @@ const SendCryptoForm = ({
                     </Form.Group>
                     <Form.Field>
                         <Button
-                            content="Send"
                             fluid
                             onClick={() => submitSendAddress()}
                             color="orange"
-                        />
+                        >
+                            {sendRequesting ? "Loading..." : "Send"}
+                        </Button>
                     </Form.Field>
                 </Form>
             </Modal.Content>

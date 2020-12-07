@@ -13,23 +13,22 @@ function* redirectOnSuccess(user) {
 }
 
 function* confirmBasicInfoUpdateFlow(action) {
+  const { image, user } = action;
   const token = getToken();
   console.log(action)
-  debugger;
-  // const successWatcher = yield fork(redirectOnSuccess, action.user);
-  // yield fork(
-  //   API.multipartPost(
-  //     `user/data/${action.user._id}`,
-  //     updateBasicInfoSuccess,
-  //     updateBasicInfoFailure,
-  //     action.user,
-  //     action.image,
-  //     token,
-  //     'put',
-  //   ),
-  // );
-  // yield take([LOCATION_CHANGE, types.UPDATE_BASIC_INFO_FAILURE]);
-  // yield cancel(successWatcher);
+  const successWatcher = yield fork(redirectOnSuccess, action.user);
+  yield fork(
+    API.multipartPost(
+      `kyc/`,
+      updateBasicInfoSuccess,
+      updateBasicInfoFailure,
+      user,
+      image.kycFile,
+      token,
+    ),
+  );
+  yield take([LOCATION_CHANGE, types.UPDATE_BASIC_INFO_FAILURE]);
+  yield cancel(successWatcher);
 }
 
 export default function* profileBasicInfoUpdateWatcher() {

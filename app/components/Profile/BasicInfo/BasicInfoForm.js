@@ -91,7 +91,7 @@ const BasicInfoForm = (
             <label>Birth Year:</label>
             <Dropdown
               placeholder='Select Birth Year'
-              name="birthYear"
+              name="dob_year"
               search
               selection
               options={birthYearOption}
@@ -102,7 +102,7 @@ const BasicInfoForm = (
             <label>Birth Month:</label>
             <Dropdown
               placeholder='Select Birth Month'
-              name="birthMonth"
+              name="dob_month"
               search
               selection
               options={birthMonthOption}
@@ -113,7 +113,7 @@ const BasicInfoForm = (
             <label>Birth Day:</label>
             <Dropdown
               placeholder='Select Birth Day'
-              name="birthDay"
+              name="dob_date"
               search
               selection
               options={birthDayOption}
@@ -149,16 +149,16 @@ const BasicInfoForm = (
             type="text"
             label="Address Line 1"
             placeholder="Address Line 1"
-            name="address_address_line_1"
-            value={user.address_address_line_1 || ''}
+            name="address1"
+            value={user.address1 || ''}
             onChange={handleChange}
           />
           <InputField
             type="text"
             label="Address Line 2"
             placeholder="Address Line 2"
-            name="address_address_line_2"
-            value={user.address_address_line_2 || ''}
+            name="address2"
+            value={user.address2 || ''}
             onChange={handleChange}
           />
         </Form.Group>
@@ -167,16 +167,16 @@ const BasicInfoForm = (
             type="text"
             label="City"
             placeholder="City"
-            name="address_city"
-            value={user.address_city || ''}
+            name="city"
+            value={user.city || ''}
             onChange={handleChange}
           />
           <InputField
             type="text"
             label="State/Province/Region"
             placeholder="State/Province/Region"
-            name="address_state_region_province"
-            value={user.address_state_region_province || ''}
+            name="state"
+            value={user.state || ''}
             onChange={handleChange}
           />
         </Form.Group>
@@ -185,6 +185,7 @@ const BasicInfoForm = (
             <label>Country:</label>
             <Dropdown
               placeholder='Select a Country'
+              name="country"
               search
               selection
               options={countriesOption}
@@ -195,8 +196,8 @@ const BasicInfoForm = (
             type="text"
             label="ZIP/Postal Code"
             placeholder='ZIP/Postal Code'
-            name="address_zip_postal_code"
-            value={user.address_zip_postal_code || ''}
+            name="zip"
+            value={user.zip || ''}
             onChange={handleChange}
           />
         </Form.Group>
