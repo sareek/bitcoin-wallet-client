@@ -329,7 +329,7 @@ class Wallet extends React.Component {
           return data
             ?
              <>
-              <Label color={data.status === 'Received' ? 'green' : ''} horizontal>
+              <Label color={data.status === 'Received' ? 'green' : 'grey'} horizontal>
                 {data.status}
              </Label>
             </> 

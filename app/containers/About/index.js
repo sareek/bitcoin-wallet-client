@@ -58,20 +58,38 @@ class AboutPage extends Component {
             <Grid stackable>
             <Grid.Row>
                   <Grid.Column>
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                  <p>Crypto has the capacity to force a redesign of the Internet, our financial system, and money in a way that fosters and protects the rights and dignity of the individual. BTCwallet is founded with a “security-first” mentality. It is one of the world’s most trusted and secured cryptocurrency platform. We tend to continually upgrade our platform to suit the growing needs of crypto users. Our vision and goal are well defined, and we are working hard to develop the functionality and continually improve the features.</p>
                   </Grid.Column>
                   </Grid.Row>
                   <Grid.Row>
                   <Grid.Column>
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                  <p>
+                    BtcWallet is a new type of web wallet which aims to combine 
+                    <ul>
+                      <li>security,</li>
+                      <li>usability and </li>
+                      <li>multi-currency support.</li>
+                    </ul>  
+                    </p>
                   </Grid.Column>
                   </Grid.Row>
                 <Grid.Row columns={2}>
                   <Grid.Column>
-                    <p>ontrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+                    <h3>Best level of security</h3>
+                    <p>We’ve assembled a global team of top security professionals who take a risk-based approach to ensuring our clients’ assets are protected at the highest levels while maintaining exceptional performance and an unparalleled client experience. Our team has decades of experience building security programs for the world’s top brands, investigating the largest consumer data breaches, developing security technology trusted by millions of businesses and discovering vulnerabilities in the technology used by billions of people every day. Aside all of that we also ensure that Private keys are never sent to the server except in an encrypted form. </p>
                   </Grid.Column>
                   <Grid.Column>
                    <Image src={Img} size='large' rounded />
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row columns={2}>
+                  <Grid.Column>
+                    <h3>Usability</h3>
+                    <p>BtcWallet has a carefully planned layout, with common operations emphasized. It has a beautiful and intuitive User Interface, and special care is taken to smooth out operational edge cases to prevent mistakes and ensure a painless experience for the user.</p>
+                  </Grid.Column>
+                  <Grid.Column>
+                  <h3>Multi-currency support</h3>
+                  <p>Btcwallet comes with a pre-built support for Bitcoin and bitcoin cash, but definitely plans to expand it numbers of supported cryptocurrency. </p>
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
