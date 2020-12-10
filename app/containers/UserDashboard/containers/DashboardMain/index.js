@@ -134,7 +134,7 @@ class DashboardMain extends React.Component {
                 <h2>Welcome Note</h2>
                   <div>
                     <p>
-                    Welcome to your personal BtcWallet account. Your account is ready to securely send and receive bitcoin. To enjoy full functionalities of this wallet, you may need to verify your account by using the KYC Form in PROFILE, or you can contact us through customersupport@btcwallet.net if you need further assistance.
+                    Welcome to your personal BtcWallet account. Your account is ready to securely send and receive bitcoin. To enjoy full functionalities of this wallet, you may need to verify your account by using the KYC Form in PROFILE, or you can contact us through <b>info@btcwallet.uk.com</b> if you need further assistance.
                  </p>
                     <Divider clearing />
                     <p> To keep your account more secured, please enable your Two-Factor Authenticator in SETTINGS.</p>

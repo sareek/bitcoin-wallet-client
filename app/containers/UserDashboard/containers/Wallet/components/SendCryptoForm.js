@@ -21,7 +21,7 @@ const SendCryptoForm = ({
             closeIcon
             trigger={<Button>Show Modal</Button>}
         >
-            <Header icon='send' content='Send Wallet Address' />
+            <Header icon='send' content='Send Bitcoin' />
             <Modal.Content>
                 <Form size="large">
                     <Form.Group widths="equal">
