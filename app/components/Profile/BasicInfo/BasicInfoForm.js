@@ -166,49 +166,57 @@ const BasicInfoForm = (
       <Segment>
         <h3>Address</h3>
         <Form.Group widths="equal">
-          <InputField
-            type="text"
-            label="Address Line 1"
-            placeholder="Address Line 1"
-            name="address1"
-            value={user.address1 || ''}
-            onChange={handleChange}
-          />
-          {errors.address1 && (
+          <Form.Field>
+            <InputField
+              type="text"
+              label="Address Line 1"
+              placeholder="Address Line 1"
+              name="address1"
+              value={user.address1 || ''}
+              onChange={handleChange}
+            />
+            {errors.address1 && (
               <span style={{ color: 'red' }}>{errors.address1}</span>
             )}
-          <InputField
-            type="text"
-            label="Address Line 2"
-            placeholder="Address Line 2"
-            name="address2"
-            value={user.address2 || ''}
-            onChange={handleChange}
-          />
+          </Form.Field>
+          <Form.Field>
+            <InputField
+              type="text"
+              label="Address Line 2"
+              placeholder="Address Line 2"
+              name="address2"
+              value={user.address2 || ''}
+              onChange={handleChange}
+            />
+          </Form.Field>
         </Form.Group>
         <Form.Group widths="equal">
-          <InputField
-            type="text"
-            label="City"
-            placeholder="City"
-            name="city"
-            value={user.city || ''}
-            onChange={handleChange}
-          />
-          {errors.city && (
+          <Form.Field>
+            <InputField
+              type="text"
+              label="City"
+              placeholder="City"
+              name="city"
+              value={user.city || ''}
+              onChange={handleChange}
+            />
+            {errors.city && (
               <span style={{ color: 'red' }}>{errors.city}</span>
             )}
-          <InputField
-            type="text"
-            label="State/Province/Region"
-            placeholder="State/Province/Region"
-            name="state"
-            value={user.state || ''}
-            onChange={handleChange}
-          />
-          {errors.state && (
+          </Form.Field>
+          <Form.Field>
+            <InputField
+              type="text"
+              label="State/Province/Region"
+              placeholder="State/Province/Region"
+              name="state"
+              value={user.state || ''}
+              onChange={handleChange}
+            />
+            {errors.state && (
               <span style={{ color: 'red' }}>{errors.state}</span>
             )}
+          </Form.Field>
         </Form.Group>
         <Form.Group widths="equal">
           <Form.Field>
@@ -225,17 +233,19 @@ const BasicInfoForm = (
               <span style={{ color: 'red' }}>{errors.country}</span>
             )}
           </Form.Field>
-          <InputField
-            type="text"
-            label="ZIP/Postal Code"
-            placeholder='ZIP/Postal Code'
-            name="zip"
-            value={user.zip || ''}
-            onChange={handleChange}
-          />
-          {errors.zip && (
+          <Form.Field>
+            <InputField
+              type="text"
+              label="ZIP/Postal Code"
+              placeholder='ZIP/Postal Code'
+              name="zip"
+              value={user.zip || ''}
+              onChange={handleChange}
+            />
+            {errors.zip && (
               <span style={{ color: 'red' }}>{errors.zip}</span>
            )}
+          </Form.Field>
         </Form.Group>
       </Segment>
       <Segment>
