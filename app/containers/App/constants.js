@@ -1,8 +1,8 @@
 const isProdEnv = process.env.NODE_ENV === 'production';
 // http://104.197.123.145:8000/api/
 export const API_BASE = isProdEnv
-  ? 'http://3.137.188.44/api/'
-  : 'http://3.137.188.44/api/';
+  ? 'https://btcwallet.uk.com/api/'
+  : 'https://btcwallet.uk.com/api/';
   //  : 'http://104.197.123.145:8000/api/';
 
 export const RECAPTCHA_SITE_KEY = '6LfRNdgUAAAAANYlMF47bUNQDuIQSdIj-pd8RZv6';
