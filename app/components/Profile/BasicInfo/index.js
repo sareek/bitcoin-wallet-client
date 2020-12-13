@@ -71,6 +71,7 @@ class BasicInfo extends React.Component {
 
   handleChange = e => {
     e.persist();
+    delete errors[e.target.name];
     this.setState(state => ({
       data: {
         ...state.data,
@@ -124,6 +125,7 @@ class BasicInfo extends React.Component {
   };
 
   handleDropDown = (e, se) => {
+    delete errors[se.name];
     this.setState({
       data: {
         ...this.state.data,
@@ -133,6 +135,7 @@ class BasicInfo extends React.Component {
   }
 
   handleRadioChange = (e, { name, value }) => {
+    delete errors[name];
     this.setState({ data: { ...this.state.data, [name]: value } });
   }
   
