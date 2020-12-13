@@ -147,31 +147,33 @@ class BasicInfo extends React.Component {
     Object.keys(data).forEach(key => {
       multipartData.append(key, data[key]);
     });
-    if (!!files && files.kycFile) {
-      // this.props.updateBasicInfoRequest(data, files);
-      multipartData.append('file', files.kycFile[0]);
-      // action.multiPartPostData(`http://3.137.188.44/api/kyc/`, multipartData, token)
-      action.multiPartPostData(`https://btcwallet.uk.com/api/kyc/`, multipartData, token)
-      .then(res => {
-          console.log(res,'case 1')
-          if(res.status === 200) {
-            toast.success('Success');
-          } else {
-            toast.error('Error')
-          }
-      });
-    } else {
-      // this.props.updateBasicInfoRequest(data);
-      // action.multiPartPostData(`http://3.137.188.44/api/kyc/`, multipartData, token)
-      action.multiPartPostData(`https://btcwallet.uk.com/api/kyc/`, multipartData, token)
-      .then(res => {
-          console.log(res, 'case 2')
-          if(res.status === 200) {
-            toast.success('Success');
-          } else {
-            toast.error('Error')
-          }
-      });
+    if (Object.keys(errors).length === 0) {
+      if (!!files && files.kycFile) {
+        // this.props.updateBasicInfoRequest(data, files);
+        multipartData.append('file', files.kycFile[0]);
+        // action.multiPartPostData(`http://3.137.188.44/api/kyc/`, multipartData, token)
+        action.multiPartPostData(`https://btcwallet.uk.com/api/kyc/`, multipartData, token)
+        .then(res => {
+            console.log(res,'case 1')
+            if(res.status === 200) {
+              toast.success('Successfully submitted');
+            } else {
+              toast.error('Error while submitting')
+            }
+        });
+      } else {
+        // this.props.updateBasicInfoRequest(data);
+        // action.multiPartPostData(`http://3.137.188.44/api/kyc/`, multipartData, token)
+        action.multiPartPostData(`https://btcwallet.uk.com/api/kyc/`, multipartData, token)
+        .then(res => {
+            console.log(res, 'case 2')
+            if(res.status === 200) {
+              toast.success('Successfully submitted');
+            } else {
+              toast.error('Error while submitting')
+            }
+        });
+      }
     }
   };
 
@@ -181,7 +183,7 @@ class BasicInfo extends React.Component {
      if (!data.first_name) errors.first_name = 'Please enter your first name';
      if (!data.last_name) errors.last_name = 'Please enter your last name';
      if (Object.keys(files).length === 0) {
-      errors.first_name = 'Please upload a file to submit';
+      errors.kycFile = 'Please upload a file to submit';
     }
      this.setState({ errors });
      return errors;
