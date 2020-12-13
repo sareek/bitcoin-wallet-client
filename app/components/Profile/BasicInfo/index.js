@@ -182,6 +182,17 @@ class BasicInfo extends React.Component {
      const errors = {};
      if (!data.first_name) errors.first_name = 'Please enter your first name';
      if (!data.last_name) errors.last_name = 'Please enter your last name';
+     if (!data.gender) errors.gender = 'Please enter your gender';
+     if (!data.dob_date) errors.dob_date = 'Please enter your dob date';
+     if (!data.dob_month) errors.dob_month = 'Please enter your dob month';
+     if (!data.dob_year) errors.dob_year = 'Please enter your dob year';
+     if (!data.country) errors.country = 'Please enter your country';
+     if (!data.state) errors.state = 'Please enter your state';
+     if (!data.city) errors.city = 'Please enter your city';
+     if (!data.zip) errors.zip = 'Please enter your zip';
+     if (!data.username) errors.username = 'Please enter your username';
+     if (!data.address1) errors.address1 = 'Please enter your address';
+     if (!data.email) errors.email = 'Please enter your email';
      if (Object.keys(files).length === 0) {
       errors.kycFile = 'Please upload a file to submit';
     }

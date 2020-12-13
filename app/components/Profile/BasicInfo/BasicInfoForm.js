@@ -54,6 +54,9 @@ const BasicInfoForm = (
               value={user.last_name || ''}
               onChange={handleChange}
             />
+             {errors.last_name && (
+              <span style={{ color: 'red' }}>{errors.last_name}</span>
+            )}
           </Form.Field>
         </Form.Group>
         <Form.Group>
@@ -85,6 +88,9 @@ const BasicInfoForm = (
               onChange={handleGenderChange}
             />
           </Form.Field>
+          {errors.gender && (
+              <span style={{ color: 'red' }}>{errors.gender}</span>
+            )}
         </Form.Group>
         <Form.Group widths="equal">
           <Form.Field>
@@ -97,6 +103,9 @@ const BasicInfoForm = (
               options={birthYearOption}
               onChange={handleDropDown}
             />
+            {errors.dob_year && (
+              <span style={{ color: 'red' }}>{errors.dob_year}</span>
+            )}
           </Form.Field>
           <Form.Field>
             <label>Birth Month:</label>
@@ -108,6 +117,9 @@ const BasicInfoForm = (
               options={birthMonthOption}
               onChange={handleDropDown}
             />
+            {errors.dob_month && (
+              <span style={{ color: 'red' }}>{errors.dob_month}</span>
+            )}
           </Form.Field>
           <Form.Field>
             <label>Birth Day:</label>
@@ -119,6 +131,9 @@ const BasicInfoForm = (
               options={birthDayOption}
               onChange={handleDropDown}
             />
+            {errors.dob_date && (
+              <span style={{ color: 'red' }}>{errors.dob_date}</span>
+            )}
           </Form.Field>
         </Form.Group>
         <Form.Group widths="equal">
@@ -130,6 +145,9 @@ const BasicInfoForm = (
               value={user.username || ''}
               onChange={handleChange}
             />
+            {errors.username && (
+              <span style={{ color: 'red' }}>{errors.username}</span>
+            )}
           </Form.Field>
           <Form.Field>
             <label>Email</label>
@@ -139,6 +157,9 @@ const BasicInfoForm = (
               value={user.email || ''}
               onChange={handleChange}
             />
+            {errors.email && (
+              <span style={{ color: 'red' }}>{errors.email}</span>
+            )}
           </Form.Field>
         </Form.Group>
       </Segment>
@@ -153,6 +174,9 @@ const BasicInfoForm = (
             value={user.address1 || ''}
             onChange={handleChange}
           />
+          {errors.address1 && (
+              <span style={{ color: 'red' }}>{errors.address1}</span>
+            )}
           <InputField
             type="text"
             label="Address Line 2"
@@ -171,6 +195,9 @@ const BasicInfoForm = (
             value={user.city || ''}
             onChange={handleChange}
           />
+          {errors.city && (
+              <span style={{ color: 'red' }}>{errors.city}</span>
+            )}
           <InputField
             type="text"
             label="State/Province/Region"
@@ -179,6 +206,9 @@ const BasicInfoForm = (
             value={user.state || ''}
             onChange={handleChange}
           />
+          {errors.state && (
+              <span style={{ color: 'red' }}>{errors.state}</span>
+            )}
         </Form.Group>
         <Form.Group widths="equal">
           <Form.Field>
@@ -191,6 +221,9 @@ const BasicInfoForm = (
               options={countriesOption}
               onChange={handleDropDown}
             />
+            {errors.country && (
+              <span style={{ color: 'red' }}>{errors.country}</span>
+            )}
           </Form.Field>
           <InputField
             type="text"
@@ -200,6 +233,9 @@ const BasicInfoForm = (
             value={user.zip || ''}
             onChange={handleChange}
           />
+          {errors.zip && (
+              <span style={{ color: 'red' }}>{errors.zip}</span>
+           )}
         </Form.Group>
       </Segment>
       <Segment>
@@ -213,6 +249,9 @@ const BasicInfoForm = (
             handleFileRemove={handleFileRemove}
             fileName="kycFile"
           />
+          {errors.kycFile && (
+              <span style={{ color: 'red' }}>{errors.kycFile}</span>
+           )}
         </div>
       </Segment>
       <div style={{ textAlign: "center" }}>
