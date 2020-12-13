@@ -71,7 +71,8 @@ class BasicInfo extends React.Component {
 
   handleChange = e => {
     e.persist();
-    delete errors[e.target.name];
+    const { errors } = this.state;
+     delete errors[e.target.name];
     this.setState(state => ({
       data: {
         ...state.data,
@@ -106,6 +107,8 @@ class BasicInfo extends React.Component {
 
   handleOnDrop = (receivedFiles, fileName) => {
     if (receivedFiles.length === 1) {
+      const { errors } = this.state;
+       delete errors[fileName];
       receivedFiles[0].file_name = fileName;
       this.setState({
         files: {
@@ -115,7 +118,7 @@ class BasicInfo extends React.Component {
       })
     }
     if (this.state.errors.submissionError) {
-      delete this.state.errors.submissionError;
+       delete this.state.errors.submissionError;
       this.setState({ 
         errors: {
           ...this.state.errors
@@ -125,7 +128,8 @@ class BasicInfo extends React.Component {
   };
 
   handleDropDown = (e, se) => {
-    delete errors[se.name];
+    const { errors } = this.state;
+     delete errors[se.name];
     this.setState({
       data: {
         ...this.state.data,
@@ -135,7 +139,8 @@ class BasicInfo extends React.Component {
   }
 
   handleRadioChange = (e, { name, value }) => {
-    delete errors[name];
+    const { errors } = this.state;
+     delete errors[name];
     this.setState({ data: { ...this.state.data, [name]: value } });
   }
   
