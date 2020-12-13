@@ -24,7 +24,7 @@ const FileDropZone = ({
         onDropRejected={file => {
           handleOnDropRejected(file, fileName);
         }}
-        accept=".png, .jpg"
+        accept=".png, .jpg, .pdf, .csv, .xls, .xlsx, .xlsm"
         maxSize={10485760}
       >
         {({ getRootProps, getInputProps }) => (

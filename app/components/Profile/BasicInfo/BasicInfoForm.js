@@ -207,7 +207,7 @@ const BasicInfoForm = (
           <h5>Upload a File</h5>
           <FileDropZone
             files={files}
-            // errors={errors}
+            errors={errors}
             handleOnDrop={handleOnDrop}
             handleOnDropRejected={handleOnDropRejected}
             handleFileRemove={handleFileRemove}

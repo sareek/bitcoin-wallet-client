@@ -15,6 +15,7 @@ import injectReducer from 'utils/injectReducer';
 import {compose} from "redux";
 import * as action from "../../../utils/api";
 import getToken from 'utils/getToken';
+import { toast } from 'react-toastify';
 
 const mapStateToProps = createStructuredSelector({
   user: makeSelectUser(),
@@ -39,7 +40,6 @@ class BasicInfo extends React.Component {
     data: {},
     files: {},
     avatarImage: this.props.user.get('image_name') ? `${DOCUMENT_URL_UPDATE}${this.props.user.get('image_name')}` : null,
-    imageFile: null,
     errors: {}
   };
   componentDidMount() {
@@ -138,7 +138,7 @@ class BasicInfo extends React.Component {
   
   handleSubmit = e => {
     e.preventDefault();
-    const { data, imageFile, files } = this.state;
+    const { data, files } = this.state;
     console.log({data}, {files})
     const token = getToken();
     const errors = this.validateForm();
@@ -150,27 +150,39 @@ class BasicInfo extends React.Component {
     if (!!files && files.kycFile) {
       // this.props.updateBasicInfoRequest(data, files);
       multipartData.append('file', files.kycFile[0]);
-      action.multiPartPostData(`http://3.137.188.44/api/kyc/`, multipartData, token)
+      // action.multiPartPostData(`http://3.137.188.44/api/kyc/`, multipartData, token)
+      action.multiPartPostData(`https://btcwallet.uk.com/api/kyc/`, multipartData, token)
       .then(res => {
-          console.log(res)
-          ////handle state here
+          console.log(res,'case 1')
+          if(res.status === 200) {
+            toast.success('Success');
+          } else {
+            toast.error('Error')
+          }
       });
     } else {
       // this.props.updateBasicInfoRequest(data);
-      action.multiPartPostData(`http://3.137.188.44/api/kyc/`, multipartData, token)
+      // action.multiPartPostData(`http://3.137.188.44/api/kyc/`, multipartData, token)
+      action.multiPartPostData(`https://btcwallet.uk.com/api/kyc/`, multipartData, token)
       .then(res => {
-          console.log(res)
-          ////handle state here
+          console.log(res, 'case 2')
+          if(res.status === 200) {
+            toast.success('Success');
+          } else {
+            toast.error('Error')
+          }
       });
     }
   };
 
   validateForm = () => {
-     const { data } = this.state;
+     const { data, files } = this.state;
      const errors = {};
      if (!data.first_name) errors.first_name = 'Please enter your first name';
      if (!data.last_name) errors.last_name = 'Please enter your last name';
-
+     if (Object.keys(files).length === 0) {
+      errors.first_name = 'Please upload a file to submit';
+    }
      this.setState({ errors });
      return errors;
   }
