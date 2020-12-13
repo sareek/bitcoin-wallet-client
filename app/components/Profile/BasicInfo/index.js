@@ -7,7 +7,6 @@ import { makeSelectResponse, makeSelectError, makeSelectRequesting, makeSelectSu
 import { DOCUMENT_URL_UPDATE } from 'containers/App/constants';
 import { makeSelectUser } from 'containers/App/selectors';
 import BasicInfoForm from './BasicInfoForm';
-import Toaster from "components/Toaster";
 import saga from './sagas'
 import reducer from './reducer'
 import injectSaga from 'utils/injectSaga';
@@ -147,7 +146,6 @@ class BasicInfo extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     const { data, files } = this.state;
-    console.log({data}, {files})
     const token = getToken();
     const errors = this.validateForm();
     let multipartData;
@@ -162,7 +160,6 @@ class BasicInfo extends React.Component {
         // action.multiPartPostData(`http://3.137.188.44/api/kyc/`, multipartData, token)
         action.multiPartPostData(`https://btcwallet.uk.com/api/kyc/`, multipartData, token)
         .then(res => {
-            console.log(res,'case 1')
             if(res.status === 200) {
               toast.success('Successfully submitted');
             } else {
@@ -174,7 +171,6 @@ class BasicInfo extends React.Component {
         // action.multiPartPostData(`http://3.137.188.44/api/kyc/`, multipartData, token)
         action.multiPartPostData(`https://btcwallet.uk.com/api/kyc/`, multipartData, token)
         .then(res => {
-            console.log(res, 'case 2')
             if(res.status === 200) {
               toast.success('Successfully submitted');
             } else {
